@@ -11,9 +11,13 @@ public class puzzle_info : MonoBehaviour {
 	public List< Vector2> choices; 			//Choices to be displayed on the UI
 
 	public int attempt_count; 				// limiting number of attempts. ( player can only try X amount of times)
-	public int trace_mode; 					// 1 is on, path player takes will be rendered
+
+    // trace mode
+	public int display_past_paths; 			// 1 is on, path player takes will be rendered
 											// 0 is off, path player takes is invisible
-	public int future_sight; 				// 1 is on, the next possible vector path will be rendered
+
+    // future sight
+	public int display_upcoming_path; 		// 1 is on, the next possible vector path will be rendered
 											// 0 is off, the next possible vector path will remain inivisible
 		
 	public void Awake(){
@@ -26,8 +30,8 @@ public class puzzle_info : MonoBehaviour {
 		goal_positions = new List<Vector3> ();
 		choices = new List< Vector2> ();
 		attempt_count = -1; 					//unlimited attempts
-		trace_mode = 1;
-		future_sight = 1;
+		display_past_paths = 1;
+		display_upcoming_path = 1;
 
 	}
 
@@ -61,23 +65,36 @@ public class puzzle_info : MonoBehaviour {
 		foreach (Vector2 choice in choices)
 			log.WriteLine ("\t"+choice.ToString ());
 		log.WriteLine ("Attempts : " + attempt_count.ToString ());
-		log.WriteLine ("Trace : " + (trace_mode == 1 ? "ON" : "OFF"));
-		log.WriteLine ("Future Sight : " + (future_sight == 1 ? "ON" : "OFF"));
+		log.WriteLine ("Trace : " + (display_past_paths == 1 ? "ON" : "OFF"));
+		log.WriteLine ("Future Sight : " + (display_upcoming_path == 1 ? "ON" : "OFF"));
 
 		log.Close ();
 	}
 
-	public int getFutureSight()
+	public int GetDisplayUpcomingPath()
 	{
-		return future_sight;
+		return display_upcoming_path;
 	}
 
-	public void setFutureSight(int choice)
+	public void SetDisplayUpcomingPath(int choice)
 	{
 		if (choice == 0 || choice == 1)
 		{
-			future_sight = choice;
+			display_upcoming_path = choice;
 		}
 	}
+
+    public int GetDisplayPastPaths()
+    {
+        return display_past_paths;
+    }
+
+    public void SetDisplayPastPaths(int choice)
+    {
+        if (choice == 0 || choice == 1)
+        {
+            display_past_paths = choice;
+        }
+    }
 
 }

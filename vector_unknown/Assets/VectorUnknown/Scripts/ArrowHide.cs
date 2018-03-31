@@ -17,19 +17,19 @@ public class ArrowHide : MonoBehaviour {
 	void Update() {
 		if (Input.GetKeyDown(KeyCode.F))
 		{
-			puzzle_info.GetComponent<puzzle_info>().setFutureSight(1);
+			puzzle_info.GetComponent<puzzle_info>().SetDisplayUpcomingPath(1);
 		}
 
-		if (puzzle_info.GetComponent<puzzle_info>().getFutureSight() == 1)
+		if (puzzle_info.GetComponent<puzzle_info>().GetDisplayUpcomingPath() == 1)
         {
             rend.enabled = true;
 		}
 
 		if (Input.GetKeyDown(KeyCode.G))
 		{ 
-			puzzle_info.GetComponent<puzzle_info>().setFutureSight(0);
+			puzzle_info.GetComponent<puzzle_info>().SetDisplayUpcomingPath(0);
 		}
-        if (puzzle_info.GetComponent<puzzle_info>().getFutureSight() == 0)
+        if (puzzle_info.GetComponent<puzzle_info>().GetDisplayUpcomingPath() == 0)
         {
             rend.enabled = false;
         }

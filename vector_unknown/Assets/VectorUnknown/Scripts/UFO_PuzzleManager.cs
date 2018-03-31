@@ -64,9 +64,9 @@ public class UFO_PuzzleManager : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown(KeyCode.F))
-			puzzle_info.GetComponent<puzzle_info>().setFutureSight(1);
+			puzzle_info.GetComponent<puzzle_info>().SetDisplayUpcomingPath(1);
 		if (Input.GetKeyDown(KeyCode.G))
-			puzzle_info.GetComponent<puzzle_info>().setFutureSight(0);
+			puzzle_info.GetComponent<puzzle_info>().SetDisplayUpcomingPath(0);
 	}
 
 

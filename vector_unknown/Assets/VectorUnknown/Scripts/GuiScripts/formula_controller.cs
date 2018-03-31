@@ -24,7 +24,16 @@ public class formula_controller : MonoBehaviour {
 	public Transform c1, c2, v1, v2, destination;
 	public bool change = false;
 
-	void Awake(){
+    //////////////////////
+    public Vector3[] tempPoints;
+    public Vector3[] tempPoints2;
+    //////////////////////
+
+    public GameObject puzzle_info;
+
+    public List<Vector3[]> pastPaths;
+
+    void Awake(){
 		GameObject formula_panel = GameObject.FindGameObjectWithTag ( "Formula");
 		constant_1 = 0; constant_2 = 0;
 		vector_1 = Vector2.zero; vector_2 = Vector2.zero; output = Vector2.zero;
@@ -42,6 +51,8 @@ public class formula_controller : MonoBehaviour {
 		v2 = formula_panel.transform.GetChild (4);
 
 		destination = formula_panel.transform.GetChild (6);
+
+        pastPaths = new List<Vector3[]>();
 
 	}
 
@@ -93,9 +104,16 @@ public class formula_controller : MonoBehaviour {
 			points [0] = start - new Vector3 (0, 2.5f, 0);
 			points [1] = constant_1 * new Vector3 (vector_1.x, 0.0f, vector_1.y) + points [0];
 			line_1.SetPositions (points);
-			points [0] = points [1];
+            
+            // for saving past paths
+            tempPoints = points;
+
+            points [0] = points [1];
 			points [1] = constant_2 * new Vector3 (vector_2.x, 0.0f, vector_2.y) + points [0]; 
 			second_line.SetPositions (points);
+
+            // for saving past paths
+            tempPoints2 = points;
 	
 		}
 		change = false;
@@ -119,14 +137,34 @@ public class formula_controller : MonoBehaviour {
 		move [1] = constant_2 * new Vector3( vector_2.x, 0f, vector_2.y);
 
 		player.GetComponent<PlayerMovement> ().Move (move);
+
+        path_trace();
 		/************************************************/
 	}
 
 	public void path_trace(){
-		/************************************************/
-		/* STEP 2: Send Coordinates to Path Renderer    */
-		/************************************************/
-	}
+        /************************************************/
+        /* STEP 2: Send Coordinates to Path Renderer    */
+        /************************************************/
+
+        pastPaths.Add(tempPoints);
+        pastPaths.Add(tempPoints2);
+
+        // if display past paths (trace mode) is turned on
+        if (puzzle_info.GetComponent<puzzle_info>().GetDisplayPastPaths() == 1)
+        {
+            foreach (Vector3[] pointArray in pastPaths)
+            {
+                GameObject arrow1 = new GameObject();
+                arrow1.AddComponent<LineRenderer>();
+
+                LineRenderer arrowLine = arrow1.GetComponent<LineRenderer>();
+                arrowLine.SetPositions(pointArray);
+            }
+
+        }
+
+    }
 
 	public void reset(){
 		/************************************************/
@@ -136,5 +174,7 @@ public class formula_controller : MonoBehaviour {
 		c2.GetComponent< constant_counter> ().reset ();
 		v1.GetComponent< choice_holder> ().update_choice (new Vector3 (0, 0, 0));
 		v2.GetComponent< choice_holder>().update_choice (new Vector3 (0, 0, 0));
+
+        //path_trace();
 	}
 }
