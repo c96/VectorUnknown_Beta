@@ -6317,6 +6317,8 @@ MonoBehaviour:
   tempPoints: []
   tempPoints2: []
   puzzle_info: {fileID: 1189697819}
+  tempLine_1: {fileID: 0}
+  tempLine_2: {fileID: 0}
 --- !u!1 &1168717169
 GameObject:
   m_ObjectHideFlags: 0
@@ -6468,7 +6470,7 @@ MonoBehaviour:
   FailureWarningGameObject: {fileID: 634518489}
   choice_panel: {fileID: 0}
   solution_text: {fileID: 0}
-  puzzle_info: {fileID: 0}
+  puzzle_info: {fileID: 1189697819}
 --- !u!114 &1189697823
 MonoBehaviour:
   m_ObjectHideFlags: 0

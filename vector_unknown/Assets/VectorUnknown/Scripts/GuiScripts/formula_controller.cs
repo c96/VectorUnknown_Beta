@@ -31,7 +31,7 @@ public class formula_controller : MonoBehaviour {
 
     public GameObject puzzle_info;
 
-    public List<Vector3[]> pastPaths;
+    public List<Vector3[,]> pastPaths;
 
     void Awake(){
 		GameObject formula_panel = GameObject.FindGameObjectWithTag ( "Formula");
@@ -52,7 +52,7 @@ public class formula_controller : MonoBehaviour {
 
 		destination = formula_panel.transform.GetChild (6);
 
-        pastPaths = new List<Vector3[]>();
+        pastPaths = new List<Vector3[,]>();
 
 	}
 
@@ -147,19 +147,35 @@ public class formula_controller : MonoBehaviour {
         /* STEP 2: Send Coordinates to Path Renderer    */
         /************************************************/
 
-        pastPaths.Add(tempPoints);
-        pastPaths.Add(tempPoints2);
+        Vector3[,] pastPathsPair = new Vector3[2,2];
 
-        // if display past paths (trace mode) is turned on
+        pastPathsPair[0, 0] = tempPoints[0];
+        pastPathsPair[0, 1] = tempPoints[1];
+
+        pastPathsPair[1, 0] = tempPoints2[0];
+        pastPathsPair[1, 1] = tempPoints2[1];
+
+        pastPaths.Add(pastPathsPair);
+
+        // if display past paths (trace mode) is on
         if (puzzle_info.GetComponent<puzzle_info>().GetDisplayPastPaths() == 1)
         {
-            foreach (Vector3[] pointArray in pastPaths)
+            foreach (Vector3[,] pointArray in pastPaths)
             {
                 GameObject arrow1 = new GameObject();
                 arrow1.AddComponent<LineRenderer>();
 
+                GameObject arrow2 = new GameObject();
+                arrow2.AddComponent<LineRenderer>();
+
+                Vector3[] line_1_position = { pointArray[0, 0], pointArray[0, 1] };
+                Vector3[] line_2_position = { pointArray[1, 0], pointArray[1, 1] };
+
                 LineRenderer arrowLine = arrow1.GetComponent<LineRenderer>();
-                arrowLine.SetPositions(pointArray);
+                arrowLine.SetPositions(line_1_position);
+
+                LineRenderer arrowLine2 = arrow2.GetComponent<LineRenderer>();
+                arrowLine.SetPositions(line_2_position);
             }
 
         }
@@ -174,7 +190,5 @@ public class formula_controller : MonoBehaviour {
 		c2.GetComponent< constant_counter> ().reset ();
 		v1.GetComponent< choice_holder> ().update_choice (new Vector3 (0, 0, 0));
 		v2.GetComponent< choice_holder>().update_choice (new Vector3 (0, 0, 0));
-
-        //path_trace();
 	}
 }
