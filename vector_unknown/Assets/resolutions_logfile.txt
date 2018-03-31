@@ -1,0 +1,26 @@
+data path: C:/Users/Nate/Documents/VectorUnknown_LinearAlgebraGame/vector_unknown/Assets
+Fullscreen: False
+width: 821 pixels
+height: 462 pixels
+x offset: 14 pixels
+y offset: 0 pixels
+Screen Rectangle: (x:14.83, y:0.00, width:821.33, height:462.00)
+resolutions available: 
+	640 x 480 @ 59Hz
+	720 x 480 @ 59Hz
+	720 x 576 @ 59Hz
+	800 x 600 @ 59Hz
+	1024 x 768 @ 59Hz
+	1280 x 720 @ 59Hz
+	1280 x 768 @ 59Hz
+	1280 x 800 @ 59Hz
+	1280 x 960 @ 59Hz
+	1280 x 1024 @ 59Hz
+	1360 x 768 @ 59Hz
+	1360 x 1024 @ 59Hz
+	1366 x 768 @ 59Hz
+	1440 x 900 @ 59Hz
+	1600 x 900 @ 59Hz
+	1680 x 1050 @ 59Hz
+	1920 x 1080 @ 59Hz
+current resolution: 1920 x 1080 @ 59Hz
