@@ -139,7 +139,6 @@ public class formula_controller : MonoBehaviour {
 		player.GetComponent<PlayerMovement> ().Move (move);
 
         path_trace();
-		/************************************************/
 	}
 
 	public void path_trace(){
@@ -188,7 +187,9 @@ public class formula_controller : MonoBehaviour {
 		/************************************************/
 		c1.GetComponent< constant_counter> ().reset ();
 		c2.GetComponent< constant_counter> ().reset ();
-		v1.GetComponent< choice_holder> ().update_choice (new Vector3 (0, 0, 0));
-		v2.GetComponent< choice_holder>().update_choice (new Vector3 (0, 0, 0));
+		/*if( v1)
+			v1.GetComponent< choice_holder> ().update_choice (new Vector3 (0, 0, 0));
+		if( v2)
+			v2.GetComponent< choice_holder> ().update_choice (new Vector3 (0, 0, 0));*/
 	}
 }

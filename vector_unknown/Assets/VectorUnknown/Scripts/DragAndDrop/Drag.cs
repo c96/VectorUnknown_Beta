@@ -22,7 +22,7 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 		item_dragged.transform.localScale = new Vector3 ( 1.25f, 1.25f, 1.25f);
 		start_position = transform.position;
 		start_parent = transform.parent;
-		transform.parent = Canvas;
+		transform.SetParent( Canvas);
 		GetComponent< CanvasGroup> ().blocksRaycasts = false;
 	}
 
@@ -45,7 +45,7 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 		item_dragged = null;
 		GetComponent< CanvasGroup> ().blocksRaycasts = true;
 		if (transform.parent == Canvas) {
-			transform.parent = start_parent;
+			transform.SetParent( start_parent);
 			transform.position = start_position;
 		}
 	}
