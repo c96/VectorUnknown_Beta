@@ -20,18 +20,15 @@ public class formula_controller : MonoBehaviour {
 	//////////////////////
 
 	public GameObject player;
-	public LineRenderer line_1, second_line;
+	public LineRenderer line_1, line_2;
 	public Transform c1, c2, v1, v2, destination;
 	public bool change = false;
 
     //////////////////////
-    public Vector3[] tempPoints;
-    public Vector3[] tempPoints2;
+	public Text log;
     //////////////////////
 
-    public GameObject puzzle_info;
-
-    public List<Vector3[,]> pastPaths;
+   //public GameObject puzzle_info;
 
     void Awake(){
 		GameObject formula_panel = GameObject.FindGameObjectWithTag ( "Formula");
@@ -39,8 +36,11 @@ public class formula_controller : MonoBehaviour {
 		vector_1 = Vector2.zero; vector_2 = Vector2.zero; output = Vector2.zero;
 		player = GameObject.Find ("Player");
 
-		line_1 = GameObject.Find ("Arrow1").GetComponent< LineRenderer>();
-		second_line = GameObject.Find ("Arrow2").GetComponent< LineRenderer>();
+		line_1 = GameObject.FindGameObjectWithTag ( "PathToRender").GetComponent< LineRenderer>();
+		line_1.positionCount = 3;
+		line_2 = GameObject.FindGameObjectWithTag ( "PathPreviouslyRendered").GetComponent< LineRenderer>();
+		line_2.positionCount = 1;
+		line_2.SetPosition (0, new Vector3 (player.transform.position.x, 0f, player.transform.position.z));
 
 		c1 = formula_panel.transform.GetChild (0);
 		constant_1 = c1.GetComponent< constant_counter> ().constant;
@@ -51,8 +51,6 @@ public class formula_controller : MonoBehaviour {
 		v2 = formula_panel.transform.GetChild (4);
 
 		destination = formula_panel.transform.GetChild (6);
-
-        pastPaths = new List<Vector3[,]>();
 
 	}
 
@@ -99,28 +97,21 @@ public class formula_controller : MonoBehaviour {
 			}
 
 			//construct "Future Sight" 
-			Vector3[] points = new Vector3[2];
+			Vector3[] points = new Vector3[3];
 			Vector3 start = player.transform.position;
 			points [0] = start - new Vector3 (0, 2.5f, 0);
 			points [1] = constant_1 * new Vector3 (vector_1.x, 0.0f, vector_1.y) + points [0];
+			points [2] = constant_2 * new Vector3 (vector_2.x, 0.0f, vector_2.y) + points [1];
 			line_1.SetPositions (points);
-            
-            // for saving past paths
-            tempPoints = points;
-
-            points [0] = points [1];
-			points [1] = constant_2 * new Vector3 (vector_2.x, 0.0f, vector_2.y) + points [0]; 
-			second_line.SetPositions (points);
-
-            // for saving past paths
-            tempPoints2 = points;
 	
 		}
 		change = false;
 
 	}
 
-	public string Log_formula(){//formats a vector equation for logging, "( c1 * < x1, y1>) + ( c2 * < x2, y2>) = <dx, dy>"
+	public void log_formula(){ log.text += print_formula () + "\n";	}
+
+	public string print_formula(){//formats a vector equation for logging, "( c1 * < x1, y1>) + ( c2 * < x2, y2>) = <dx, dy>"
 		return "( "+constant_1+" * "+string_vector( vector_1)+") + ( "+constant_2+" * "+string_vector( vector_2)+") = "+string_vector( output);
 	}
 
@@ -145,39 +136,18 @@ public class formula_controller : MonoBehaviour {
         /************************************************/
         /* STEP 2: Send Coordinates to Path Renderer    */
         /************************************************/
+		Vector3[] points = new Vector3[3];
+		line_1.GetPositions (points);
 
-        Vector3[,] pastPathsPair = new Vector3[2,2];
+		if (points [1] != Vector3.zero) {
+			line_2.positionCount = line_2.positionCount + 1;
+			line_2.SetPosition (line_2.positionCount - 1, points [1]);
+		}
 
-        pastPathsPair[0, 0] = tempPoints[0];
-        pastPathsPair[0, 1] = tempPoints[1];
-
-        pastPathsPair[1, 0] = tempPoints2[0];
-        pastPathsPair[1, 1] = tempPoints2[1];
-
-        pastPaths.Add(pastPathsPair);
-
-        // if display past paths (trace mode) is on
-        if (puzzle_info.GetComponent<puzzle_info>().GetDisplayPastPaths() == 1)
-        {
-            foreach (Vector3[,] pointArray in pastPaths)
-            {
-                GameObject arrow1 = new GameObject();
-                arrow1.AddComponent<LineRenderer>();
-
-                GameObject arrow2 = new GameObject();
-                arrow2.AddComponent<LineRenderer>();
-
-                Vector3[] line_1_position = { pointArray[0, 0], pointArray[0, 1] };
-                Vector3[] line_2_position = { pointArray[1, 0], pointArray[1, 1] };
-
-                LineRenderer arrowLine = arrow1.GetComponent<LineRenderer>();
-                arrowLine.SetPositions(line_1_position);
-
-                LineRenderer arrowLine2 = arrow2.GetComponent<LineRenderer>();
-                arrowLine.SetPositions(line_2_position);
-            }
-
-        }
+		if (points [2] != Vector3.zero) {
+			line_2.positionCount = line_2.positionCount + 1;
+			line_2.SetPosition (line_2.positionCount - 1, points [2]);
+		}
 
     }
 

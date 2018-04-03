@@ -1,56 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GUI_InfoController : MonoBehaviour {
 
-    static GUI_InfoController Instance;
-
     public GameObject InfoOverlay;
-    public GameObject SuccessOverlay;
-    public GameObject FailureOverlay;
+	public TextAsset controls, success, failure;
 
-	// Use this for initialization
-	void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	void Awake(){
+		HideInfoOverlay ();
 	}
 
-    public void ShowInfoOverlay()
+    public void ShowInfoOverlay() // Instructions Panel
     {
+		InfoOverlay.GetComponentInChildren< Text> ().text = controls.text;
         InfoOverlay.SetActive(true);
     }
 
-    public void ShowSuccessOverlay()
+	public void ShowSuccessOverlay()// Success Panel
     {
-        SuccessOverlay.SetActive(true);
+		InfoOverlay.GetComponentInChildren< Text> ().text = success.text;
+		InfoOverlay.SetActive(true);
     }
 
-    public void ShowFailureOverlay()
+    public void ShowFailureOverlay()// Failure Panel
     {
-        FailureOverlay.SetActive(true);
+		InfoOverlay.GetComponentInChildren< Text> ().text = failure.text;
+		InfoOverlay.SetActive(true);
     }
-
-    public void HideInfoOverlay()
-    {
-        InfoOverlay.SetActive(false);
-    }
-
-    public void HideSuccessOverlay()
-    {
-        SuccessOverlay.SetActive(false);
-    }
-
-    public void HideFailureOverlay()
-    {
-        FailureOverlay.SetActive(false);
-    }
-
-    void Awake()
-    {
-        Instance = this;
-    }
+		
+	public void HideInfoOverlay() // Resets panel contents and tucks it away
+	{
+		InfoOverlay.GetComponentInChildren< Text> ().text = "";
+		InfoOverlay.SetActive(false);
+	}
 }

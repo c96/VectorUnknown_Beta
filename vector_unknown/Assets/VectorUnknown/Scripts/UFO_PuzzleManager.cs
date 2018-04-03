@@ -22,28 +22,24 @@ public class UFO_PuzzleManager : MonoBehaviour {
 	public Vector3 GoalPosition;
 	public Vector2[] Choices = new Vector2[4];			//Container for Vectors in the form used for UI Text
 	public Vector2 Solution;
-	public int number_attempts = -1;
+	public int number_attempts = 0;
 
 	private int GameMode;
 
 	public System.Random rnd = new System.Random ();
     public GameObject InfoController;
-	//public UFO_UIManager UI_Manager;
 	public GameObject choice_panel; 
 	public GameObject solution_text;
 
-	public GameObject puzzle_info;
+	public puzzle_info puzzle_info;
 
 	// Use this for initialization
 	void Start () {
 
-		//UI_Manager = GetComponent< UFO_UIManager> ();
-
 		choice_panel = GameObject.FindGameObjectWithTag ("Choices");
 		solution_text = GameObject.FindGameObjectWithTag ("Solution");
+		puzzle_info = GetComponent< puzzle_info> ();
 
-        
-		
 		GameMode = 0;
 		ResetGame (); //Set Up Game Board
 		NextPuzzle (); //Create 1st Puzzle
@@ -98,8 +94,8 @@ public class UFO_PuzzleManager : MonoBehaviour {
 	}
 
 	public void ResetGame () {
-
 		Player.transform.position = new Vector3 (0, GameConstants.Height, 0); //Initialize Player Position
+		number_attempts = 0;
 		if (GameMode == 0) {
 			Solution = new Vector2 (0, 0);
 			Goal.transform.position = new Vector3 (0, GameConstants.Height, 0);//GoalPosition
@@ -172,12 +168,6 @@ public class UFO_PuzzleManager : MonoBehaviour {
 
 	/* End of First Puzzle Algorithms */
 
-	public void ChangeGameMode (){
-
-		//GameMode = 1 - GameMode;
-
-	}
-
 	public void update_choices( ){
 		for (int i = 0; i < 4; i++) {
 			choice_panel.transform.GetChild (i).transform.GetChild(0).GetComponent< choice_holder> ().update_choice (Choices [i]);
@@ -188,19 +178,20 @@ public class UFO_PuzzleManager : MonoBehaviour {
 		solution_text.GetComponent< Text> ().text = "Goal : < " + Solution.x.ToString () + " ," + Solution.y.ToString () + ">";
 	}
 
-	public void decrement_attempts(){
-		number_attempts--;
-	}
-
-	public void set_attempts( int num){
-		number_attempts = num;
+	public void increment_attempts(){
+		number_attempts++;
 	}
 
 	public string game_details(){
 		Vector3 player_pos = Player.transform.position;
 		Vector3 goal_pos = Goal.transform.position;
 
-		return "Player Position: <" + player_pos.x.ToString ("0") + ", " + player_pos.z.ToString ("0") + ">\nGoal: <" + goal_pos.x.ToString ("0") + ", " + goal_pos.z.ToString ("0") + ">\n" + "Attempts: " + number_attempts;
+		return "Player Position: <" + player_pos.x.ToString ("0") + ", " + player_pos.z.ToString ("0") + 
+			">\nGoal: <" + goal_pos.x.ToString ("0") + ", " + goal_pos.z.ToString ("0") + 
+			">\nAttempts: " +
+			(puzzle_info.puzzle.attempt_count <= 0 ?
+				"INF" :
+				number_attempts.ToString() +" / "+puzzle_info.puzzle.attempt_count.ToString());
 	}
 
 	public void log( string path){
@@ -228,25 +219,23 @@ public class UFO_PuzzleManager : MonoBehaviour {
 
 	public void TestSuccess(Vector3 endPosition)
 	{
-		bool succeeded = false;
-
 		Vector2 endPositionVector2 = new Vector2 (endPosition.x, endPosition.z);
 
-		Vector2 goalVector2 = new Vector2(GoalPosition.x, GoalPosition.z);
+		// this is the solution vector -> Vector2 goalVector2 = new Vector2(GoalPosition.x, GoalPosition.z);
 
-		if (goalVector2 == Vector2.zero) {
-
+		if (Solution == Vector2.zero) {
+			//the game is in a continue state
+		} else if ( 
+			Solution == endPositionVector2 &&
+			number_attempts <= puzzle_info.puzzle.attempt_count) {// The player enters a win state
+			InfoController.GetComponent<GUI_InfoController> ().ShowSuccessOverlay ();
+		} else if (
+			Solution != endPositionVector2 &&
+			number_attempts >= puzzle_info.puzzle.attempt_count) {//the player enters a fail state
+			InfoController.GetComponent<GUI_InfoController> ().ShowFailureOverlay ();
+		} else {
+			//the game is in a continue state
 		}
-		else if (goalVector2 == endPositionVector2) {
-			succeeded = true;
-		}
-
-		if (succeeded) {
-            InfoController.GetComponent<GUI_InfoController>().ShowSuccessOverlay();
-		} else
-        {
-            InfoController.GetComponent<GUI_InfoController>().ShowFailureOverlay();
-        }
 
 	}
 }
