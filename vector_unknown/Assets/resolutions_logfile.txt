@@ -1,26 +1,37 @@
-data path: C:/Users/Nate/Documents/VectorUnknown_Beta/vector_unknown/Assets
+data path: C:/collin/dev/GamingCapstone/VectorUnknown_Beta/vector_unknown/Assets
 Fullscreen: False
-width: 615 pixels
-height: 345 pixels
+width: 699 pixels
+height: 393 pixels
 x offset: 0 pixels
-y offset: 58 pixels
-Screen Rectangle: (x:0.00, y:58.03, width:615.00, height:345.94)
+y offset: 55 pixels
+Screen Rectangle: (x:0.00, y:55.41, width:699.00, height:393.19)
 resolutions available: 
-	640 x 480 @ 59Hz
-	720 x 480 @ 59Hz
-	720 x 576 @ 59Hz
-	800 x 600 @ 59Hz
-	1024 x 768 @ 59Hz
-	1280 x 720 @ 59Hz
-	1280 x 768 @ 59Hz
-	1280 x 800 @ 59Hz
-	1280 x 960 @ 59Hz
-	1280 x 1024 @ 59Hz
-	1360 x 768 @ 59Hz
-	1360 x 1024 @ 59Hz
-	1366 x 768 @ 59Hz
-	1440 x 900 @ 59Hz
-	1600 x 900 @ 59Hz
-	1680 x 1050 @ 59Hz
-	1920 x 1080 @ 59Hz
-current resolution: 1920 x 1080 @ 59Hz
+	640 x 480 @ 60Hz
+	720 x 480 @ 60Hz
+	800 x 600 @ 60Hz
+	1024 x 768 @ 60Hz
+	1152 x 648 @ 60Hz
+	1152 x 864 @ 60Hz
+	1280 x 720 @ 60Hz
+	1280 x 768 @ 60Hz
+	1280 x 800 @ 60Hz
+	1280 x 960 @ 60Hz
+	1280 x 1024 @ 60Hz
+	1360 x 768 @ 60Hz
+	1360 x 1024 @ 60Hz
+	1366 x 768 @ 60Hz
+	1440 x 900 @ 60Hz
+	1600 x 900 @ 60Hz
+	1600 x 1200 @ 60Hz
+	1680 x 1050 @ 60Hz
+	1776 x 1000 @ 60Hz
+	1792 x 1344 @ 60Hz
+	1800 x 1440 @ 60Hz
+	1856 x 1392 @ 60Hz
+	1920 x 1080 @ 60Hz
+	1920 x 1200 @ 60Hz
+	2048 x 1536 @ 60Hz
+	2560 x 1440 @ 60Hz
+	3200 x 1800 @ 60Hz
+	3840 x 2160 @ 60Hz
+current resolution: 3840 x 2160 @ 60Hz

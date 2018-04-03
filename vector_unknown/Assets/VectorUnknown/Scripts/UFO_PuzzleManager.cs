@@ -27,8 +27,7 @@ public class UFO_PuzzleManager : MonoBehaviour {
 	private int GameMode;
 
 	public System.Random rnd = new System.Random ();
-	public GameObject SuccessWarningGameObject;
-	public GameObject FailureWarningGameObject;
+    public GameObject InfoController;
 	//public UFO_UIManager UI_Manager;
 	public GameObject choice_panel; 
 	public GameObject solution_text;
@@ -43,18 +42,11 @@ public class UFO_PuzzleManager : MonoBehaviour {
 		choice_panel = GameObject.FindGameObjectWithTag ("Choices");
 		solution_text = GameObject.FindGameObjectWithTag ("Solution");
 
-
-		SetWarningsFalse ();
+        
 		
 		GameMode = 0;
 		ResetGame (); //Set Up Game Board
 		NextPuzzle (); //Create 1st Puzzle
-	}
-
-	void SetWarningsFalse ()
-	{
-		SuccessWarningGameObject.SetActive (false);
-		FailureWarningGameObject.SetActive (false);
 	}
 
 	void Update(){
@@ -244,19 +236,17 @@ public class UFO_PuzzleManager : MonoBehaviour {
 
 		if (goalVector2 == Vector2.zero) {
 
-		} 
-		//else if (goalVector2 == Solution) {
-		//	succeeded = true;
-		//}
+		}
 		else if (goalVector2 == endPositionVector2) {
 			succeeded = true;
 		}
 
 		if (succeeded) {
-			SuccessWarningGameObject.SetActive (true);
-		} else {
-			FailureWarningGameObject.SetActive (true);
-		}
+            InfoController.GetComponent<GUI_InfoController>().ShowSuccessOverlay();
+		} else
+        {
+            InfoController.GetComponent<GUI_InfoController>().ShowFailureOverlay();
+        }
 
 	}
 }
