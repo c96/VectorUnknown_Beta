@@ -20,18 +20,27 @@ public class formula_controller : MonoBehaviour {
 	//////////////////////
 
 	public GameObject player;
-	public LineRenderer line_1, second_line;
+	public LineRenderer line_1, line_2;
 	public Transform c1, c2, v1, v2, destination;
 	public bool change = false;
 
-	void Awake(){
+    //////////////////////
+	public Text log;
+    //////////////////////
+
+   //public GameObject puzzle_info;
+
+    void Awake(){
 		GameObject formula_panel = GameObject.FindGameObjectWithTag ( "Formula");
 		constant_1 = 0; constant_2 = 0;
 		vector_1 = Vector2.zero; vector_2 = Vector2.zero; output = Vector2.zero;
 		player = GameObject.Find ("Player");
 
-		line_1 = GameObject.Find ("Arrow1").GetComponent< LineRenderer>();
-		second_line = GameObject.Find ("Arrow2").GetComponent< LineRenderer>();
+		line_1 = GameObject.FindGameObjectWithTag ( "PathToRender").GetComponent< LineRenderer>();
+		line_1.positionCount = 3;
+		line_2 = GameObject.FindGameObjectWithTag ( "PathPreviouslyRendered").GetComponent< LineRenderer>();
+		line_2.positionCount = 1;
+		line_2.SetPosition (0, new Vector3 (player.transform.position.x, 0f, player.transform.position.z));
 
 		c1 = formula_panel.transform.GetChild (0);
 		constant_1 = c1.GetComponent< constant_counter> ().constant;
@@ -88,21 +97,21 @@ public class formula_controller : MonoBehaviour {
 			}
 
 			//construct "Future Sight" 
-			Vector3[] points = new Vector3[2];
+			Vector3[] points = new Vector3[3];
 			Vector3 start = player.transform.position;
 			points [0] = start - new Vector3 (0, 2.5f, 0);
 			points [1] = constant_1 * new Vector3 (vector_1.x, 0.0f, vector_1.y) + points [0];
+			points [2] = constant_2 * new Vector3 (vector_2.x, 0.0f, vector_2.y) + points [1];
 			line_1.SetPositions (points);
-			points [0] = points [1];
-			points [1] = constant_2 * new Vector3 (vector_2.x, 0.0f, vector_2.y) + points [0]; 
-			second_line.SetPositions (points);
 	
 		}
 		change = false;
 
 	}
 
-	public string Log_formula(){//formats a vector equation for logging, "( c1 * < x1, y1>) + ( c2 * < x2, y2>) = <dx, dy>"
+	public void log_formula(){ log.text += print_formula () + "\n";	}
+
+	public string print_formula(){//formats a vector equation for logging, "( c1 * < x1, y1>) + ( c2 * < x2, y2>) = <dx, dy>"
 		return "( "+constant_1+" * "+string_vector( vector_1)+") + ( "+constant_2+" * "+string_vector( vector_2)+") = "+string_vector( output);
 	}
 
@@ -119,14 +128,29 @@ public class formula_controller : MonoBehaviour {
 		move [1] = constant_2 * new Vector3( vector_2.x, 0f, vector_2.y);
 
 		player.GetComponent<PlayerMovement> ().Move (move);
-		/************************************************/
+
+        path_trace();
 	}
 
 	public void path_trace(){
-		/************************************************/
-		/* STEP 2: Send Coordinates to Path Renderer    */
-		/************************************************/
-	}
+        /************************************************/
+        /* STEP 2: Send Coordinates to Path Renderer    */
+        /************************************************/
+		Vector3[] points = new Vector3[3];
+		line_1.GetPositions (points);
+		points [1].y = 0.0f;
+		points [2].y = 0.0f;
+		if (points [1] != Vector3.zero) {
+			line_2.positionCount = line_2.positionCount + 1;
+			line_2.SetPosition (line_2.positionCount - 1, points [1]);
+		}
+
+		if (points [2] != Vector3.zero) {
+			line_2.positionCount = line_2.positionCount + 1;
+			line_2.SetPosition (line_2.positionCount - 1, points [2]);
+		}
+
+    }
 
 	public void reset(){
 		/************************************************/
@@ -134,7 +158,9 @@ public class formula_controller : MonoBehaviour {
 		/************************************************/
 		c1.GetComponent< constant_counter> ().reset ();
 		c2.GetComponent< constant_counter> ().reset ();
-		v1.GetComponent< choice_holder> ().update_choice (new Vector3 (0, 0, 0));
-		v2.GetComponent< choice_holder>().update_choice (new Vector3 (0, 0, 0));
+		/*if( v1)
+			v1.GetComponent< choice_holder> ().update_choice (new Vector3 (0, 0, 0));
+		if( v2)
+			v2.GetComponent< choice_holder> ().update_choice (new Vector3 (0, 0, 0));*/
 	}
 }

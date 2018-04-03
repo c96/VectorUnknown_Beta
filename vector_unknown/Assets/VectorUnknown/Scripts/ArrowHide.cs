@@ -6,32 +6,20 @@ public class ArrowHide : MonoBehaviour {
 
 	public GameObject puzzle_info;
 
-	public LineRenderer rend;
-
-	// Use this for initialization
-	void Start () {
-
-	}
+	public LineRenderer future, past;
 
 	// Update is called once per frame
 	void Update() {
-		if (Input.GetKeyDown(KeyCode.F))
-		{
-			puzzle_info.GetComponent<puzzle_info>().setFutureSight(1);
-		}
 
-		if (puzzle_info.GetComponent<puzzle_info>().getFutureSight() == 1)
-        {
-            rend.enabled = true;
-		}
+		if (puzzle_info.GetComponent<puzzle_info> ().GetDisplayUpcomingPath () == 1)
+			future.enabled = true;
+		else
+			future.enabled = false;
 
-		if (Input.GetKeyDown(KeyCode.G))
-		{ 
-			puzzle_info.GetComponent<puzzle_info>().setFutureSight(0);
-		}
-        if (puzzle_info.GetComponent<puzzle_info>().getFutureSight() == 0)
-        {
-            rend.enabled = false;
-        }
+		if (puzzle_info.GetComponent<puzzle_info> ().GetDisplayPastPaths () == 1)
+			past.enabled = true;
+		else
+			past.enabled = false;
+
 	}
 }

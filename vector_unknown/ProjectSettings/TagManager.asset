@@ -9,6 +9,8 @@ TagManager:
   - Choices
   - Solution
   - Formula
+  - PathToRender
+  - PathPreviouslyRendered
   layers:
   - Default
   - TransparentFX
