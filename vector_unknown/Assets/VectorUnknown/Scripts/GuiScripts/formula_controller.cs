@@ -138,7 +138,8 @@ public class formula_controller : MonoBehaviour {
         /************************************************/
 		Vector3[] points = new Vector3[3];
 		line_1.GetPositions (points);
-
+		points [1].y = 0.0f;
+		points [2].y = 0.0f;
 		if (points [1] != Vector3.zero) {
 			line_2.positionCount = line_2.positionCount + 1;
 			line_2.SetPosition (line_2.positionCount - 1, points [1]);

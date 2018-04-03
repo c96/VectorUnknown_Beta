@@ -189,9 +189,9 @@ public class UFO_PuzzleManager : MonoBehaviour {
 		return "Player Position: <" + player_pos.x.ToString ("0") + ", " + player_pos.z.ToString ("0") + 
 			">\nGoal: <" + goal_pos.x.ToString ("0") + ", " + goal_pos.z.ToString ("0") + 
 			">\nAttempts: " +
-			(puzzle_info.puzzle.attempt_count <= 0 ?
+			(puzzle_info.attempt_count <= 0 ?
 				"INF" :
-				number_attempts.ToString() +" / "+puzzle_info.puzzle.attempt_count.ToString());
+				number_attempts.ToString() +" / "+puzzle_info.attempt_count.ToString());
 	}
 
 	public void log( string path){
@@ -227,11 +227,12 @@ public class UFO_PuzzleManager : MonoBehaviour {
 			//the game is in a continue state
 		} else if ( 
 			Solution == endPositionVector2 &&
-			number_attempts <= puzzle_info.puzzle.attempt_count) {// The player enters a win state
+			number_attempts <= puzzle_info.attempt_count) {// The player enters a win state
 			InfoController.GetComponent<GUI_InfoController> ().ShowSuccessOverlay ();
 		} else if (
 			Solution != endPositionVector2 &&
-			number_attempts >= puzzle_info.puzzle.attempt_count) {//the player enters a fail state
+			puzzle_info.attempt_count > 0 && 
+			number_attempts >= puzzle_info.attempt_count) {//the player enters a fail state
 			InfoController.GetComponent<GUI_InfoController> ().ShowFailureOverlay ();
 		} else {
 			//the game is in a continue state

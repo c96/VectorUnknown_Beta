@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using UnityEngine;
-using UnityEditor;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +10,14 @@ using UnityEngine.SceneManagement;
  */
 
 public class gui_select : MonoBehaviour {
+
+	public int attempt_count = 0;
+	public int display_upcoming_path = 0;
+	public int display_past_paths = 0;
+
+	void Awake(){
+		DontDestroyOnLoad (transform.gameObject);
+	}
 
 	public void load_game(){
 		SceneManager.LoadScene ("VectorGame");
@@ -41,15 +48,9 @@ public class gui_select : MonoBehaviour {
 	/* Helper Method, sets values of Puzzle*/
 	/***************************************/
 	private void puzzle_settings( int attempts, int future_paths, int previous_paths){
-		Puzzle puzzle = AssetDatabase.LoadAssetAtPath<Puzzle>("Assets/VectorUnknown/Data/Puzzle.asset");
-
-		puzzle.attempt_count = attempts;
-		puzzle.display_upcoming_path = future_paths;
-		puzzle.display_past_paths = previous_paths;
-
-		Debug.Log ("Loading a new puzzle\n: " + puzzle.ToString ());
-
-		AssetDatabase.SaveAssets ();
+		attempt_count = attempts;
+		display_upcoming_path = future_paths;
+		display_past_paths = previous_paths;
 	}
 
 }

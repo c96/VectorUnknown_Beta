@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using System.IO;
 
 public class puzzle_info : MonoBehaviour {
@@ -11,8 +10,12 @@ public class puzzle_info : MonoBehaviour {
 	public List< Vector3> goal_positions; 	//target position. May have multiple endpoints
 	public List< Vector2> choices; 			//Choices to be displayed on the UI
 
-	public Puzzle puzzle; 					//Puzzle ScriptableObject
-			
+	//public Puzzle puzzle; 					//Puzzle ScriptableObject
+	public int attempt_count;
+	public int display_upcoming_path;
+	public int display_past_paths;
+
+
 	public void Start(){
 		Reset (); 							// initializes all data structures for base game
 	}
@@ -22,25 +25,23 @@ public class puzzle_info : MonoBehaviour {
 		player_position = new Vector3 (0, 0, 0); //inital starting point of <0, 0, 0>
 		goal_positions = new List<Vector3> ();
 		choices = new List< Vector2> ();
-		puzzle = AssetDatabase.LoadAssetAtPath<Puzzle>("Assets/VectorUnknown/Data/Puzzle.asset");
 
-		Debug.Log (puzzle.ToString ());
+		GameObject level_data = GameObject.Find ("LevelData");
+		gui_select data = level_data.GetComponent< gui_select> ();
+
+		attempt_count = data.attempt_count;
+		display_upcoming_path = data.display_upcoming_path;
+		display_past_paths = data.display_past_paths;
+
+		Destroy (level_data);
+		//Debug.Log (puzzle.ToString ());
 	}
 
 	public bool game_over(){
-		return (puzzle.attempt_count == 0); 
+		return (attempt_count == 0); 
 	}
 
-	public int decrement_attempts(){
-
-		puzzle.attempt_count--;
-
-		if (puzzle.attempt_count == 0)
-			return 1; // returns true, max attempts reached
-
-		return 0; // game continues
-	}
-
+	/*
 	public void log( string path){
 
 		StreamWriter log = new StreamWriter ( path);
@@ -59,28 +60,28 @@ public class puzzle_info : MonoBehaviour {
 		
 		log.WriteLine (puzzle.ToString ());
 		log.Close ();
-	}
+	}*/
 
 	public int GetDisplayUpcomingPath()
 	{
-		return puzzle.display_upcoming_path;
+		return display_upcoming_path;
 	}
 
 	public void SetDisplayUpcomingPath(int choice)
 	{
 		if (choice == 0 || choice == 1)
-			puzzle.display_upcoming_path = choice;
+			display_upcoming_path = choice;
 	}
 
     public int GetDisplayPastPaths()
     {
-		return puzzle.display_past_paths;
+		return display_past_paths;
     }
 
     public void SetDisplayPastPaths(int choice)
     {
         if (choice == 0 || choice == 1)
-			puzzle.display_past_paths = choice;
+			display_past_paths = choice;
     }
 
 }

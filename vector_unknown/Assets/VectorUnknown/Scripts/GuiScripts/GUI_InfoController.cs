@@ -9,7 +9,7 @@ public class GUI_InfoController : MonoBehaviour {
 	public TextAsset controls, success, failure;
 
 	void Awake(){
-		HideInfoOverlay ();
+		ShowInfoOverlay ();
 	}
 
     public void ShowInfoOverlay() // Instructions Panel
