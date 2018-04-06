@@ -169,8 +169,8 @@ public class UFO_PuzzleManager : MonoBehaviour {
 	/* End of First Puzzle Algorithms */
 
 	public void update_choices( ){
-		for (int i = 0; i < 4; i++) {
-			choice_panel.transform.GetChild (i).transform.GetChild(0).GetComponent< choice_holder> ().update_choice (Choices [i]);
+		for (int i = 0; i < 4; i++) {// Choice Panel -> Droppers -> ith child of Droppers, Dropper -> data
+			choice_panel.transform.GetChild( 0).transform.GetChild (i).transform.GetChild(0).GetComponent< choice_holder> ().update_choice (Choices [i]);
 		}
 	}
 
@@ -182,16 +182,16 @@ public class UFO_PuzzleManager : MonoBehaviour {
 		number_attempts++;
 	}
 
-	public string game_details(){
-		Vector3 player_pos = Player.transform.position;
-		Vector3 goal_pos = Goal.transform.position;
+	public string[] game_details(){
+		string[] details = new string[3];
 
-		return "Player Position: <" + player_pos.x.ToString ("0") + ", " + player_pos.z.ToString ("0") + 
-			">\nGoal: <" + goal_pos.x.ToString ("0") + ", " + goal_pos.z.ToString ("0") + 
-			">\nAttempts: " +
-			(puzzle_info.attempt_count <= 0 ?
+		details[0] = "< "+ Player.transform.position.x.ToString("0") +", "+ Player.transform.position.z.ToString("0")+">";
+		details[1] = "< "+ Goal.transform.position.x.ToString("0") +", "+ Goal.transform.position.z.ToString("0")+">";
+		details[2] = (puzzle_info.attempt_count <= 0 ?
 				"INF" :
 				number_attempts.ToString() +" / "+puzzle_info.attempt_count.ToString());
+
+		return details;
 	}
 
 	public void log( string path){
@@ -221,13 +221,11 @@ public class UFO_PuzzleManager : MonoBehaviour {
 	{
 		Vector2 endPositionVector2 = new Vector2 (endPosition.x, endPosition.z);
 
-		// this is the solution vector -> Vector2 goalVector2 = new Vector2(GoalPosition.x, GoalPosition.z);
-
 		if (Solution == Vector2.zero) {
 			//the game is in a continue state
 		} else if ( 
 			Solution == endPositionVector2 &&
-			number_attempts <= puzzle_info.attempt_count) {// The player enters a win state
+			(puzzle_info.attempt_count == 0 || number_attempts <= puzzle_info.attempt_count)) {// The player enters a win state
 			InfoController.GetComponent<GUI_InfoController> ().ShowSuccessOverlay ();
 		} else if (
 			Solution != endPositionVector2 &&

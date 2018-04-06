@@ -41,27 +41,6 @@ public class puzzle_info : MonoBehaviour {
 		return (attempt_count == 0); 
 	}
 
-	/*
-	public void log( string path){
-
-		StreamWriter log = new StreamWriter ( path);
-		log.Write ("");
-		log.Close ();
-
-		log = new StreamWriter ( path, true);
-
-		log.WriteLine ("Starting Position : " + player_position.ToString ());
-		log.WriteLine ("Goal points : ");
-		foreach( Vector3 goal in goal_positions)
-			log.WriteLine ("\t" + goal.ToString());
-		log.WriteLine ("Choices :");
-		foreach (Vector2 choice in choices)
-			log.WriteLine ("\t"+choice.ToString ());
-		
-		log.WriteLine (puzzle.ToString ());
-		log.Close ();
-	}*/
-
 	public int GetDisplayUpcomingPath()
 	{
 		return display_upcoming_path;
