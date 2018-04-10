@@ -27,6 +27,8 @@ public class PlayerMovement : MonoBehaviour {
 				Direction = Route.Dequeue();
 				StartPosition = transform.position;
 				EndPosition = transform.position + Direction;
+				transform.LookAt (EndPosition);
+				transform.Rotate (0, -90f, 0);
 			}
 
 			transform.position += GameConstants.Speed * Time.deltaTime * Vector3.Normalize(Direction);
