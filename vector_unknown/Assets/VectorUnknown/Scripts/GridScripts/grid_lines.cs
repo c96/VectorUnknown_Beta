@@ -74,18 +74,7 @@ public class grid_lines : MonoBehaviour {
 	}
 		
 	void Update () {
-		/*if (Input.GetKeyDown (KeyCode.S) && !Input.GetKey( KeyCode.LeftShift)) {
-			line_width += .5f;
-		}
-		if (Input.GetKeyDown (KeyCode.S) && Input.GetKey( KeyCode.LeftShift)) {
-			line_width -= .5f;
-		}
 
-		foreach (GameObject line in lines) {
-			line.GetComponent< LineRenderer> ().startWidth = line_width;
-			line.GetComponent< LineRenderer> ().endWidth = line_width;
-			line.GetComponent< LineRenderer> ().material = line_material;
-		}*/
 	}
 
 	/*GameObject gen_line_render( Vector3 start, Vector3 end){
