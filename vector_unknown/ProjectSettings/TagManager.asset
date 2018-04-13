@@ -11,6 +11,8 @@ TagManager:
   - Formula
   - PathToRender
   - PathPreviouslyRendered
+  - Reflect
+  - FollowReflect
   layers:
   - Default
   - TransparentFX

@@ -1,0 +1,58 @@
+data path: C:/Users/Nate/Documents/VectorUnknown_Beta/vector_unknown/beta1_test_Data
+Fullscreen: False
+width: 1280 pixels
+height: 720 pixels
+x offset: 0 pixels
+y offset: 0 pixels
+Screen Rectangle: (x:0.00, y:0.00, width:1280.00, height:720.00)
+resolutions available: 
+	640 x 480 @ 59Hz
+	640 x 480 @ 60Hz
+	720 x 480 @ 59Hz
+	720 x 480 @ 60Hz
+	720 x 576 @ 50Hz
+	720 x 576 @ 59Hz
+	720 x 576 @ 60Hz
+	800 x 600 @ 59Hz
+	800 x 600 @ 60Hz
+	1024 x 768 @ 59Hz
+	1024 x 768 @ 60Hz
+	1280 x 720 @ 50Hz
+	1280 x 720 @ 59Hz
+	1280 x 720 @ 60Hz
+	1280 x 768 @ 59Hz
+	1280 x 768 @ 60Hz
+	1280 x 800 @ 59Hz
+	1280 x 800 @ 60Hz
+	1280 x 960 @ 59Hz
+	1280 x 960 @ 60Hz
+	1280 x 1024 @ 59Hz
+	1280 x 1024 @ 60Hz
+	1360 x 768 @ 59Hz
+	1360 x 768 @ 60Hz
+	1360 x 1024 @ 23Hz
+	1360 x 1024 @ 24Hz
+	1360 x 1024 @ 59Hz
+	1360 x 1024 @ 60Hz
+	1366 x 768 @ 23Hz
+	1366 x 768 @ 24Hz
+	1366 x 768 @ 59Hz
+	1366 x 768 @ 60Hz
+	1440 x 900 @ 23Hz
+	1440 x 900 @ 24Hz
+	1440 x 900 @ 59Hz
+	1440 x 900 @ 60Hz
+	1600 x 900 @ 23Hz
+	1600 x 900 @ 24Hz
+	1600 x 900 @ 59Hz
+	1600 x 900 @ 60Hz
+	1680 x 1050 @ 23Hz
+	1680 x 1050 @ 24Hz
+	1680 x 1050 @ 59Hz
+	1680 x 1050 @ 60Hz
+	1920 x 1080 @ 23Hz
+	1920 x 1080 @ 24Hz
+	1920 x 1080 @ 50Hz
+	1920 x 1080 @ 59Hz
+	1920 x 1080 @ 60Hz
+current resolution: 1920 x 1080 @ 59Hz

@@ -88,6 +88,10 @@ public class formula_controller : MonoBehaviour {
 			vector_2 = Vector2.zero;
 		}
 
+		if (vector_1 != Vector2.zero) {
+			
+		}
+
 		if (change) {
 			//construct output
 			Vector2 outp = (constant_1 * vector_1) + (constant_2 * vector_2);
