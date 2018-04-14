@@ -13,6 +13,8 @@ TagManager:
   - PathPreviouslyRendered
   - Reflect
   - FollowReflect
+  - Manager
+  - Keys
   layers:
   - Default
   - TransparentFX

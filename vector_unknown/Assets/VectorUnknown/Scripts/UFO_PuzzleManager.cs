@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,14 +23,14 @@ public class UFO_PuzzleManager : MonoBehaviour {
 	public Vector3 GoalPosition;
 	public Vector2[] Choices = new Vector2[4];			//Container for Vectors in the form used for UI Text
 	public Vector2 Solution;
-	public int number_attempts = 0;
+	public int number_of_attempts = 0;
+	public int number_of_keys;
 
-	private int GameMode;
-
-	public System.Random rnd = new System.Random ();
+	public System.Random rnd = new System.Random ( Guid.NewGuid().GetHashCode());
     public GameObject InfoController;
 	public GameObject choice_panel; 
-	public GameObject solution_text;
+
+	public GameObject key; //key for game_mode 1
 
 	public puzzle_info puzzle_info;
 
@@ -37,12 +38,7 @@ public class UFO_PuzzleManager : MonoBehaviour {
 	void Start () {
 
 		choice_panel = GameObject.FindGameObjectWithTag ("Choices");
-		solution_text = GameObject.FindGameObjectWithTag ("Solution");
 		puzzle_info = GetComponent< puzzle_info> ();
-
-		GameMode = 0;
-		ResetGame ();  	//Set Up Game Board
-		NextPuzzle (); 	//Create 1st Puzzle
 	}
 
 	public void NextPuzzle () {
@@ -53,8 +49,10 @@ public class UFO_PuzzleManager : MonoBehaviour {
 		Num [0] = rnd.Next (0, l);             // Num[i] is used to select random vector
 		if (Num [0] <= 1) {					   // If Num[0] --> <0,1> or <1,0>, then Num[1] should not be a duplicate of Num[0]
 			Num [1] = rnd.Next (0, l - 1);     // So Num[1] should be selected from among l-1 index numbers
-			if (Num [1] >= Num [0]) Num [1]++; // Adjust Num[1] depending on the value of Num[0], so that Num[0]!=Num[1] and 0<=Num[1]<=l
-		}else Num [1] = rnd.Next (0, l);		 // If Num[0] !-> <0,1> or <1,0>, then Num[1] can be equal to Num[2]
+			if (Num [1] >= Num [0])
+				Num [1]++; // Adjust Num[1] depending on the value of Num[0], so that Num[0]!=Num[1] and 0<=Num[1]<=l
+		} else
+			Num [1] = rnd.Next (0, l);		 // If Num[0] !-> <0,1> or <1,0>, then Num[1] can be equal to Num[2]
 
 		Choices [0] = GameConstants.BaseVectors [Num [0]]; // Choices[0]= First Random Vector (Will 	Eventually Become First Solution Vector)
 		Choices [1] = GameConstants.BaseVectors [Num [1]]; // Choiecs[1]= Second Random Vector (Will Eventually Become Second Solution Vector)
@@ -62,28 +60,36 @@ public class UFO_PuzzleManager : MonoBehaviour {
 		// Randomly changes the directions of the vectors in the Choices array, so that they point to different quadrants.
 		int quad_1 = rnd.Next (1, 5); // Quad[0]= Random quadrant for the first solution vector, can be any quadrant 1-4
 		int quad_2 = rnd.Next (1, 3); // Quad[1]= Random quadrant for the second solution vector, must be adjacent to Quad[0]
-		enforce_quadrants( quad_1, quad_2);
+		enforce_quadrants (quad_1, quad_2);
 			
-		if (GameMode == 0) {// Calculate Solution and Goal Positions
-			Solution = generate_solution( Num);
-			GoalPosition= new Vector3 (Solution.x, GameConstants.Height / GameConstants.GridSpacing, Solution.y) * GameConstants.GridSpacing;
-		} 
+		// Calculate Solution and Goal Positions
+		Solution = generate_solution (Num);
+		GoalPosition = new Vector3 (Solution.x, GameConstants.Height / GameConstants.GridSpacing, Solution.y) * GameConstants.GridSpacing;
+
 
 		//shuffle choices for random display in UI
 		shuffle (Choices);
 		string log_path = Application.dataPath + "/puzzle_manager_logfile.txt";
-		log ( log_path);
+		log (log_path);
 
 		Goal.transform.position = new Vector3 (Solution.x, GameConstants.Height, Solution.y);
 
+		/* Limited Tour Game Mode */
+		//generate a number of keys to be collected
+		if (puzzle_info.game_mode == 1) {
+			number_of_keys = rnd.Next (2, 6);
+			Debug.Log ("Keys: " + number_of_keys.ToString());
+			generate_keys ();
+		}
+		/**************************/
+
 		update_choices ();
-		update_solution ();
 	}
 
 	public void ResetGame () {
 		Player.transform.position = new Vector3 (0, GameConstants.Height, 0); //Initialize Player Position
-		number_attempts = 0;
-		if (GameMode == 0) {
+		number_of_attempts = 0;
+		if (puzzle_info.game_mode == 0) {
 			Solution = new Vector2 (0, 0);
 			Goal.transform.position = new Vector3 (0, GameConstants.Height, 0);//GoalPosition
 		}
@@ -94,7 +100,7 @@ public class UFO_PuzzleManager : MonoBehaviour {
 	public void shuffle( Vector2[] arr){
 		for (int i = 0; i < arr.Length; i++) {
 			Vector2 temp = arr [i];
-			int r_index = Random.Range (0, arr.Length);
+			int r_index = UnityEngine.Random.Range (0, arr.Length);
 			arr [i] = arr [r_index];
 			arr [r_index] = temp;
 		}
@@ -155,10 +161,28 @@ public class UFO_PuzzleManager : MonoBehaviour {
 
 	/* End of First Puzzle Algorithms */
 
-	/* Reset Puzzle For Debug Menu */ 
+	/* Second Puzzle Algorithms */
+	private void generate_keys(){
+		Vector3[] key_locations = new Vector3[ number_of_keys];
+		GameObject key_sack = GameObject.FindGameObjectWithTag ("Keys");
+		for (int i = 0; i < number_of_keys; i++) {
+			key_locations [i] = new Vector3 (rnd.Next (-15, 16), 1, rnd.Next (-15, 16));
+			Debug.Log (key_locations [i].ToString ());
+
+			GameObject load_key = Instantiate ( key, key_locations[i], Quaternion.identity, key_sack.transform);
+		}
+	}
+
+	public void decrement_keys(){
+		if (puzzle_info.game_mode == 1)
+			number_of_keys = number_of_keys - 1;
+	}
+	/* End of Second Puzzle Algorithms */
+
+	/* Reset Puzzle For Debug Menu*/ 
 	public void debug_new_puzzle(){
-		ResetGame ();
-		NextPuzzle ();
+		instance.ResetGame ();
+		instance.NextPuzzle ();
 	}
 	/*******************************/
 
@@ -167,13 +191,9 @@ public class UFO_PuzzleManager : MonoBehaviour {
 			choice_panel.transform.GetChild( 0).transform.GetChild (i).transform.GetChild(0).GetComponent< choice_holder> ().update_choice (Choices [i]);
 		}
 	}
-
-	public void update_solution(){
-		solution_text.GetComponent< Text> ().text = "Goal : < " + Solution.x.ToString () + " ," + Solution.y.ToString () + ">";
-	}
-
+		
 	public void increment_attempts(){
-		number_attempts++;
+		number_of_attempts++;
 	}
 
 	public string[] game_details(){
@@ -183,7 +203,7 @@ public class UFO_PuzzleManager : MonoBehaviour {
 		details[1] = "< "+ Goal.transform.position.x.ToString("0") +", "+ Goal.transform.position.z.ToString("0")+">";
 		details[2] = (puzzle_info.attempt_count <= 0 ?
 				"INF" :
-				number_attempts.ToString() +" / "+puzzle_info.attempt_count.ToString());
+				number_of_attempts.ToString() +" / "+puzzle_info.attempt_count.ToString());
 
 		return details;
 	}
@@ -219,12 +239,12 @@ public class UFO_PuzzleManager : MonoBehaviour {
 			//the game is in a continue state
 		} else if ( 
 			Solution == endPositionVector2 &&
-			(puzzle_info.attempt_count == 0 || number_attempts <= puzzle_info.attempt_count)) {// The player enters a win state
+			(puzzle_info.attempt_count == 0 || number_of_attempts <= puzzle_info.attempt_count)) {// The player enters a win state
 			InfoController.GetComponent<GUI_InfoController> ().ShowSuccessOverlay ();
 		} else if (
 			Solution != endPositionVector2 &&
 			puzzle_info.attempt_count > 0 && 
-			number_attempts >= puzzle_info.attempt_count) {//the player enters a fail state
+			number_of_attempts >= puzzle_info.attempt_count) {//the player enters a fail state
 			InfoController.GetComponent<GUI_InfoController> ().ShowFailureOverlay ();
 		} else {
 			//the game is in a continue state

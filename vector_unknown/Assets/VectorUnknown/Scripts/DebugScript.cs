@@ -46,6 +46,6 @@ public class DebugScript : MonoBehaviour {
 	}
 
 	public void reset_attempts(){
-		manager.number_attempts = 0;
+		manager.number_of_attempts = 0;
 	}
 }

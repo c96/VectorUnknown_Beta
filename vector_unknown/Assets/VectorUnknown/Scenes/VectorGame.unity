@@ -245,7 +245,7 @@ Prefab:
     - target: {fileID: 224207282201025248, guid: 25d3fc66f41968741ba2ea6aab22af1e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -50.111336
+      value: -50.26377
       objectReference: {fileID: 0}
     - target: {fileID: 224207282201025248, guid: 25d3fc66f41968741ba2ea6aab22af1e,
         type: 2}
@@ -2628,7 +2628,7 @@ Prefab:
     - target: {fileID: 224008302779364358, guid: aee51ea0c439e604dad48acd90a7ff33,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -26.111336
+      value: -26.263771
       objectReference: {fileID: 0}
     - target: {fileID: 224008302779364358, guid: aee51ea0c439e604dad48acd90a7ff33,
         type: 2}
@@ -2795,7 +2795,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 81.60001, y: -91.29999}
+  m_AnchoredPosition: {x: 81.60001, y: -91.30001}
   m_SizeDelta: {x: 163.2, y: 182.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &445925163
@@ -3103,7 +3103,7 @@ Prefab:
     - target: {fileID: 224053678027313102, guid: 359b4744846cadd43bdb627cc6e52a65,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -26.111336
+      value: -26.263771
       objectReference: {fileID: 0}
     - target: {fileID: 224053678027313102, guid: 359b4744846cadd43bdb627cc6e52a65,
         type: 2}
@@ -3871,7 +3871,6 @@ GameObject:
   - component: {fileID: 634518493}
   - component: {fileID: 634518492}
   - component: {fileID: 634518491}
-  - component: {fileID: 634518494}
   m_Layer: 5
   m_Name: FailureWarning
   m_TagString: Untagged
@@ -3954,17 +3953,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &634518494
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 634518489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8655f74b10ab24f7493dcfb16ba56e19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &637189129
 GameObject:
   m_ObjectHideFlags: 0
@@ -5098,7 +5086,7 @@ Prefab:
     - target: {fileID: 224207282201025248, guid: 25d3fc66f41968741ba2ea6aab22af1e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -94.139206
+      value: -94.30259
       objectReference: {fileID: 0}
     - target: {fileID: 224207282201025248, guid: 25d3fc66f41968741ba2ea6aab22af1e,
         type: 2}
@@ -8377,7 +8365,7 @@ GameObject:
   - component: {fileID: 1189697820}
   m_Layer: 0
   m_Name: PuzzleManager
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8429,10 +8417,11 @@ MonoBehaviour:
   - {x: 0, y: 0}
   - {x: 0, y: 0}
   Solution: {x: 0, y: 0}
-  number_attempts: 0
+  number_of_attempts: 0
+  number_of_keys: 0
   InfoController: {fileID: 854350854}
   choice_panel: {fileID: 0}
-  solution_text: {fileID: 0}
+  key: {fileID: 1867502754949548, guid: 54f2aff756a98b24c82e0814ca41418e, type: 2}
   puzzle_info: {fileID: 0}
 --- !u!114 &1189697823
 MonoBehaviour:
@@ -8451,6 +8440,7 @@ MonoBehaviour:
   attempt_count: 0
   display_upcoming_path: 0
   display_past_paths: 0
+  game_mode: 0
 --- !u!1001 &1205395088
 Prefab:
   m_ObjectHideFlags: 0
@@ -8821,7 +8811,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1304071458}
   - component: {fileID: 1304071457}
-  - component: {fileID: 1304071459}
   m_Layer: 0
   m_Name: FuturePathArrow
   m_TagString: PathToRender
@@ -8930,20 +8919,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1304071459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1304071456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4231507932e54a99b84c9852fcdee93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  puzzle_info: {fileID: 1189697819}
-  future: {fileID: 0}
-  past: {fileID: 0}
 --- !u!1001 &1326406123
 Prefab:
   m_ObjectHideFlags: 0
@@ -8999,7 +8974,7 @@ Prefab:
     - target: {fileID: 224053678027313102, guid: 359b4744846cadd43bdb627cc6e52a65,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -26.111336
+      value: -26.263771
       objectReference: {fileID: 0}
     - target: {fileID: 224053678027313102, guid: 359b4744846cadd43bdb627cc6e52a65,
         type: 2}
@@ -9547,7 +9522,7 @@ Prefab:
     - target: {fileID: 224207282201025248, guid: 25d3fc66f41968741ba2ea6aab22af1e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -36.139206
+      value: -36.30259
       objectReference: {fileID: 0}
     - target: {fileID: 224207282201025248, guid: 25d3fc66f41968741ba2ea6aab22af1e,
         type: 2}
@@ -10219,7 +10194,7 @@ GameObject:
   - component: {fileID: 1450138546}
   m_Layer: 0
   m_Name: Keys
-  m_TagString: Untagged
+  m_TagString: Keys
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10450,7 +10425,7 @@ Prefab:
     - target: {fileID: 224207282201025248, guid: 25d3fc66f41968741ba2ea6aab22af1e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -94.139206
+      value: -94.30259
       objectReference: {fileID: 0}
     - target: {fileID: 224207282201025248, guid: 25d3fc66f41968741ba2ea6aab22af1e,
         type: 2}
@@ -10845,7 +10820,7 @@ Prefab:
     - target: {fileID: 224207282201025248, guid: 25d3fc66f41968741ba2ea6aab22af1e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -36.139206
+      value: -36.30259
       objectReference: {fileID: 0}
     - target: {fileID: 224207282201025248, guid: 25d3fc66f41968741ba2ea6aab22af1e,
         type: 2}
@@ -14096,7 +14071,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1246771091}
   m_Direction: 3
   m_Value: 1
-  m_Size: 0.74211776
+  m_Size: 0.74397904
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -15033,7 +15008,7 @@ Prefab:
     - target: {fileID: 224207282201025248, guid: 25d3fc66f41968741ba2ea6aab22af1e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -50.111336
+      value: -50.26377
       objectReference: {fileID: 0}
     - target: {fileID: 224207282201025248, guid: 25d3fc66f41968741ba2ea6aab22af1e,
         type: 2}

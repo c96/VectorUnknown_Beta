@@ -14,10 +14,15 @@ public class puzzle_info : MonoBehaviour {
 	public int attempt_count;
 	public int display_upcoming_path;
 	public int display_past_paths;
-
+	public int game_mode;
 
 	public void Start(){
-		Reset (); 							// initializes all data structures for base game
+		Reset (); // initializes all data structures for base game
+		Debug.Log( "GameMode: " + ( game_mode == 0 ? "Standard" : "Tour"));
+
+		UFO_PuzzleManager manager = GameObject.FindGameObjectWithTag ("Manager").GetComponent< UFO_PuzzleManager>();
+		manager.debug_new_puzzle ();
+
 	}
 
 	public void Reset(){
@@ -32,9 +37,9 @@ public class puzzle_info : MonoBehaviour {
 		attempt_count = data.attempt_count;
 		display_upcoming_path = data.display_upcoming_path;
 		display_past_paths = data.display_past_paths;
+		game_mode = data.load_game_mode;
 
 		Destroy (level_data);
-		//Debug.Log (puzzle.ToString ());
 	}
 
 	public bool game_over(){
