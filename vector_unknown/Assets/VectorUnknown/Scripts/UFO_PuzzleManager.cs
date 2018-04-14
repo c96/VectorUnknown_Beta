@@ -45,19 +45,6 @@ public class UFO_PuzzleManager : MonoBehaviour {
 		NextPuzzle (); //Create 1st Puzzle
 	}
 
-	void Update(){
-		if( Input.GetKeyDown( KeyCode.Space)){
-			ResetGame ();
-			NextPuzzle ();
-		}
-
-		if (Input.GetKeyDown(KeyCode.F))
-			puzzle_info.GetComponent<puzzle_info>().SetDisplayUpcomingPath(1);
-		if (Input.GetKeyDown(KeyCode.G))
-			puzzle_info.GetComponent<puzzle_info>().SetDisplayUpcomingPath(0);
-	}
-
-
 	public void NextPuzzle () {
 		int[] Num = new int[2];					//Container for the random index numbers of the GameConstants.BaseVectors array
 
@@ -168,6 +155,12 @@ public class UFO_PuzzleManager : MonoBehaviour {
 
 	/* End of First Puzzle Algorithms */
 
+	/* Reset Puzzle For Debug Menu */ 
+	public void debug_new_puzzle(){
+		ResetGame ();
+		NextPuzzle ();
+	}
+	/*******************************/
 	public void update_choices( ){
 		for (int i = 0; i < 4; i++) {// Choice Panel -> Droppers -> ith child of Droppers, Dropper -> data
 			choice_panel.transform.GetChild( 0).transform.GetChild (i).transform.GetChild(0).GetComponent< choice_holder> ().update_choice (Choices [i]);

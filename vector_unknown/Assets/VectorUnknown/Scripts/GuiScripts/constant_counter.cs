@@ -8,11 +8,15 @@ using UnityEngine.UI;
 
 public class constant_counter : MonoBehaviour {
 	[SerializeField]
-	public int constant = 0;// constant value 
-	private bool change = false;
-	private GameObject text_display;
+	public int constant = 0;		// constant value 
+	private bool change = false;	//value changed y/n
+	private GameObject text_display;//UI text element
+	public Transform choice_dropper;//watches dropper element for vector choice
+	public Transform other_choice;  //holds the other choice vector
+	public Transform other_counter;  //holds the other constant value 
 
 	void Awake(){
+
 		text_display = transform.GetChild (0).gameObject;
 
 		GameObject temp = transform.GetChild (1).gameObject;
@@ -28,15 +32,48 @@ public class constant_counter : MonoBehaviour {
 		change = false;
 	}
 
+	//Returns false if the vector line would reach beyond the grid
+	public bool test_grid_boundries( int next_const){
+		if (choice_dropper.childCount == 1) {
+
+			Vector2 location = choice_dropper.GetChild (0).GetComponent< choice_holder> ().choice;
+			Vector2 other = ( other_choice.childCount == 1 ? 
+				other_choice.transform.GetChild (0).GetComponent< choice_holder> ().choice :
+				Vector2.zero
+			);
+			int other_constant = other_counter.GetComponent< constant_counter> ().constant;
+
+
+			Debug.Log (location.ToString () + " testing boundaries with " + next_const.ToString());
+
+			if ( (location.x * next_const + other.x * other_constant) > 20)
+				return false;
+			if ( (location.y * next_const + other.y * other_constant) > 20)
+				return false;
+			if ( (location.x * next_const + other.x * other_constant) < -20)
+				return false;
+			if ( (location.y * next_const + other.y * other_constant) < -20)
+				return false;
+		
+			return true;
+		}
+
+		return false;
+	}
+
 	public void increment(){
-		if (constant < 9) {
+		bool test = test_grid_boundries (constant + 1);
+
+		if ( test) {
 			constant = constant + 1;
 			change = true;
 		}
 	}
 
 	public void decrement(){
-		if (constant > -9) {
+		bool test = test_grid_boundries (constant - 1);
+
+		if ( test) {
 			constant = constant - 1;
 			change = true;
 		}
