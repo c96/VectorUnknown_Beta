@@ -51,6 +51,11 @@ public class PlayerMovement : MonoBehaviour {
 
 	}
 
+	public bool is_moving(){
+		//returns true if player is moving along a path
+		return (State == 1);
+	}
+
 	public void Move (Vector3[] route) {
 		for (int i = 0; i < route.Length; i++) {
 			Route.Enqueue (route [i]);

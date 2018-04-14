@@ -43,9 +43,6 @@ public class constant_counter : MonoBehaviour {
 			);
 			int other_constant = other_counter.GetComponent< constant_counter> ().constant;
 
-
-			Debug.Log (location.ToString () + " testing boundaries with " + next_const.ToString());
-
 			if ( (location.x * next_const + other.x * other_constant) > 20)
 				return false;
 			if ( (location.y * next_const + other.y * other_constant) > 20)

@@ -16,7 +16,7 @@ public class UFO_PuzzleManager : MonoBehaviour {
 
 	/******************/ 
 	/* Game Constants */
-	/******************/ 
+	/******************/
 	public GameObject Player;
 	public GameObject Goal;
 	public Vector3 GoalPosition;
@@ -41,8 +41,8 @@ public class UFO_PuzzleManager : MonoBehaviour {
 		puzzle_info = GetComponent< puzzle_info> ();
 
 		GameMode = 0;
-		ResetGame (); //Set Up Game Board
-		NextPuzzle (); //Create 1st Puzzle
+		ResetGame ();  	//Set Up Game Board
+		NextPuzzle (); 	//Create 1st Puzzle
 	}
 
 	public void NextPuzzle () {
@@ -161,6 +161,7 @@ public class UFO_PuzzleManager : MonoBehaviour {
 		NextPuzzle ();
 	}
 	/*******************************/
+
 	public void update_choices( ){
 		for (int i = 0; i < 4; i++) {// Choice Panel -> Droppers -> ith child of Droppers, Dropper -> data
 			choice_panel.transform.GetChild( 0).transform.GetChild (i).transform.GetChild(0).GetComponent< choice_holder> ().update_choice (Choices [i]);
@@ -195,17 +196,17 @@ public class UFO_PuzzleManager : MonoBehaviour {
 
 		log = new StreamWriter ( path, true);
 
-		log.WriteLine ("grid spacing : " + GameConstants.GridSpacing.ToString ());
-		log.WriteLine ("height : " + GameConstants.Height.ToString ());
+		log.WriteLine ("grid spacing: " + GameConstants.GridSpacing.ToString ());
+		log.WriteLine ("height: " + GameConstants.Height.ToString ());
 		log.WriteLine ("player object name: " + Player.name);
 		log.WriteLine ("\t" + Player.transform.position.ToString());
 		log.WriteLine ("Goal object name: " + Goal.name);
 		log.WriteLine ("\t" + Goal.transform.position.ToString());
-		log.WriteLine ("Choices :");
+		log.WriteLine ("Choices:");
 		foreach (Vector2 choice in Choices)
 			log.WriteLine ("\t"+choice.ToString ());
 		log.WriteLine ("Solution: " + Solution.ToString ());
-		log.WriteLine ("Goal Positions :");
+		log.WriteLine ("Goal Positions:");
 		log.WriteLine ("\t"+GoalPosition.ToString ());
 		log.Close ();
 	}
