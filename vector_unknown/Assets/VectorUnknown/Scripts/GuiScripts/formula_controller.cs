@@ -163,6 +163,7 @@ public class formula_controller : MonoBehaviour {
 			line_2.SetPosition (line_2.positionCount - 1, points [2]);
 		}
 
+		line_2.Simplify (1.0f);
     }
 
 	public void reset(){

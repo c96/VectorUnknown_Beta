@@ -38,7 +38,6 @@ public class PlayerMovement : MonoBehaviour {
 				if (Route.Count == 0) {
 					State = 0;
 
-
 					GameManager.GetComponent<UFO_PuzzleManager> ().TestSuccess (EndPosition);
 					Formula.GetComponent< formula_controller> ().reset ();
 				}

@@ -13,11 +13,14 @@ public class constant_counter : MonoBehaviour {
 	private GameObject text_display;//UI text element
 	public Transform choice_dropper;//watches dropper element for vector choice
 	public Transform other_choice;  //holds the other choice vector
-	public Transform other_counter;  //holds the other constant value 
+	public Transform other_counter; //holds the other constant value 
+	public GameObject player;		//reference to player to obtain player position
 
 	void Awake(){
 
 		text_display = transform.GetChild (0).gameObject;
+		player = GameObject.Find("Player");
+
 
 		GameObject temp = transform.GetChild (1).gameObject;
 		temp.GetComponent< Button>().onClick.AddListener (decrement);
@@ -35,7 +38,6 @@ public class constant_counter : MonoBehaviour {
 	//Returns false if the vector line would reach beyond the grid
 	public bool test_grid_boundries( int next_const){
 		if (choice_dropper.childCount == 1) {
-
 			Vector2 location = choice_dropper.GetChild (0).GetComponent< choice_holder> ().choice;
 			Vector2 other = ( other_choice.childCount == 1 ? 
 				other_choice.transform.GetChild (0).GetComponent< choice_holder> ().choice :
@@ -43,13 +45,13 @@ public class constant_counter : MonoBehaviour {
 			);
 			int other_constant = other_counter.GetComponent< constant_counter> ().constant;
 
-			if ( (location.x * next_const + other.x * other_constant) > 20)
+			if ( (player.transform.position.x + location.x * next_const + other.x * other_constant) > 20)
 				return false;
-			if ( (location.y * next_const + other.y * other_constant) > 20)
+			if ( (player.transform.position.z + location.y * next_const + other.y * other_constant) > 20)
 				return false;
-			if ( (location.x * next_const + other.x * other_constant) < -20)
+			if ( (player.transform.position.x + location.x * next_const + other.x * other_constant) < -20)
 				return false;
-			if ( (location.y * next_const + other.y * other_constant) < -20)
+			if ( (player.transform.position.z + location.y * next_const + other.y * other_constant) < -20)
 				return false;
 		
 			return true;

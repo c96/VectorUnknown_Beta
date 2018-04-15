@@ -79,7 +79,7 @@ public class UFO_PuzzleManager : MonoBehaviour {
 		/* Limited Tour Game Mode */
 		//generate a number of keys to be collected
 		if (puzzle_info.game_mode == 1) {
-			number_of_keys = rnd.Next (2, 6);
+			number_of_keys = rnd.Next (1, 4);
 			Debug.Log ("Keys: " + number_of_keys.ToString());
 			generate_keys ();
 		}
@@ -284,15 +284,12 @@ public class UFO_PuzzleManager : MonoBehaviour {
 			(puzzle_info.attempt_count == 0 || number_of_attempts <= puzzle_info.attempt_count)) {// The player enters a win state
 			if( puzzle_info.game_mode == 0)
 				InfoController.GetComponent<GUI_InfoController> ().ShowSuccessOverlay ();
-			if( puzzle_info.game_mode == 1 && number_of_keys == 0)
+			if( puzzle_info.game_mode == 1 && number_of_keys <= 0)
 				InfoController.GetComponent<GUI_InfoController> ().ShowSuccessOverlay ();
 		} else if (
 			Solution != endPositionVector2 &&
 			puzzle_info.attempt_count > 0 && 
 			number_of_attempts >= puzzle_info.attempt_count) {//the player enters a fail state
-			if( puzzle_info.game_mode == 0)
-				InfoController.GetComponent<GUI_InfoController> ().ShowFailureOverlay ();
-			if( puzzle_info.game_mode == 1 && number_of_keys == 0)
 				InfoController.GetComponent<GUI_InfoController> ().ShowFailureOverlay ();
 		} else {
 			//the game is in a continue state
