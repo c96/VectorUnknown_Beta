@@ -22,7 +22,6 @@ public class PlayerMovement : MonoBehaviour {
 	void Update () {
 
 		if (State == 1) {
-			//GameManager.GetComponent<UFO_PuzzleManager> ().decrement_attempts();
 			if (Direction == Vector3.zero) {
 				Direction = Route.Dequeue();
 				StartPosition = transform.position;
@@ -42,9 +41,6 @@ public class PlayerMovement : MonoBehaviour {
 
 					GameManager.GetComponent<UFO_PuzzleManager> ().TestSuccess (EndPosition);
 					Formula.GetComponent< formula_controller> ().reset ();
-
-					/*GameManager.GetComponent<UFO_PuzzleManager> ().NextPuzzle ();
-					GameManager.GetComponent<UFO_PuzzleManager> ().ResetGame ();*/
 				}
 			}
 		}

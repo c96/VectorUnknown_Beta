@@ -120,9 +120,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4563976838343140}
-  - component: {fileID: 64833564443370158}
   - component: {fileID: 114577016123352662}
   - component: {fileID: 120882600570394150}
+  - component: {fileID: 136576970591311774}
+  - component: {fileID: 114009397065421778}
   m_Layer: 0
   m_Name: Key_location
   m_TagString: Untagged
@@ -432,20 +433,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1667094364604136}
   m_Mesh: {fileID: 4300006, guid: 72ba7c59f54bf3e458a2e66d1a313a94, type: 3}
---- !u!64 &64833564443370158
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1867502754949548}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!108 &108721526028219424
 Light:
   m_ObjectHideFlags: 1
@@ -482,6 +469,18 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114009397065421778
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1867502754949548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2fd05654efc5f74eb55be4d9cbe3140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 0}
 --- !u!114 &114577016123352662
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -581,3 +580,16 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!136 &136576970591311774
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1867502754949548}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5, z: 0}

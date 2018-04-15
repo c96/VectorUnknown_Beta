@@ -30,13 +30,13 @@ public class UFO_PuzzleManager : MonoBehaviour {
     public GameObject InfoController;
 	public GameObject choice_panel; 
 
-	public GameObject key; //key for game_mode 1
-
+	public GameObject key; 		//key for game_mode 1
+	public GameObject key_sack;	//parent for all key objects
 	public puzzle_info puzzle_info;
 
 	// Use this for initialization
 	void Start () {
-
+		key_sack = GameObject.FindGameObjectWithTag ("Keys");
 		choice_panel = GameObject.FindGameObjectWithTag ("Choices");
 		puzzle_info = GetComponent< puzzle_info> ();
 	}
@@ -74,6 +74,8 @@ public class UFO_PuzzleManager : MonoBehaviour {
 
 		Goal.transform.position = new Vector3 (Solution.x, GameConstants.Height, Solution.y);
 
+		update_choices ();
+
 		/* Limited Tour Game Mode */
 		//generate a number of keys to be collected
 		if (puzzle_info.game_mode == 1) {
@@ -82,16 +84,18 @@ public class UFO_PuzzleManager : MonoBehaviour {
 			generate_keys ();
 		}
 		/**************************/
-
-		update_choices ();
 	}
 
 	public void ResetGame () {
 		Player.transform.position = new Vector3 (0, GameConstants.Height, 0); //Initialize Player Position
 		number_of_attempts = 0;
-		if (puzzle_info.game_mode == 0) {
-			Solution = new Vector2 (0, 0);
-			Goal.transform.position = new Vector3 (0, GameConstants.Height, 0);//GoalPosition
+		Solution = new Vector2 (0, 0);
+		Goal.transform.position = new Vector3 (0, GameConstants.Height, 0);//GoalPosition
+
+		if (puzzle_info.game_mode == 1) {
+			for (int i = 0; i < key_sack.transform.childCount; i++) {
+				GameObject.Destroy( key_sack.transform.GetChild( i).gameObject);
+			}
 		}
 
 	}
@@ -164,13 +168,51 @@ public class UFO_PuzzleManager : MonoBehaviour {
 	/* Second Puzzle Algorithms */
 	private void generate_keys(){
 		Vector3[] key_locations = new Vector3[ number_of_keys];
-		GameObject key_sack = GameObject.FindGameObjectWithTag ("Keys");
-		for (int i = 0; i < number_of_keys; i++) {
-			key_locations [i] = new Vector3 (rnd.Next (-15, 16), 1, rnd.Next (-15, 16));
-			Debug.Log (key_locations [i].ToString ());
 
+		Vector2 first_part, second_part;
+		for (int i = 0; i < number_of_keys; i++) {
+			/* Step 1: Select two vectors */
+			first_part = Choices [ rnd.Next (0, 4)]; 	//select two choice vectors to create key locations
+			second_part = Choices [ rnd.Next (0, 4)];	//construciting locations from choice vectors ensures that the keys are reachable
+			/******************************/
+
+			/* Step 2: Boundary test vectors */
+			int first_min = Mathf.Min(					 //Determines the max constant a vector can be multiplied 
+				Mathf.FloorToInt(  10f / first_part.x),  //while remianing within the grid ( 40x40 grid, origin (0,0))
+				Mathf.FloorToInt(  10f / first_part.y)
+			);
+			int second_min = Mathf.Min( 
+				Mathf.FloorToInt(  10f / second_part.x), 
+				Mathf.FloorToInt(  10f / second_part.y)
+			);
+
+			if (first_min == -2147483648) { first_min = 0; } //Prevent overflow error
+			if (second_min == -2147483648) { second_min = 0; } 				
+
+			first_min = (first_min < 0) ? ( 0 - first_min) : first_min; 	//sets the absolute value
+			second_min = (second_min < 0) ? ( 0 - second_min) : second_min; 
+			/*********************************/
+
+			/* Step 3: Construct location */
+			Vector2 construct_location = ( rnd.Next( 0, first_min) * first_part) + ( rnd.Next( 0, second_min) * second_part);
+			construct_location = remain_within_bounds (construct_location);
+			key_locations [i] = new Vector3 (construct_location.x, 1f, construct_location.y);
+			Debug.Log (key_locations [i].ToString ());
+			/*******************************/
+
+			/* Step 4: Load Key at location */
 			GameObject load_key = Instantiate ( key, key_locations[i], Quaternion.identity, key_sack.transform);
+			/********************************/
 		}
+	}
+
+	private Vector2 remain_within_bounds( Vector2 location){
+		if (location.x > 20) { location.x = 20; }			
+		if (location.x < -20){ location.x = -20;}
+		if (location.y > 20) { location.y = 20; }
+		if (location.y < -20){ location.y = -20;}
+
+		return location;
 	}
 
 	public void decrement_keys(){
@@ -181,8 +223,8 @@ public class UFO_PuzzleManager : MonoBehaviour {
 
 	/* Reset Puzzle For Debug Menu*/ 
 	public void debug_new_puzzle(){
-		instance.ResetGame ();
-		instance.NextPuzzle ();
+		ResetGame ();
+		NextPuzzle ();
 	}
 	/*******************************/
 
@@ -240,12 +282,18 @@ public class UFO_PuzzleManager : MonoBehaviour {
 		} else if ( 
 			Solution == endPositionVector2 &&
 			(puzzle_info.attempt_count == 0 || number_of_attempts <= puzzle_info.attempt_count)) {// The player enters a win state
-			InfoController.GetComponent<GUI_InfoController> ().ShowSuccessOverlay ();
+			if( puzzle_info.game_mode == 0)
+				InfoController.GetComponent<GUI_InfoController> ().ShowSuccessOverlay ();
+			if( puzzle_info.game_mode == 1 && number_of_keys == 0)
+				InfoController.GetComponent<GUI_InfoController> ().ShowSuccessOverlay ();
 		} else if (
 			Solution != endPositionVector2 &&
 			puzzle_info.attempt_count > 0 && 
 			number_of_attempts >= puzzle_info.attempt_count) {//the player enters a fail state
-			InfoController.GetComponent<GUI_InfoController> ().ShowFailureOverlay ();
+			if( puzzle_info.game_mode == 0)
+				InfoController.GetComponent<GUI_InfoController> ().ShowFailureOverlay ();
+			if( puzzle_info.game_mode == 1 && number_of_keys == 0)
+				InfoController.GetComponent<GUI_InfoController> ().ShowFailureOverlay ();
 		} else {
 			//the game is in a continue state
 		}
