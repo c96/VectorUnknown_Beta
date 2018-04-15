@@ -23,8 +23,9 @@ public class UFO_PuzzleManager : MonoBehaviour {
 	public Vector3 GoalPosition;
 	public Vector2[] Choices = new Vector2[4];			//Container for Vectors in the form used for UI Text
 	public Vector2 Solution;
-	public int number_of_attempts = 0;
+	public int number_of_attempts;
 	public int number_of_keys;
+	//public int goal_state;
 
 	public System.Random rnd = new System.Random ( Guid.NewGuid().GetHashCode());
     public GameObject InfoController;
@@ -186,8 +187,8 @@ public class UFO_PuzzleManager : MonoBehaviour {
 				Mathf.FloorToInt(  10f / second_part.y)
 			);
 
-			if (first_min == -2147483648) { first_min = 0; } //Prevent overflow error
-			if (second_min == -2147483648) { second_min = 0; } 				
+			if (first_min == -2147483648) { first_min = 1; } //Prevent overflow error
+			if (second_min == -2147483648) { second_min = 1; } 				
 
 			first_min = (first_min < 0) ? ( 0 - first_min) : first_min; 	//sets the absolute value
 			second_min = (second_min < 0) ? ( 0 - second_min) : second_min; 
@@ -216,8 +217,27 @@ public class UFO_PuzzleManager : MonoBehaviour {
 	}
 
 	public void decrement_keys(){
-		if (puzzle_info.game_mode == 1)
+		if (puzzle_info.game_mode == 1) {
 			number_of_keys = number_of_keys - 1;
+
+			if (number_of_keys <= 0) {
+				Goal.transform.GetChild (0).gameObject.SetActive (true);
+				Goal.transform.GetChild (1).gameObject.SetActive (false);
+			}
+		}
+	}
+
+	public void set_models( int game_mode){
+		/* Goal Model switch from 'lock' to 'bowl of kibble' */
+		if ( game_mode == 1) {
+			Debug.Log ("STATE 1");
+			Goal.transform.GetChild (0).gameObject.SetActive (false); //trasform 0 is carrot_kibble
+			Goal.transform.GetChild (1).gameObject.SetActive (true);  //transform 1 is lock
+		} else {
+			Debug.Log ("STATE 0");
+			Goal.transform.GetChild (0).gameObject.SetActive (true);
+			Goal.transform.GetChild (1).gameObject.SetActive (false);
+		}
 	}
 	/* End of Second Puzzle Algorithms */
 
