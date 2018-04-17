@@ -67,7 +67,6 @@ public class GenerateGrid : MonoBehaviour
 
     void InitializeGrid()
     {
-        gridHolder = new GameObject("grid").transform;
 
         offset = (float)tileSize;
         offset = offset / 2.0f;
@@ -91,10 +90,12 @@ public class GenerateGrid : MonoBehaviour
 
                 float float_i = (float)i;
                 float float_jay = (float)jay;
-                Instantiate(select,
+                GameObject block = Instantiate(select,
                     new Vector3(float_i - ((rows / 2) - 1.0f) - (offset),
                         0.0f, float_jay - ((columns / 2) - 1.0f) - (offset)),
                     Quaternion.identity);
+
+				block.transform.SetParent (this.transform);
             }
         }
 

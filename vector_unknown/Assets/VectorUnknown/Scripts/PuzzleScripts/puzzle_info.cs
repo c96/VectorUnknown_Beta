@@ -7,24 +7,30 @@ public class puzzle_info : MonoBehaviour {
 
 	public Vector3 player_position; 		//player's starting position
 
-	public List< Vector3> goal_positions; 	//target position. May have multiple endpoints
-	public List< Vector2> choices; 			//Choices to be displayed on the UI
+	//public List< Vector3> goal_positions; 	//target position. May have multiple endpoints
+	//public List< Vector2> choices; 			//Choices to be displayed on the UI
 
 	//public Puzzle puzzle; 					//Puzzle ScriptableObject
 	public int attempt_count;
 	public int display_upcoming_path;
 	public int display_past_paths;
-
+	public int game_mode;
 
 	public void Start(){
-		Reset (); 							// initializes all data structures for base game
+		Reset (); // initializes all data structures for base game
+		Debug.Log( "GameMode: " + ( game_mode == 0 ? "Standard" : "Tour"));
+
+		UFO_PuzzleManager manager = GameObject.FindGameObjectWithTag ("Manager").GetComponent< UFO_PuzzleManager>();
+		manager.debug_new_puzzle ();
+		manager.set_models ( game_mode);
+
 	}
 
 	public void Reset(){
 		
 		player_position = new Vector3 (0, 0, 0); //inital starting point of <0, 0, 0>
-		goal_positions = new List<Vector3> ();
-		choices = new List< Vector2> ();
+		//goal_positions = new List<Vector3> ();
+		//choices = new List< Vector2> ();
 
 		GameObject level_data = GameObject.Find ("LevelData");
 		gui_select data = level_data.GetComponent< gui_select> ();
@@ -32,35 +38,14 @@ public class puzzle_info : MonoBehaviour {
 		attempt_count = data.attempt_count;
 		display_upcoming_path = data.display_upcoming_path;
 		display_past_paths = data.display_past_paths;
+		game_mode = data.load_game_mode;
 
 		Destroy (level_data);
-		//Debug.Log (puzzle.ToString ());
 	}
 
 	public bool game_over(){
 		return (attempt_count == 0); 
 	}
-
-	/*
-	public void log( string path){
-
-		StreamWriter log = new StreamWriter ( path);
-		log.Write ("");
-		log.Close ();
-
-		log = new StreamWriter ( path, true);
-
-		log.WriteLine ("Starting Position : " + player_position.ToString ());
-		log.WriteLine ("Goal points : ");
-		foreach( Vector3 goal in goal_positions)
-			log.WriteLine ("\t" + goal.ToString());
-		log.WriteLine ("Choices :");
-		foreach (Vector2 choice in choices)
-			log.WriteLine ("\t"+choice.ToString ());
-		
-		log.WriteLine (puzzle.ToString ());
-		log.Close ();
-	}*/
 
 	public int GetDisplayUpcomingPath()
 	{

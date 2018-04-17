@@ -88,6 +88,10 @@ public class formula_controller : MonoBehaviour {
 			vector_2 = Vector2.zero;
 		}
 
+		if (vector_1 != Vector2.zero) {
+			
+		}
+
 		if (change) {
 			//construct output
 			Vector2 outp = (constant_1 * vector_1) + (constant_2 * vector_2);
@@ -123,13 +127,22 @@ public class formula_controller : MonoBehaviour {
 		/************************************************/
 		/* STEP 1: Send movement Coordinates to Player  */
 		/************************************************/
-		Vector3[] move = new Vector3[2];
-		move [0] = constant_1 * new Vector3( vector_1.x, 0f, vector_1.y);
-		move [1] = constant_2 * new Vector3( vector_2.x, 0f, vector_2.y);
+		if( !player.GetComponent< PlayerMovement>().is_moving() &&
+			((constant_1 != 0 && vector_1 != Vector2.zero) || 
+				(constant_2 != 0 && vector_2 != Vector2.zero))
+		){
+			Vector3[] move = new Vector3[2];
+			move [0] = constant_1 * new Vector3( vector_1.x, 0f, vector_1.y);
+			move [1] = constant_2 * new Vector3( vector_2.x, 0f, vector_2.y);
 
-		player.GetComponent<PlayerMovement> ().Move (move);
+			player.GetComponent<PlayerMovement> ().Move (move);
 
-        path_trace();
+	        path_trace();
+
+			log_formula ();
+
+			reset ();
+		}
 	}
 
 	public void path_trace(){
@@ -150,6 +163,7 @@ public class formula_controller : MonoBehaviour {
 			line_2.SetPosition (line_2.positionCount - 1, points [2]);
 		}
 
+		line_2.Simplify (1.0f);
     }
 
 	public void reset(){

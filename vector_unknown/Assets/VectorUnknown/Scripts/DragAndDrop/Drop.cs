@@ -12,6 +12,10 @@ public class Drop : MonoBehaviour, IDropHandler {
 			return null;
 		}
 	}
+	public Transform start_parent;
+	public bool has_item(){
+		return ( transform.childCount > 0);
+	}
 
 	#region IDropHandler implementation
 	public void OnDrop (PointerEventData eventData)

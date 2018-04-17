@@ -22,11 +22,12 @@ public class PlayerMovement : MonoBehaviour {
 	void Update () {
 
 		if (State == 1) {
-			//GameManager.GetComponent<UFO_PuzzleManager> ().decrement_attempts();
 			if (Direction == Vector3.zero) {
 				Direction = Route.Dequeue();
 				StartPosition = transform.position;
 				EndPosition = transform.position + Direction;
+				transform.LookAt (EndPosition);
+				transform.Rotate (0, -90f, 0);
 			}
 
 			transform.position += GameConstants.Speed * Time.deltaTime * Vector3.Normalize(Direction);
@@ -37,16 +38,17 @@ public class PlayerMovement : MonoBehaviour {
 				if (Route.Count == 0) {
 					State = 0;
 
-
 					GameManager.GetComponent<UFO_PuzzleManager> ().TestSuccess (EndPosition);
 					Formula.GetComponent< formula_controller> ().reset ();
-
-					/*GameManager.GetComponent<UFO_PuzzleManager> ().NextPuzzle ();
-					GameManager.GetComponent<UFO_PuzzleManager> ().ResetGame ();*/
 				}
 			}
 		}
 
+	}
+
+	public bool is_moving(){
+		//returns true if player is moving along a path
+		return (State == 1);
 	}
 
 	public void Move (Vector3[] route) {
