@@ -198,7 +198,7 @@ public class UFO_PuzzleManager : MonoBehaviour {
 			Vector2 construct_location = ( rnd.Next( 0, first_min) * first_part) + ( rnd.Next( 0, second_min) * second_part);
 			construct_location = remain_within_bounds (construct_location);
 			key_locations [i] = new Vector3 (construct_location.x, 1f, construct_location.y);
-			Debug.Log (key_locations [i].ToString ());
+			Debug.Log ("Key locations: " +key_locations [i].ToString ());
 			/*******************************/
 
 			/* Step 4: Load Key at location */
@@ -296,12 +296,15 @@ public class UFO_PuzzleManager : MonoBehaviour {
 	public void TestSuccess(Vector3 endPosition)
 	{
 		Vector2 endPositionVector2 = new Vector2 (endPosition.x, endPosition.z);
-
+		Debug.Log ("Testing success");
+		Debug.Log( Solution.ToString());
+		Debug.Log( endPositionVector2.ToString());
 		if (Solution == Vector2.zero) {
 			//the game is in a continue state
 		} else if ( 
 			Solution == endPositionVector2 &&
-			(puzzle_info.attempt_count == 0 || number_of_attempts <= puzzle_info.attempt_count)) {// The player enters a win state
+			(puzzle_info.attempt_count <= 0 || number_of_attempts <= puzzle_info.attempt_count)) {// The player enters a win state
+			Debug.Log( "Win State");
 			if( puzzle_info.game_mode == 0)
 				InfoController.GetComponent<GUI_InfoController> ().ShowSuccessOverlay ();
 			if( puzzle_info.game_mode == 1 && number_of_keys <= 0)

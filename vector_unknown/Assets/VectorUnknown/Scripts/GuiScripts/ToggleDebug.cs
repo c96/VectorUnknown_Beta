@@ -12,7 +12,10 @@ public class ToggleDebug : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.D)) {
+		if (
+			Input.GetKey( KeyCode.LeftShift) && 
+			Input.GetKeyDown(KeyCode.D)
+		) {
 			debug.SetActive ( !debug.activeSelf);
 		}
 	}

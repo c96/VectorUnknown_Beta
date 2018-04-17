@@ -23,6 +23,7 @@ public class DebugScript : MonoBehaviour {
 	}
 
 	void Update(){
+
 		string time = Time.timeSinceLevelLoad.ToString ("0.00");
 		elapsed_time.text = "Level Time:\n" + time;
 	}

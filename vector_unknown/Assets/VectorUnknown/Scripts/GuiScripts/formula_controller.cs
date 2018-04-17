@@ -88,11 +88,15 @@ public class formula_controller : MonoBehaviour {
 			vector_2 = Vector2.zero;
 		}
 
-		if (vector_1 != Vector2.zero) {
-			
+		if (vector_1 == Vector2.zero &&
+			vector_2 == Vector2.zero ) {
+			line_1.gameObject.SetActive (false);
+		} else {
+			line_1.gameObject.SetActive (true);
 		}
 
 		if (change) {
+
 			//construct output
 			Vector2 outp = (constant_1 * vector_1) + (constant_2 * vector_2);
 			if (outp != output) { 
@@ -106,6 +110,7 @@ public class formula_controller : MonoBehaviour {
 			points [0] = start - new Vector3 (0, 2.5f, 0);
 			points [1] = constant_1 * new Vector3 (vector_1.x, 0.0f, vector_1.y) + points [0];
 			points [2] = constant_2 * new Vector3 (vector_2.x, 0.0f, vector_2.y) + points [1];
+
 			line_1.SetPositions (points);
 	
 		}
