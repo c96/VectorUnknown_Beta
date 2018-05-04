@@ -11,24 +11,34 @@ using UnityEngine.UI;
  */
 
 public class formula_controller : MonoBehaviour {
-	///  ( constant_1 * vector_1) + ( constant_2 * vector_2) = output /// 
+	////////////////////// 
+	//( constant_1 * vector_1) + ( constant_2 * vector_2) = output
 	public int constant_1;
 	public int constant_2;
 	public Vector2 vector_1;
 	public Vector2 vector_2;
 	public Vector2 output;
-	//////////////////////
 
+	//////////////////////
+	//References to UI elements
 	public GameObject player;
 	public LineRenderer line_1, line_2;
 	public Transform c1, c2, v1, v2, destination;
 	public bool change = false;
 
     //////////////////////
+	//Log output
 	public Text log;
-    //////////////////////
 
-   //public GameObject puzzle_info;
+    //////////////////////
+	//for determining changes in the UI
+	int con_1; //values of constant ui buttons
+	int con_2;
+	int v1_cc; //positive value if dropper element has choice attached to it
+	int v2_cc;
+	Transform v1_prev_child = null, v2_prev_child = null;
+
+	//////////////////////
 
     void Awake(){
 		GameObject formula_panel = GameObject.FindGameObjectWithTag ( "Formula");
@@ -55,10 +65,10 @@ public class formula_controller : MonoBehaviour {
 	}
 
 	void Update(){
-		int con_1 = c1.GetComponent< constant_counter> ().constant; //values of constant ui buttons
-		int con_2 = c2.GetComponent< constant_counter> ().constant;
-		int v1_cc = v1.childCount; //positive value if dropper element has choice attached to it
-		int v2_cc = v2.childCount;
+		con_1 = c1.GetComponent< constant_counter> ().constant; //values of constant ui buttons
+		con_2 = c2.GetComponent< constant_counter> ().constant;
+		v1_cc = v1.childCount; //positive value if dropper element has choice attached to it
+		v2_cc = v2.childCount;
 
 		//Check for Drag & Drop Changes
 		if (constant_1 != con_1) {
@@ -69,14 +79,21 @@ public class formula_controller : MonoBehaviour {
 			constant_2 = con_2;
 			change = true;
 		}
+
 		if (v1_cc > 0) {
 			Vector2 vect_1 = v1.GetChild (0).GetComponent< choice_holder> ().choice;
 			if (vector_1 != vect_1) {
 				vector_1 = vect_1;
 				change = true;
 			}
+
+			if (v1.transform.GetChild (0) != v1_prev_child)
+				c1.GetComponent< constant_counter> ().reset();
+
+			v1_prev_child = v1.transform.GetChild (0);
 		} else {
 			vector_1 = Vector2.zero;
+			v1_prev_child = null;
 		}
 		if (v2_cc > 0){
 			Vector2 vect_2 = v2.GetChild (0).GetComponent< choice_holder> ().choice;
@@ -84,9 +101,18 @@ public class formula_controller : MonoBehaviour {
 				vector_2 = vect_2;
 				change = true;
 			}
+
+			if (v2.transform.GetChild (0) != v2_prev_child)
+				c2.GetComponent< constant_counter> ().reset();
+
+			v2_prev_child = v2.transform.GetChild (0);
 		} else {
 			vector_2 = Vector2.zero;
+			v2_prev_child = null;
 		}
+
+
+
 
 		if (vector_1 == Vector2.zero &&
 			vector_2 == Vector2.zero ) {
