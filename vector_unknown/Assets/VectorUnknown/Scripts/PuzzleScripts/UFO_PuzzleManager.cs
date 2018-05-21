@@ -199,10 +199,17 @@ public class UFO_PuzzleManager : MonoBehaviour {
 			construct_location = remain_within_bounds (construct_location);
 			key_locations [i] = new Vector3 (construct_location.x, 1f, construct_location.y);
 			Debug.Log ("Key locations: " +key_locations [i].ToString ());
-			/*******************************/
+            /*******************************/
 
-			/* Step 4: Load Key at location */
-			GameObject load_key = Instantiate ( key, key_locations[i], Quaternion.identity, key_sack.transform);
+            /* Step 4: Load Key at location */
+            if (key_locations[i].x != 0 && key_locations[i].y != 0) // Verify key can't spawn on origin
+            {
+                GameObject load_key = Instantiate(key, key_locations[i], Quaternion.identity, key_sack.transform);
+            }
+            else
+            {
+                i--;
+            }
 			/********************************/
 		}
 	}
