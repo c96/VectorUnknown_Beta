@@ -35,7 +35,7 @@ public class ResolutionManager : MonoBehaviour
 
     private void printResolution()
     {
-        Debug.Log("Current res: " + Screen.currentResolution.width + "x" + Screen.currentResolution.height);
+        //Debug.Log("Current res: " + Screen.currentResolution.width + "x" + Screen.currentResolution.height);
     }
 
     private IEnumerator StartRoutine()
@@ -156,7 +156,7 @@ public class ResolutionManager : MonoBehaviour
 
         bool fullscreen2windowed = Screen.fullScreen & !fullscreen;
 
-        Debug.Log("Setting resolution to " + (int)r.x + "x" + (int)r.y);
+        //Debug.Log("Setting resolution to " + (int)r.x + "x" + (int)r.y);
         Screen.SetResolution((int)r.x, (int)r.y, fullscreen);
 
         // On OSX the application will pass from fullscreen to windowed with an animated transition of a couple of seconds.
@@ -188,7 +188,7 @@ public class ResolutionManager : MonoBehaviour
         {
             if (lastW != Screen.width || lastH != Screen.height)
             {
-                Debug.Log("Resize! " + Screen.width + "x" + Screen.height);
+                //Debug.Log("Resize! " + Screen.width + "x" + Screen.height);
 
                 Screen.SetResolution((int)r.x, (int)r.y, Screen.fullScreen);
                 yield break;
@@ -197,7 +197,7 @@ public class ResolutionManager : MonoBehaviour
             yield return null;
         }
 
-        Debug.Log("End waiting");
+        //Debug.Log("End waiting");
     }
 
     public void ToggleFullscreen()

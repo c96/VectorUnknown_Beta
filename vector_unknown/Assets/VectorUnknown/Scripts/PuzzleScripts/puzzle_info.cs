@@ -18,7 +18,7 @@ public class puzzle_info : MonoBehaviour {
 
 	public void Start(){
 		Reset (); // initializes all data structures for base game
-		Debug.Log( "GameMode: " + ( game_mode == 0 ? "Standard" : "Tour"));
+		//Debug.Log( "GameMode: " + ( game_mode == 0 ? "Standard" : "Tour"));
 
 		UFO_PuzzleManager manager = GameObject.FindGameObjectWithTag ("Manager").GetComponent< UFO_PuzzleManager>();
 		manager.debug_new_puzzle ();

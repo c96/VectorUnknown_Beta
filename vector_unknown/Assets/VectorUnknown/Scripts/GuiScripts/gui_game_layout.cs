@@ -12,8 +12,8 @@ public class gui_game_layout : MonoBehaviour {
 
 	void Awake () { 
 		panel_transform = transform.GetChild (0).GetComponent< RectTransform> ();
-		Debug.Log ("Printing accessed recttransform");
-		Debug.Log (panel_transform.ToString ());
+		//Debug.Log ("Printing accessed recttransform");
+		//Debug.Log (panel_transform.ToString ());
 
 		//Vector2 delta = new Vector2 (20, 20);
 		Rect screen = AspectUtility.screenRect;

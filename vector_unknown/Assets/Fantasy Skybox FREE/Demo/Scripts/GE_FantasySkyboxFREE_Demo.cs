@@ -250,7 +250,7 @@ public class GE_FantasySkyboxFREE_Demo : MonoBehaviour
 	// http://docs.unity3d.com/ScriptReference/MonoBehaviour.html
 	void OnTriggerExit(Collider other)
 	{
-		Debug.Log("OnTriggerExit="+other.name);
+		//Debug.Log("OnTriggerExit="+other.name);
 		
 		// Reset player position when user move it away from terrain
 		this.transform.localPosition = new Vector3(0,1,0);

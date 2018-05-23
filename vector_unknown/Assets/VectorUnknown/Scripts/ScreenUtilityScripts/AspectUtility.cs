@@ -18,7 +18,7 @@ public class AspectUtility : MonoBehaviour
         }
         if (!cam)
         {
-            Debug.LogError("No camera available");
+            //Debug.LogError("No camera available");
             return;
         }
 

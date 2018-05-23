@@ -81,7 +81,7 @@ public class UFO_PuzzleManager : MonoBehaviour {
 		//generate a number of keys to be collected
 		if (puzzle_info.game_mode == 1) {
 			number_of_keys = rnd.Next (1, 4);
-			Debug.Log ("Keys: " + number_of_keys.ToString());
+			//Debug.Log ("Keys: " + number_of_keys.ToString());
 			generate_keys ();
 		}
 		/**************************/
@@ -198,7 +198,7 @@ public class UFO_PuzzleManager : MonoBehaviour {
 			Vector2 construct_location = ( rnd.Next( 0, first_min) * first_part) + ( rnd.Next( 0, second_min) * second_part);
 			construct_location = remain_within_bounds (construct_location);
 			key_locations [i] = new Vector3 (construct_location.x, 1f, construct_location.y);
-			Debug.Log ("Key locations: " +key_locations [i].ToString ());
+			//Debug.Log ("Key locations: " +key_locations [i].ToString ());
             /*******************************/
 
             /* Step 4: Load Key at location */
@@ -237,11 +237,11 @@ public class UFO_PuzzleManager : MonoBehaviour {
 	public void set_models( int game_mode){
 		/* Goal Model switch from 'lock' to 'bowl of kibble' */
 		if ( game_mode == 1) {
-			Debug.Log ("STATE 1");
+			//Debug.Log ("STATE 1");
 			Goal.transform.GetChild (0).gameObject.SetActive (false); //trasform 0 is carrot_kibble
 			Goal.transform.GetChild (1).gameObject.SetActive (true);  //transform 1 is lock
 		} else {
-			Debug.Log ("STATE 0");
+			//Debug.Log ("STATE 0");
 			Goal.transform.GetChild (0).gameObject.SetActive (true);
 			Goal.transform.GetChild (1).gameObject.SetActive (false);
 		}
@@ -278,8 +278,8 @@ public class UFO_PuzzleManager : MonoBehaviour {
 	}
 
 	public void log( string path){
-
-		StreamWriter log = new StreamWriter ( path);
+#if UNITY_EDITOR
+        StreamWriter log = new StreamWriter ( path);
 		log.Write ("");
 		log.Close ();
 
@@ -298,20 +298,21 @@ public class UFO_PuzzleManager : MonoBehaviour {
 		log.WriteLine ("Goal Positions:");
 		log.WriteLine ("\t"+GoalPosition.ToString ());
 		log.Close ();
-	}
+#endif
+    }
 
 	public void TestSuccess(Vector3 endPosition)
 	{
 		Vector2 endPositionVector2 = new Vector2 (endPosition.x, endPosition.z);
-		Debug.Log ("Testing success");
-		Debug.Log( Solution.ToString());
-		Debug.Log( endPositionVector2.ToString());
+		//Debug.Log ("Testing success");
+		//Debug.Log( Solution.ToString());
+		//Debug.Log( endPositionVector2.ToString());
 		if (Solution == Vector2.zero) {
 			//the game is in a continue state
 		} else if ( 
 			Solution == endPositionVector2 &&
 			(puzzle_info.attempt_count <= 0 || number_of_attempts <= puzzle_info.attempt_count)) {// The player enters a win state
-			Debug.Log( "Win State");
+			//Debug.Log( "Win State");
 			if( puzzle_info.game_mode == 0)
 				InfoController.GetComponent<GUI_InfoController> ().ShowSuccessOverlay ();
 			if( puzzle_info.game_mode == 1 && number_of_keys <= 0)
