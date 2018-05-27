@@ -7,7 +7,7 @@ public class GameConstants : MonoBehaviour {
 
 	static GameConstants Instance;
 
-	static public string version = "Beta 1.0";
+	static public string version = "";
 	static public int GridSpacing = 1;					//Grid Spacing on the Game Board
 	static public float Height = 2.5f;					//Y Value of Player and Goal
 	static public float Speed = 5.0f;					//Speed of player

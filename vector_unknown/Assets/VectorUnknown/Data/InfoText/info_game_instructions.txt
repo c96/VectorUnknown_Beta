@@ -1,5 +1,5 @@
 INSTRUCTIONS:
--You start at the purple node and are trying to get to the red node.
+-You start at the purple node and are trying to get to the red node. If you see a lock, you will need to get all the keys to unlock it. (You can make multiple moves to do this, you don't need to get all of them in one go)
 -On the left is the TOOLBOX. Four vectors are available. Each vector is linearly dependent with one other vector, and linearly dependent with the remaining two.
 -On the top right is the EQUATION. Choose the vectors in the toolbox to construct the equation on the top right.
 -You can modify the scalar multiples in the equation with the plus and minus buttons. The computed path of your vector is shown as a purple and a red line.

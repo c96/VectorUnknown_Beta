@@ -6,53 +6,56 @@ using UnityEngine.SceneManagement;
 
 public class GUI_InfoController : MonoBehaviour {
 
-    public GameObject InfoOverlay;
+    public GameObject InfoOverlay, infoText, failText, successText, scrollText;
 	public TextAsset controls, success, failure;
-
-	void Awake(){
-		ShowInfoOverlay ();
-	}
+    //public Text infoText;
 
     public void ShowInfoOverlay() // Instructions Panel
     {
-		InfoOverlay.GetComponentInChildren< Text> ().text = controls.text;
+		//infoText.text = controls.text;
 
 		Button overlay_button =	InfoOverlay.GetComponentInChildren< Button> ();
 		overlay_button.onClick.RemoveAllListeners ();
 		overlay_button.onClick.AddListener( HideInfoOverlay);
 
+        infoText.SetActive(true);
+        scrollText.SetActive(true);
         InfoOverlay.SetActive(true);
     }
 
 	public void ShowSuccessOverlay()// Success Panel
     {
-		InfoOverlay.GetComponentInChildren< Text> ().text = success.text;
+		//infoText.text = success.text;
 
 		Button overlay_button =	InfoOverlay.GetComponentInChildren< Button> ();
 		overlay_button.onClick.RemoveAllListeners ();
 		overlay_button.onClick.AddListener( GameOver);
 
+        successText.SetActive(true);
 		InfoOverlay.SetActive(true);
     }
 
     public void ShowFailureOverlay()// Failure Panel
     {
-		InfoOverlay.GetComponentInChildren< Text> ().text = failure.text;
+		//infoText.text = failure.text;
 
 		Button overlay_button =	InfoOverlay.GetComponentInChildren< Button> ();
 		overlay_button.onClick.RemoveAllListeners ();
 		overlay_button.onClick.AddListener( GameOver);
 
+        failText.SetActive(true);
 		InfoOverlay.SetActive(true);
     }
 		
 	public void HideInfoOverlay() // Resets panel contents and tucks it away
 	{
-		InfoOverlay.GetComponentInChildren< Text> ().text = "";
+		//infoText.text = "";
 
 		Button overlay_button =	InfoOverlay.GetComponentInChildren< Button> ();
 		overlay_button.onClick.RemoveAllListeners ();
 
+        scrollText.SetActive(false);
+        infoText.SetActive(false);
 		InfoOverlay.SetActive(false);
 	}
 
