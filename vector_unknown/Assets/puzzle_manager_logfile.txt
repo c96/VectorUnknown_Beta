@@ -5,10 +5,10 @@ player object name: Player
 Goal object name: Goal0
 	(0.0, 2.5, 0.0)
 Choices:
-	(1.0, -2.0)
-	(-4.0, 8.0)
+	(-1.0, 3.0)
 	(1.0, 2.0)
+	(-2.0, 6.0)
 	(4.0, 8.0)
-Solution: (8.0, 0.0)
+Solution: (2.0, 14.0)
 Goal Positions:
-	(8.0, 2.5, 0.0)
+	(2.0, 2.5, 14.0)

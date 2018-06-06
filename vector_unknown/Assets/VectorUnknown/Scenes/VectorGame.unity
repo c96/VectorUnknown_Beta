@@ -2605,7 +2605,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 412711645}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e512c8aa4e86b5c4f90bad061f2c313b, type: 3}
   m_Name: 
@@ -4579,7 +4579,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 702444035}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e512c8aa4e86b5c4f90bad061f2c313b, type: 3}
   m_Name: 
@@ -4672,7 +4672,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 718543730}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e512c8aa4e86b5c4f90bad061f2c313b, type: 3}
   m_Name: 
@@ -4711,8 +4711,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Success! You've chosen a linearly independent pair of vectors, and the correct
-    set of scalars to get to the destination.
+  m_Text: "Success!\r\n\nYou\u2019ve found a linear combination of vectors that allows
+    you to reach your destination. You can see a record of your journey to the left."
 --- !u!222 &718543734
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9870,19 +9870,19 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "INSTRUCTIONS:\r\n-You start at the purple node and are trying to get to
-    the red node. If you see a lock, you will need to get all the keys to unlock it.
-    (You can make multiple moves to do this, you don't need to get all of them in
-    one go)\r\n-On the left is the TOOLBOX. Four vectors are available. Each vector
-    is linearly dependent with one other vector, and linearly dependent with the remaining
-    two.\r\n-On the top right is the EQUATION. Choose the vectors in the toolbox to
-    construct the equation on the top right.\r\n-You can modify the scalar multiples
-    in the equation with the plus and minus buttons. The computed path of your vector
-    is shown as a purple and a red line.\r\n-Press \"GO\" to send the projectile to
-    the destination following the path you've created.\r\n\r\nCONTROLS:\r\n-Mouse
-    input to choose vectors and modify equation.\r\n-Camera controls: Use the arrow
-    keys to rotate the camera, and press \"R\" to reset the camera to its original
-    position."
+  m_Text: "INSTRUCTIONS:\r\n\n- You start at\r the rabbit and are trying to get to
+    the basket. To do this you will use travel vectors.\r\n\r\n- On the left\r is
+    the TOOLBOX. Drag the travel vectors from the toolbox to the boxes in the EQUATION
+    at the top of the screen.\r\n\r\n- Use the +/-\r buttons to scale the travel vectors.\r\n\r\n-
+    Press GO to\r see where the travel vectors take you.\r\n\r\n- On some levels\r
+    the computed path of the vectors is shown connecting the rabbit to its final destination.\r\n\r\n-
+    On some levels\r there is a lock, you will need to get all the keys to unlock
+    it.\r\n\r\nCONTROLS:\r\n\r\n- Use your mouse to drag vectors and to modify scalars
+    with +/- buttons.\r\n- Camera controls: Use the arrow keys to rotate the camera;
+    press \u201CR\u201D to reset the camera to its original position.\r\n\r\nDATA\r
+    LOG:\r\n\r\n- On the left, below the travel vectors, the Player Position, and
+    Goal Position are listed.\r\n- Below that, information about your travels is recorded
+    using <x,y> to denote travel vectors.\r\n"
 --- !u!1 &1386016675
 GameObject:
   m_ObjectHideFlags: 0
@@ -14437,8 +14437,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1246771092}
   m_HandleRect: {fileID: 1246771091}
   m_Direction: 3
-  m_Value: 0.99999994
-  m_Size: 0.6018655
+  m_Value: 0.9999998
+  m_Size: 0.7625369
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
