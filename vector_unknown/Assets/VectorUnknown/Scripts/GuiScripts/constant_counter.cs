@@ -17,6 +17,9 @@ public class constant_counter : MonoBehaviour
     public Transform other_counter; //holds the other constant value 
     public GameObject player;       //reference to player to obtain player position
 
+    public Text log;
+    private static bool displayedBoundsError = false;
+
     void Awake()
     {
 
@@ -81,6 +84,10 @@ public class constant_counter : MonoBehaviour
             constant = constant + 1;
             change = true;
         }
+        else if(!displayedBoundsError)
+        {
+            displayBoundsError();
+        }
     }
 
     public void decrement()
@@ -92,6 +99,10 @@ public class constant_counter : MonoBehaviour
             constant = constant - 1;
             change = true;
         }
+        else if (!displayedBoundsError)
+        {
+            displayBoundsError();
+        }
     }
 
     public void testStillFit()
@@ -100,6 +111,12 @@ public class constant_counter : MonoBehaviour
         {
             reset();
         }
+    }
+
+    public void displayBoundsError()
+    {
+        log.text += "Error! Using that scalar would push you off the grid. Try another instead.\n";
+        displayedBoundsError = true;
     }
 
     public void reset()

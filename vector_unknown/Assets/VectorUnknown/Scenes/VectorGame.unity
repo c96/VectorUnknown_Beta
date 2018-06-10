@@ -3239,6 +3239,11 @@ Prefab:
       propertyPath: other_counter
       value: 
       objectReference: {fileID: 1137482967}
+    - target: {fileID: 114682100075176436, guid: 359b4744846cadd43bdb627cc6e52a65,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 445925161}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 359b4744846cadd43bdb627cc6e52a65, type: 2}
   m_IsPrefabParent: 0
@@ -9142,6 +9147,11 @@ Prefab:
       propertyPath: other_counter
       value: 
       objectReference: {fileID: 1641773547}
+    - target: {fileID: 114682100075176436, guid: 359b4744846cadd43bdb627cc6e52a65,
+        type: 2}
+      propertyPath: log
+      value: 
+      objectReference: {fileID: 445925163}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 359b4744846cadd43bdb627cc6e52a65, type: 2}
   m_IsPrefabParent: 0

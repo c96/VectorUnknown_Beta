@@ -64,14 +64,12 @@ public class gui_settings : MonoBehaviour {
 		gui_mod.x += original_width / 4.0f;
 		gui_mod.width = original_width  *  2.0f / 4.0f;
 
-		//if (GUI.Button (gui_mod,
-		//	( fullscreen ? 
-		//		res_format( resolutionManager.FullscreenResolutions[ resolution_location]) : 
-		//		res_format( resolutionManager.WindowedResolutions[ resolution_location]))
-		//	)
-		//) { }
+        if (GUI.Button(gui_mod, (GameConstants.locked ? "Grid Locked" : "Grid Unlocked")))
+        {
+            GameConstants.locked = !GameConstants.locked;
+        }
 
-		gui_mod.x +=  original_width  *  2.0f / 4.0f;
+        gui_mod.x +=  original_width  *  2.0f / 4.0f;
 		gui_mod.width = original_width / 4.0f;
 
 		if (GUI.Button (gui_mod, ">")) { 
