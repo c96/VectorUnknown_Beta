@@ -12,6 +12,10 @@ public class Drop : MonoBehaviour, IDropHandler {
 			return null;
 		}
 	}
+
+    public GameObject Constant;
+    public bool formula;
+
 	public Transform start_parent;
 	public bool has_item(){
 		return ( transform.childCount > 0);

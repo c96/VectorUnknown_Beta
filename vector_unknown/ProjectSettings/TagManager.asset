@@ -15,6 +15,7 @@ TagManager:
   - FollowReflect
   - Manager
   - Keys
+  - Dropper
   layers:
   - Default
   - TransparentFX

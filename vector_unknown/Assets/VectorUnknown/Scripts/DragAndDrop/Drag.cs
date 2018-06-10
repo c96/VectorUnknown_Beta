@@ -33,6 +33,7 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 	public void OnDrag (PointerEventData eventData)
 	{
 		transform.position = Input.mousePosition;
+        transform.Translate(new Vector3(50.0f, 40.0f, 0.0f));
 	}
 
 	#endregion
@@ -48,6 +49,17 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 			transform.SetParent( start_parent);
 			transform.position = start_position;
 		}
+        else
+        {
+            GameObject[] droppers = GameObject.FindGameObjectsWithTag("Dropper");
+            foreach(GameObject drop in droppers)
+            {
+                if(drop.transform.childCount != 0 && drop.GetComponent<Drop>().formula)
+                {
+                    drop.GetComponent<Drop>().Constant.GetComponent<constant_counter>().testStillFit();
+                }
+            }
+        }
 	}
 
 

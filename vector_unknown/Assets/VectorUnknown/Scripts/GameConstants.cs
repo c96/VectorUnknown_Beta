@@ -7,6 +7,8 @@ public class GameConstants : MonoBehaviour {
 
 	static GameConstants Instance;
 
+    public static bool locked = true;                   // For determining whether the player is locked to the grid or not
+
 	static public string version = "";
 	static public int GridSpacing = 1;					//Grid Spacing on the Game Board
 	static public float Height = 2.5f;					//Y Value of Player and Goal

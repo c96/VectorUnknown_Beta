@@ -288,6 +288,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114084375953156412, guid: 25d3fc66f41968741ba2ea6aab22af1e,
+        type: 2}
+      propertyPath: Constant
+      value: 
+      objectReference: {fileID: 1326406124}
+    - target: {fileID: 114084375953156412, guid: 25d3fc66f41968741ba2ea6aab22af1e,
+        type: 2}
+      propertyPath: formula
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 25d3fc66f41968741ba2ea6aab22af1e, type: 2}
   m_IsPrefabParent: 0
@@ -3232,6 +3242,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 359b4744846cadd43bdb627cc6e52a65, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &516089904 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1870985385180494, guid: 359b4744846cadd43bdb627cc6e52a65,
+    type: 2}
+  m_PrefabInternal: {fileID: 516089903}
 --- !u!1 &539313785
 GameObject:
   m_ObjectHideFlags: 0
@@ -8300,6 +8315,7 @@ MonoBehaviour:
   vector_2: {x: 0, y: 0}
   output: {x: 0, y: 0}
   player: {fileID: 0}
+  puzzleManager: {fileID: 1189697819}
   line_1: {fileID: 0}
   line_2: {fileID: 0}
   c1: {fileID: 0}
@@ -9129,6 +9145,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 359b4744846cadd43bdb627cc6e52a65, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1326406124 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1870985385180494, guid: 359b4744846cadd43bdb627cc6e52a65,
+    type: 2}
+  m_PrefabInternal: {fileID: 1326406123}
 --- !u!1 &1336273212
 GameObject:
   m_ObjectHideFlags: 0
@@ -12638,7 +12659,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.88100004, y: 0.081}
   m_AnchorMax: {x: 0.95600003, y: 0.22874069}
-  m_AnchoredPosition: {x: -0.4477539, y: 30.08702}
+  m_AnchoredPosition: {x: -0.4477539, y: 30.086975}
   m_SizeDelta: {x: 11.076126, y: -14.130997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1689699108
@@ -15334,6 +15355,16 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114084375953156412, guid: 25d3fc66f41968741ba2ea6aab22af1e,
+        type: 2}
+      propertyPath: Constant
+      value: 
+      objectReference: {fileID: 516089904}
+    - target: {fileID: 114084375953156412, guid: 25d3fc66f41968741ba2ea6aab22af1e,
+        type: 2}
+      propertyPath: formula
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 25d3fc66f41968741ba2ea6aab22af1e, type: 2}
