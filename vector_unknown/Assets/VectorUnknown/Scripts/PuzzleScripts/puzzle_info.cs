@@ -40,7 +40,7 @@ public class puzzle_info : MonoBehaviour {
 		display_past_paths = data.display_past_paths;
 		game_mode = data.load_game_mode;
 
-		Destroy (level_data);
+		//Destroy (level_data);
 	}
 
 	public bool game_over(){

@@ -33,4 +33,9 @@ public class GameConstants : MonoBehaviour {
 	public void load_menu(){
 		SceneManager.LoadScene ("menu_scene");
 	}
+
+    public void reloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }

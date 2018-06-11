@@ -16,6 +16,7 @@ TagManager:
   - Manager
   - Keys
   - Dropper
+  - Blinker
   layers:
   - Default
   - TransparentFX

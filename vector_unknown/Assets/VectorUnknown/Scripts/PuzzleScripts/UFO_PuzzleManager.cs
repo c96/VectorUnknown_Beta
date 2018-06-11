@@ -290,7 +290,7 @@ public class UFO_PuzzleManager : MonoBehaviour
     {
         for (int i = 0; i < 4; i++)
         {// Choice Panel -> Droppers -> ith child of Droppers, Dropper -> data
-            choice_panel.transform.GetChild(0).transform.GetChild(i).transform.GetChild(0).GetComponent<choice_holder>().update_choice(Choices[i]);
+            choice_panel.transform.GetChild(0).transform.GetChild(i + 1).transform.GetChild(0).GetComponent<choice_holder>().update_choice(Choices[i]);
         }
     }
 

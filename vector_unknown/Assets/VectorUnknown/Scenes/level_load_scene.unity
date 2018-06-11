@@ -6201,6 +6201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1507753567}
   - component: {fileID: 1507753568}
+  - component: {fileID: 1507753569}
   m_Layer: 5
   m_Name: LevelData
   m_TagString: Untagged
@@ -6241,6 +6242,17 @@ MonoBehaviour:
   display_upcoming_path: 0
   display_past_paths: 0
   load_game_mode: 0
+--- !u!114 &1507753569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1507753566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32d76083138e2474a9fdc4c6bac8e940, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1514917064
 GameObject:
   m_ObjectHideFlags: 0

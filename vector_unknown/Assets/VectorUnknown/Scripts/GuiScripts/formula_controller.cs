@@ -57,13 +57,13 @@ public class formula_controller : MonoBehaviour
 
         c1 = formula_panel.transform.GetChild(0);
         constant_1 = c1.GetComponent<constant_counter>().constant;
-        v1 = formula_panel.transform.GetChild(1);
+        v1 = formula_panel.transform.GetChild(2);
 
-        c2 = formula_panel.transform.GetChild(3);
+        c2 = formula_panel.transform.GetChild(4);
         constant_2 = c2.GetComponent<constant_counter>().constant;
-        v2 = formula_panel.transform.GetChild(4);
+        v2 = formula_panel.transform.GetChild(5);
 
-        destination = formula_panel.transform.GetChild(6);
+        destination = formula_panel.transform.GetChild(7);
 
     }
 
