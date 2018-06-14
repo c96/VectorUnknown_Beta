@@ -352,6 +352,8 @@ public class UFO_PuzzleManager : MonoBehaviour
           (puzzle_info.attempt_count <= 0 || number_of_attempts <= puzzle_info.attempt_count))
         {// The player enters a win state
          //Debug.Log( "Win State");
+            GameObject level_data = GameObject.Find("LevelData");
+            Destroy(level_data);
             if (puzzle_info.game_mode == 0)
                 InfoController.GetComponent<GUI_InfoController>().ShowSuccessOverlay();
             if (puzzle_info.game_mode == 1 && number_of_keys <= 0)
@@ -363,6 +365,8 @@ public class UFO_PuzzleManager : MonoBehaviour
           number_of_attempts >= puzzle_info.attempt_count)
         {//the player enters a fail state
             InfoController.GetComponent<GUI_InfoController>().ShowFailureOverlay();
+            GameObject level_data = GameObject.Find("LevelData");
+            Destroy(level_data);
         }
         else
         {

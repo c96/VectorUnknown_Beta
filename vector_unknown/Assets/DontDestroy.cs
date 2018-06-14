@@ -13,8 +13,16 @@ public class DontDestroy : MonoBehaviour
         SceneManager.sceneLoaded += SceneManager_sceneLoaded;
     }
 
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
+    }
+
     private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
-        DontDestroyOnLoad(gameObject);
+        if (gameObject != null)
+        {
+            DontDestroyOnLoad(gameObject);
+        }
     }
 }

@@ -31,7 +31,9 @@ public class GameConstants : MonoBehaviour {
 	}
 
 	public void load_menu(){
-		SceneManager.LoadScene ("menu_scene");
+        GameObject level_data = GameObject.Find("LevelData");
+        Destroy(level_data);
+        SceneManager.LoadScene ("menu_scene");
 	}
 
     public void reloadScene()
