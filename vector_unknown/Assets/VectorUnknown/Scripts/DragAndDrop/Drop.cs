@@ -29,7 +29,7 @@ public class Drop : MonoBehaviour, IDropHandler {
 		} else {
 			Transform new_parent = Drag.start_parent;
 
-			item.transform.parent = new_parent;
+			item.transform.SetParent (new_parent);
 			Drag.item_dragged.transform.SetParent (transform);
 		}
 	}

@@ -23,7 +23,7 @@ public class grid_lines : MonoBehaviour {
 		Vector3 offset = (Vector3.left * width);
 		Vector3 bias = Vector3.up * 0.05f;
 
-		line_width = 1f;
+		line_width = 0.15f;
 		lines = new Vector3[81];
 		lines [0] = bot - offset + bias;
 

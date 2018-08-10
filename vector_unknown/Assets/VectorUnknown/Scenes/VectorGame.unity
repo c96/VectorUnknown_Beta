@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 996bfcb731fbaec4da7353d23041ecd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line_width: 0.25
+  line_width: 0.15
   width: 20
   height: 20
   top: {x: 0, y: 0, z: 10}
@@ -9027,7 +9027,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.000000059604645}
-  m_AnchorMax: {x: 1, y: 0.5878922}
+  m_AnchorMax: {x: 1, y: 0.58789206}
   m_AnchoredPosition: {x: 0.3800001, y: -10.890015}
   m_SizeDelta: {x: 19.24, y: 40.64}
   m_Pivot: {x: 0.5, y: 0.5}

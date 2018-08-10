@@ -58,13 +58,16 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         {
             foreach (GameObject b in blinkers)
             {
-                if (b.GetComponent<Blinking>().onLeft)
+                if (b != null)
                 {
-                    b.SetActive(false);
-                }
-                else
-                {
-                    b.SetActive(true);
+                    if (b.GetComponent<Blinking>().onLeft)
+                    {
+                        b.SetActive(false);
+                    }
+                    else
+                    {
+                        b.SetActive(true);
+                    }
                 }
             }
             blinkMode++;

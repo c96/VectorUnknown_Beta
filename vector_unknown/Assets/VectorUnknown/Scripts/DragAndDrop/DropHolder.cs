@@ -24,11 +24,11 @@ public class DropHolder : MonoBehaviour, IDropHandler {
 
 			if (first_toggle == true) {
 				Drag.item_dragged.transform.SetParent (first_coefficient.transform);
-				first_coefficient.item.transform.parent = new_parent;
+				first_coefficient.item.transform.SetParent(new_parent);
 				first_toggle = false;
 			} else if (first_toggle == false) {
 				Drag.item_dragged.transform.SetParent (second_coefficient.transform);
-				second_coefficient.item.transform.parent = new_parent;
+				second_coefficient.item.transform.SetParent(new_parent);
 				first_toggle = true;
 			}
 		}

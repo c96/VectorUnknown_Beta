@@ -7,13 +7,14 @@ public class load_grid_numbers_canvas : MonoBehaviour {
 
 	public GameObject number;
 	public GameObject line;
+    
 
 	private GameObject camera_reflect;
 	private List< GameObject> numbers;
 	 
 	void Start () {
 		numbers = new List< GameObject> ();
-
+       
 		camera_reflect = GameObject.FindGameObjectWithTag ("Reflect");
 
 		for (int i = 1; i < 11; i++) {
@@ -50,7 +51,9 @@ public class load_grid_numbers_canvas : MonoBehaviour {
 
 	private void gen_number( Vector3 point){
 		GameObject load_number = Instantiate ( number, point, Quaternion.identity, transform);
-		load_number.transform.GetChild(0).GetComponent< Text>().text = point.x != 0.0f ? point.x.ToString() : point.z.ToString();
+        //load_number.transform.GetChild(0).GetComponent<Text>().font = mFont;
+        load_number.transform.GetChild(0).GetComponent<Text>().fontSize = 16;
+        load_number.transform.GetChild(0).GetComponent< Text>().text = point.x != 0.0f ? point.x.ToString() : "  "+point.z.ToString();
 		load_number.transform.localPosition = point;
 
 		numbers.Add (load_number);

@@ -1,10 +1,10 @@
 data path: C:/Users/gaming/Documents/GitHub/VectorUnknown_Beta/vector_unknown/Assets
 Fullscreen: True
-width: 1617 pixels
-height: 910 pixels
-x offset: 151 pixels
+width: 951 pixels
+height: 535 pixels
+x offset: 98 pixels
 y offset: 0 pixels
-Screen Rectangle: (x:151.11, y:0.00, width:1617.78, height:910.00)
+Screen Rectangle: (x:98.44, y:0.00, width:951.11, height:535.00)
 resolutions available: 
 	640 x 480 @ 60Hz
 	720 x 480 @ 60Hz
