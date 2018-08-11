@@ -92,6 +92,8 @@ public class UFO_PuzzleManager : MonoBehaviour
             generate_keys();
         }
         /**************************/
+
+        Psychometrics.logEvent("Cs" + Choices[0] + Choices[1] + Choices[2] + Choices[3]);
     }
 
     public void ResetGame()
@@ -167,6 +169,7 @@ public class UFO_PuzzleManager : MonoBehaviour
             if (s == 0) Choices[i + 2] *= -1; //0 --> sign change, 1 --> no sign change
         }
 
+        Psychometrics.logEvent("A:" + Mul[0] + "*" + Choices[0] + "+" + Mul[1] + "*" + Choices[1]);
         return Mul[0] * Choices[0] + Mul[1] * Choices[1];
     }
 
@@ -227,6 +230,7 @@ public class UFO_PuzzleManager : MonoBehaviour
             if (key_locations[i].x != 0 && key_locations[i].y != 0) // Verify key can't spawn on origin
             {
                 GameObject load_key = Instantiate(key, key_locations[i], Quaternion.identity, key_sack.transform);
+                Psychometrics.logEvent("K" + (i + 1) + "(" + key_locations[i].x + "," + key_locations[i].y + ")");
             }
             else
             {
@@ -354,6 +358,8 @@ public class UFO_PuzzleManager : MonoBehaviour
          //Debug.Log( "Win State");
             GameObject level_data = GameObject.Find("LevelData");
             Destroy(level_data);
+            Psychometrics.logEvent("H");
+            Psychometrics.sendData();
             if (puzzle_info.game_mode == 0)
                 InfoController.GetComponent<GUI_InfoController>().ShowSuccessOverlay();
             if (puzzle_info.game_mode == 1 && number_of_keys <= 0)
@@ -367,11 +373,12 @@ public class UFO_PuzzleManager : MonoBehaviour
             InfoController.GetComponent<GUI_InfoController>().ShowFailureOverlay();
             GameObject level_data = GameObject.Find("LevelData");
             Destroy(level_data);
+            Psychometrics.logEvent("M");
+            Psychometrics.sendData();
         }
         else
         {
             //the game is in a continue state
         }
-
     }
 }

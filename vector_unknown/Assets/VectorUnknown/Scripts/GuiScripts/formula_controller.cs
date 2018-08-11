@@ -181,6 +181,7 @@ public class formula_controller : MonoBehaviour
         /* STEP 1: Send movement Coordinates to Player  */
         /************************************************/
         log_formula();
+        Psychometrics.logEvent(print_formula());
         if (!player.GetComponent<PlayerMovement>().is_moving() &&
             ((constant_1 != 0 && vector_1 != Vector2.zero) ||
                 (constant_2 != 0 && vector_2 != Vector2.zero))

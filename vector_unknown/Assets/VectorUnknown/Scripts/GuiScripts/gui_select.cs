@@ -25,27 +25,32 @@ public class gui_select : MonoBehaviour {
 	}
 
 	public void level_one(){
-		puzzle_settings (-1, 1, 1, 0);
+        Psychometrics.logEvent("L1");
+        puzzle_settings (-1, 1, 1, 0);
 		SceneManager.LoadScene ("VectorGame");
 	}
 
 	public void level_two(){
+        Psychometrics.logEvent("L2");
 		puzzle_settings (-1, 0, 1, 0);
 		SceneManager.LoadScene ("VectorGame");
 	}
 
 	public void level_three(){
-		puzzle_settings ( 5, 1, 1, 0);
+        Psychometrics.logEvent("L3");
+        puzzle_settings ( 5, 1, 1, 0);
 		SceneManager.LoadScene ("VectorGame");
 	}
 
 	public void level_four(){
-		puzzle_settings ( 5, 0, 0, 0);
+        Psychometrics.logEvent("L4");
+        puzzle_settings ( 5, 0, 0, 0);
 		SceneManager.LoadScene ("VectorGame");
 	}
 
 	public void level_five(){
-		puzzle_settings ( 0, 1, 1, 1);
+        Psychometrics.logEvent("L5");
+        puzzle_settings ( 0, 1, 1, 1);
 		SceneManager.LoadScene ("VectorGame");
 	}
 
