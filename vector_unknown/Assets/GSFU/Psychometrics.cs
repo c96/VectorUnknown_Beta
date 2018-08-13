@@ -7,6 +7,7 @@ public class Psychometrics : MonoBehaviour
 {
     private static ArrayList metrics = new ArrayList();
     private static string sessionID = "";
+    private static string temp = "";
 
     // Use this for initialization
     void Start()
@@ -22,6 +23,17 @@ public class Psychometrics : MonoBehaviour
             sessionID = (month + "-" + day + "-" + year + "-" + hour + "-" + minute + "-" + second);
             logEvent(sessionID);
         }
+    }
+
+    public static void attempt(string str)
+    {
+        temp = str;
+    }
+
+    public static void report(string str)
+    {
+        logEvent(str + " " + temp);
+        temp = "";
     }
 
     public static void logEvent(string str)

@@ -358,7 +358,7 @@ public class UFO_PuzzleManager : MonoBehaviour
          //Debug.Log( "Win State");
             GameObject level_data = GameObject.Find("LevelData");
             Destroy(level_data);
-            Psychometrics.logEvent("H");
+            Psychometrics.report("H");
             Psychometrics.sendData();
             if (puzzle_info.game_mode == 0)
                 InfoController.GetComponent<GUI_InfoController>().ShowSuccessOverlay();
@@ -373,7 +373,7 @@ public class UFO_PuzzleManager : MonoBehaviour
             InfoController.GetComponent<GUI_InfoController>().ShowFailureOverlay();
             GameObject level_data = GameObject.Find("LevelData");
             Destroy(level_data);
-            Psychometrics.logEvent("M");
+            Psychometrics.report("M");
             Psychometrics.sendData();
         }
         else
