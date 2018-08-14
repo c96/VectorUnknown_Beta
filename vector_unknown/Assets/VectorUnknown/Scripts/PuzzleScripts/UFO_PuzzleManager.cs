@@ -197,6 +197,7 @@ public class UFO_PuzzleManager : MonoBehaviour
         Vector2 first_part, second_part;
         for (int i = 0; i < number_of_keys; i++)
         {
+
             /* Step 1: Select two vectors */
             first_part = Choices[rnd.Next(0, 4)];   //select two choice vectors to create key locations
             second_part = Choices[rnd.Next(0, 4)];  //construciting locations from choice vectors ensures that the keys are reachable
@@ -227,7 +228,7 @@ public class UFO_PuzzleManager : MonoBehaviour
             /*******************************/
 
             /* Step 4: Load Key at location */
-            if (key_locations[i].x != 0 && key_locations[i].y != 0) // Verify key can't spawn on origin
+            if ( !checkNear(key_locations[i].x, key_locations[i].z,0,0)) // Verify key can't spawn near origin
             {
                 GameObject load_key = Instantiate(key, key_locations[i], Quaternion.identity, key_sack.transform);
                 Psychometrics.logEvent("K" + (i + 1) + "(" + key_locations[i].x + "," + key_locations[i].y + ")");
@@ -238,6 +239,13 @@ public class UFO_PuzzleManager : MonoBehaviour
             }
             /********************************/
         }
+    }
+
+    private Boolean  checkNear(float a, float b, float c, float d)
+    {
+        if (Math.Abs(a-c) <8 || Math.Abs(b-d) < 8 || Math.Abs(a - c) > 18 || Math.Abs(b - d) > 18)
+            return true;
+        return false;
     }
 
     private Vector2 remain_within_bounds(Vector2 location)
