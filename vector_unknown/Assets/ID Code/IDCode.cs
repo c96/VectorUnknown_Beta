@@ -13,6 +13,7 @@ public class IDCode : MonoBehaviour
     {
         code = text.text;
         Psychometrics.logEvent(code);
+        Psychometrics.id = code;
         SceneManager.LoadScene("menu_scene");
     }
 }

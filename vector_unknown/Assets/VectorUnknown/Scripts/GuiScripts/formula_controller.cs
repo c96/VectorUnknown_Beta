@@ -39,6 +39,7 @@ public class formula_controller : MonoBehaviour
     int v1_cc; //positive value if dropper element has choice attached to it
     int v2_cc;
     Transform v1_prev_child = null, v2_prev_child = null;
+    private bool doneReset = false;
 
     //////////////////////
 
@@ -140,7 +141,14 @@ public class formula_controller : MonoBehaviour
 
         if (change)
         {
-            Psychometrics.logEvent(print_formula());
+            if (!doneReset)
+            {
+                Psychometrics.logEvent(print_formula());
+            }
+            else
+            {
+                doneReset = true;
+            }
             //construct output
             Vector2 outp = (constant_1 * vector_1) + (constant_2 * vector_2);
             if (outp != output)
@@ -195,6 +203,7 @@ public class formula_controller : MonoBehaviour
 
             path_trace();
 
+            doneReset = true;
             reset();
         }
         else if(!((constant_1 != 0 && vector_1 != Vector2.zero) ||

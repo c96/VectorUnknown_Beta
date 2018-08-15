@@ -222,28 +222,23 @@ public class UFO_PuzzleManager : MonoBehaviour
 
             /* Step 3: Construct location */
             Vector2 construct_location = (rnd.Next(0, first_min) * first_part) + (rnd.Next(0, second_min) * second_part);
-            if (remain_within_bounds(construct_location))
-            {
-                key_locations[i] = new Vector3(construct_location.x, 1f, construct_location.y);
-                //Debug.Log ("Key locations: " +key_locations [i].ToString ());
-                /*******************************/
+            construct_location = remain_within_bounds(construct_location);
+            key_locations[i] = new Vector3(construct_location.x, 1f, construct_location.y);
+            //Debug.Log ("Key locations: " +key_locations [i].ToString ());
+            /*******************************/
 
-                /* Step 4: Load Key at location */
-                if (!checkNear(key_locations[i].x, key_locations[i].z, 0, 0)) // Verify key can't spawn near origin
-                {
-                    GameObject load_key = Instantiate(key, key_locations[i], Quaternion.identity, key_sack.transform);
-                    Psychometrics.logEvent("K" + (i + 1) + "(" + key_locations[i].x + "," + key_locations[i].y + ")");
-                }
-                else
-                {
-                    i--;
-                }
-                /********************************/
+            /* Step 4: Load Key at location */
+            if (!checkNear(key_locations[i].x, key_locations[i].z, 0, 0)) // Verify key can't spawn near origin
+            {
+                GameObject load_key = Instantiate(key, key_locations[i], Quaternion.identity, key_sack.transform);
+                Psychometrics.logEvent("K" + (i + 1) + "(" + key_locations[i].x + "," + key_locations[i].y + ")");
             }
             else
             {
                 i--;
             }
+            /********************************/
+
         }
     }
 
@@ -254,15 +249,14 @@ public class UFO_PuzzleManager : MonoBehaviour
         return false;
     }
 
-    private bool remain_within_bounds(Vector2 location)
+    private Vector2 remain_within_bounds(Vector2 location)
     {
-        bool inBounds = true;
-        if (location.x > 20) { inBounds = false; }
-        if (location.x < -20) { inBounds = false; }
-        if (location.y > 20) { inBounds = false; }
-        if (location.y < -20) { inBounds = false; }
+        if (location.x > 20) { location.x = 20; }
+        if (location.x < -20) { location.x = -20; }
+        if (location.y > 20) { location.y = 20; }
+        if (location.y < -20) { location.y = -20; }
 
-        return inBounds;
+        return location;
     }
 
     public void decrement_keys()

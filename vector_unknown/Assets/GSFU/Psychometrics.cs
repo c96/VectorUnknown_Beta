@@ -8,6 +8,7 @@ public class Psychometrics : MonoBehaviour
     private static ArrayList metrics = new ArrayList();
     private static string sessionID = "";
     private static string temp = "";
+    public static string id = "";
 
     // Use this for initialization
     void Start()
@@ -50,6 +51,7 @@ public class Psychometrics : MonoBehaviour
         UnityDataConnector.instance.SendDataToSheet((string[])metrics.ToArray(typeof(string)));
         metrics = new ArrayList();
         logEvent(sessionID);
+        logEvent(id);
     }
     
 }
