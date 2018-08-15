@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/ID Code/ID Code.unity
+    guid: 4fce8a196cc75b9488346405d1823682
+  - enabled: 1
     path: Assets/VectorUnknown/Scenes/menu_scene.unity
     guid: e25e388dec202a740b36dd6197ed4939
   - enabled: 1
@@ -17,3 +20,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/VectorUnknown/Scenes/level_load_scene.unity
     guid: 9e2803d594a0a0b459b3954b72a8b77e
+  m_configObjects: {}
