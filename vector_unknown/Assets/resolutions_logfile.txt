@@ -1,18 +1,23 @@
-data path: D:/Repositories/Vector Game/vector_unknown/Assets
+data path: C:/Users/amresha/Documents/GitHub/VectorUnknown_Beta/vector_unknown/Assets
 Fullscreen: True
-width: 931 pixels
-height: 524 pixels
-x offset: 90 pixels
+width: 796 pixels
+height: 448 pixels
+x offset: 86 pixels
 y offset: 0 pixels
-Screen Rectangle: (x:90.22, y:0.00, width:931.56, height:524.00)
+Screen Rectangle: (x:86.78, y:0.00, width:796.44, height:448.00)
 resolutions available: 
+	320 x 200 @ 59Hz
+	320 x 240 @ 59Hz
+	400 x 300 @ 59Hz
+	512 x 384 @ 59Hz
+	640 x 400 @ 59Hz
 	640 x 480 @ 59Hz
 	720 x 480 @ 59Hz
 	720 x 576 @ 59Hz
 	800 x 600 @ 59Hz
 	1024 x 768 @ 59Hz
-	1152 x 720 @ 59Hz
 	1152 x 864 @ 59Hz
+	1280 x 600 @ 59Hz
 	1280 x 720 @ 59Hz
 	1280 x 768 @ 59Hz
 	1280 x 800 @ 59Hz
@@ -20,9 +25,23 @@ resolutions available:
 	1280 x 1024 @ 59Hz
 	1360 x 768 @ 59Hz
 	1366 x 768 @ 59Hz
+	1400 x 1050 @ 59Hz
+	1440 x 480 @ 59Hz
+	1440 x 576 @ 59Hz
 	1440 x 900 @ 59Hz
 	1600 x 900 @ 59Hz
-	1600 x 1024 @ 59Hz
+	1600 x 1200 @ 59Hz
 	1680 x 1050 @ 59Hz
-	3360 x 2100 @ 59Hz
-current resolution: 1680 x 1050 @ 59Hz
+	1792 x 1344 @ 59Hz
+	1856 x 1392 @ 59Hz
+	1920 x 1080 @ 59Hz
+	1920 x 1200 @ 59Hz
+	1920 x 1440 @ 59Hz
+	2048 x 1152 @ 59Hz
+	2048 x 1536 @ 59Hz
+	2560 x 1440 @ 59Hz
+	2560 x 1600 @ 59Hz
+	2560 x 1920 @ 59Hz
+	2560 x 2048 @ 59Hz
+	3840 x 2160 @ 59Hz
+current resolution: 3840 x 2160 @ 59Hz
