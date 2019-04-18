@@ -5,7 +5,7 @@ using System.IO;
 
 public class puzzle_info : MonoBehaviour {
 
-	public Vector3 player_position; 		//player's starting position
+	public Vector3 player_position; 		    //player's starting position
 
 	//public List< Vector3> goal_positions; 	//target position. May have multiple endpoints
 	//public List< Vector2> choices; 			//Choices to be displayed on the UI
@@ -15,8 +15,9 @@ public class puzzle_info : MonoBehaviour {
 	public int display_upcoming_path;
 	public int display_past_paths;
 	public int game_mode;
+    public LineRenderer future, past;
 
-	public void Start(){
+    public void Start(){
 		Reset (); // initializes all data structures for base game
 		//Debug.Log( "GameMode: " + ( game_mode == 0 ? "Standard" : "Tour"));
 
@@ -26,11 +27,22 @@ public class puzzle_info : MonoBehaviour {
 
 	}
 
-	public void Reset(){
+    public void Update()
+    {
+        if (GetDisplayUpcomingPath() == 1)
+            future.enabled = true;
+        else
+            future.enabled = false;
+
+        if (GetDisplayPastPaths() == 1)
+            past.enabled = true;
+        else
+            past.enabled = false;
+    }
+
+    public void Reset(){
 		
 		player_position = new Vector3 (0, 0, 0); //inital starting point of <0, 0, 0>
-		//goal_positions = new List<Vector3> ();
-		//choices = new List< Vector2> ();
 
 		GameObject level_data = GameObject.Find ("LevelData");
 		gui_select data = level_data.GetComponent< gui_select> ();
@@ -40,7 +52,6 @@ public class puzzle_info : MonoBehaviour {
 		display_past_paths = data.display_past_paths;
 		game_mode = data.load_game_mode;
 
-		//Destroy (level_data);
 	}
 
 	public bool game_over(){

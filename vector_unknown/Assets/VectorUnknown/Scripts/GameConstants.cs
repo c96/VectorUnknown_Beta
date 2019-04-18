@@ -23,10 +23,10 @@ public class GameConstants : MonoBehaviour {
 		new Vector3 (3, 1),
 		new Vector3 (2, 3),
 		new Vector3 (3, 2),
-	}; 
+	};
 
-	// Use this for initialization
-	void Awake () {
+    // Use this for initialization
+    void Awake () {
 		Instance = this;
 	}
 

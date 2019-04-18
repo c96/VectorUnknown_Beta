@@ -36,6 +36,7 @@ public class UFO_PuzzleManager : MonoBehaviour
     public GameObject key;      //key for game_mode 1
     public GameObject key_sack; //parent for all key objects
     public puzzle_info puzzle_info;
+    public scorekeeper scorekeep; //generates and logs the score
 
     // Use this for initialization
     void Start()
@@ -43,6 +44,7 @@ public class UFO_PuzzleManager : MonoBehaviour
         key_sack = GameObject.FindGameObjectWithTag("Keys");
         choice_panel = GameObject.FindGameObjectWithTag("Choices");
         puzzle_info = GetComponent<puzzle_info>();
+        scorekeep = GameObject.FindGameObjectWithTag("Score").GetComponent<scorekeeper>();
     }
 
     public void NextPuzzle()
@@ -368,11 +370,18 @@ public class UFO_PuzzleManager : MonoBehaviour
             GameObject level_data = GameObject.Find("LevelData");
             Destroy(level_data);
             Psychometrics.report("H");
-            Psychometrics.sendData();
+// Psychometrics.sendData();
             if (puzzle_info.game_mode == 0)
+            {
+                scorekeep.generate_score();
                 InfoController.GetComponent<GUI_InfoController>().ShowSuccessOverlay();
+            }
+
             if (puzzle_info.game_mode == 1 && number_of_keys <= 0)
+            {
+                scorekeep.generate_score();
                 InfoController.GetComponent<GUI_InfoController>().ShowSuccessOverlay();
+            }
         }
         else if (
           Solution != endPositionVector2 &&

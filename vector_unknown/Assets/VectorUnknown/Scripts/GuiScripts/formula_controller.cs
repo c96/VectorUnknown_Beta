@@ -211,6 +211,8 @@ public class formula_controller : MonoBehaviour
         {
             puzzleManager.GetComponent<UFO_PuzzleManager>().TestSuccess(player.transform.position);
         }
+
+        
     }
 
     public void path_trace()
@@ -218,8 +220,17 @@ public class formula_controller : MonoBehaviour
         /************************************************/
         /* STEP 2: Send Coordinates to Path Renderer    */
         /************************************************/
+        //get points from future sight
         Vector3[] points = new Vector3[line_1.positionCount];
         line_1.GetPositions(points);
+
+        //Clear the future sight line renderer
+        Vector3[] clear = new Vector3[line_1.positionCount];
+        for (int i = 0; i < line_1.positionCount; i++)
+            clear[i] = new Vector3(0, 0, 0);
+        line_1.SetPositions(clear);
+
+        //send points to past sight
         points[1].y = 0.0f;
         points[2].y = 0.0f;
         if (constant_1 != 0)
@@ -233,8 +244,6 @@ public class formula_controller : MonoBehaviour
             line_2.positionCount = line_2.positionCount + 1;
             line_2.SetPosition(line_2.positionCount - 1, points[2]);
         }
-
-        //line_2.Simplify(1.0f);
     }
 
     public void reset()

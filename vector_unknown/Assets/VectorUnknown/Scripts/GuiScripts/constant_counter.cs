@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class constant_counter : MonoBehaviour
 {
     [SerializeField]
-    public int constant = 0;        // constant value 
+    public int constant = 1;        // constant value 
     private bool change = false;    //value changed y/n
     private GameObject text_display;//UI text element
     public Transform choice_dropper;//watches dropper element for vector choice
@@ -26,7 +26,7 @@ public class constant_counter : MonoBehaviour
         text_display = transform.GetChild(0).gameObject;
         player = GameObject.Find("Player");
 
-
+        text_display.GetComponent<Text>().text = constant.ToString();
         GameObject temp = transform.GetChild(1).gameObject;
         temp.GetComponent<Button>().onClick.AddListener(decrement);
         temp = transform.GetChild(2).gameObject;
@@ -82,6 +82,8 @@ public class constant_counter : MonoBehaviour
         if (test)
         {
             constant = constant + 1;
+            if (constant == 0)
+                constant = constant + 1;
             change = true;
         }
         else if(!displayedBoundsError)
@@ -97,6 +99,8 @@ public class constant_counter : MonoBehaviour
         if (test)
         {
             constant = constant - 1;
+            if (constant == 0)
+                constant = constant - 1;
             change = true;
         }
         else if (!displayedBoundsError)
@@ -121,7 +125,7 @@ public class constant_counter : MonoBehaviour
 
     public void reset()
     {
-        constant = 0;
+        constant = 1;
         change = true;
     }
 }
