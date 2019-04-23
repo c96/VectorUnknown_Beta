@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
@@ -81,7 +82,10 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     public void OnDrag(PointerEventData eventData)
     {
         transform.position = Input.mousePosition;
-        transform.Translate(new Vector3(50.0f, 40.0f, 0.0f));
+        Image drop = transform.GetComponent<Image>();
+        float height = drop.sprite.rect.height / 1.25f;
+        float width = drop.sprite.rect.width / 1.25f;
+        transform.Translate(new Vector3(height / 8, width / 8, 0.0f));
     }
 
     #endregion

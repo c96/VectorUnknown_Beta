@@ -15,6 +15,8 @@ public class gui_select : MonoBehaviour {
 	public int display_upcoming_path = 0;
 	public int display_past_paths = 0;
 	public int load_game_mode = 0;
+    [Range(1, 5)]
+    public int level_number;
 
 	void Awake(){
 		DontDestroyOnLoad (transform.gameObject);
@@ -27,31 +29,36 @@ public class gui_select : MonoBehaviour {
 	public void level_one(){
         Psychometrics.logEvent("L1");
         puzzle_settings (-1, 1, 1, 0);
+        PlayerPrefs.SetInt("CurrentLevel", 1);
 		SceneManager.LoadScene ("VectorGame");
 	}
 
 	public void level_two(){
         Psychometrics.logEvent("L2");
 		puzzle_settings (-1, 0, 1, 0);
-		SceneManager.LoadScene ("VectorGame");
+        PlayerPrefs.SetInt("CurrentLevel", 2);
+        SceneManager.LoadScene ("VectorGame");
 	}
 
 	public void level_three(){
         Psychometrics.logEvent("L3");
         puzzle_settings ( 5, 1, 1, 0);
-		SceneManager.LoadScene ("VectorGame");
+        PlayerPrefs.SetInt("CurrentLevel", 3);
+        SceneManager.LoadScene ("VectorGame");
 	}
 
 	public void level_four(){
         Psychometrics.logEvent("L4");
         puzzle_settings ( 5, 0, 0, 0);
-		SceneManager.LoadScene ("VectorGame");
+        PlayerPrefs.SetInt("CurrentLevel", 4);
+        SceneManager.LoadScene ("VectorGame");
 	}
 
 	public void level_five(){
         Psychometrics.logEvent("L5");
         puzzle_settings ( 0, 1, 1, 1);
-		SceneManager.LoadScene ("VectorGame");
+        PlayerPrefs.SetInt("CurrentLevel", 5);
+        SceneManager.LoadScene ("VectorGame");
 	}
 
 	/***************************************/

@@ -91,6 +91,35 @@ public class scorekeeper : MonoBehaviour
     {
         toggle();
         score_unit score = new score_unit((int) game_time);
+        string besttime = string.Format("besttime{0}", PlayerPrefs.GetInt("CurrentLevel").ToString());
+        string beststars = string.Format("beststars{0}", PlayerPrefs.GetInt("CurrentLevel").ToString());
+
+        if( PlayerPrefs.HasKey(besttime))
+        {
+            int champion = PlayerPrefs.GetInt(besttime);
+            int contender = (int)score._time;
+
+            if( contender < champion)
+                PlayerPrefs.SetInt(besttime, contender);
+        }
+        else
+        {
+            PlayerPrefs.SetInt(besttime, (int) score._time);
+        }
+
+        if (PlayerPrefs.HasKey(beststars))
+        {
+            int champion = PlayerPrefs.GetInt(beststars);
+            int contender = (int)score._stars;
+
+            if (contender > champion)
+                PlayerPrefs.SetInt(beststars, contender);
+        }
+        else
+        {
+            PlayerPrefs.SetInt(beststars, (int) score._stars);
+        }
+
         PlayerPrefs.DeleteKey("score");
         PlayerPrefs.SetString("score", score.ToString());
     }

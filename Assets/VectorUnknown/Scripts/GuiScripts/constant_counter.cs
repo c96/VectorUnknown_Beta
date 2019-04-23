@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class constant_counter : MonoBehaviour
 {
     [SerializeField]
-    public int constant = 1;        // constant value 
+    public int constant = 0;        // constant value, starts at 1
     private bool change = false;    //value changed y/n
     private GameObject text_display;//UI text element
     public Transform choice_dropper;//watches dropper element for vector choice
@@ -82,8 +82,6 @@ public class constant_counter : MonoBehaviour
         if (test)
         {
             constant = constant + 1;
-            if (constant == 0)
-                constant = constant + 1;
             change = true;
         }
         else if(!displayedBoundsError)
@@ -99,8 +97,6 @@ public class constant_counter : MonoBehaviour
         if (test)
         {
             constant = constant - 1;
-            if (constant == 0)
-                constant = constant - 1;
             change = true;
         }
         else if (!displayedBoundsError)

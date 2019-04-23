@@ -31,6 +31,7 @@ public class Drop : MonoBehaviour, IDropHandler {
 
 			item.transform.SetParent (new_parent);
 			Drag.item_dragged.transform.SetParent (transform);
+            Constant.GetComponent<constant_counter>().reset();
 		}
 	}
 	#endregion

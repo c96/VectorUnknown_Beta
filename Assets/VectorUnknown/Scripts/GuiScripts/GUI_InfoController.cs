@@ -22,7 +22,6 @@ public class GUI_InfoController : MonoBehaviour {
 
     public void ShowInfoOverlay() // Instructions Panel
     {
-		//infoText.text = controls.text;
 
 		Button overlay_button =	InfoOverlay.GetComponentInChildren< Button> ();
 		overlay_button.onClick.RemoveAllListeners ();
@@ -35,7 +34,6 @@ public class GUI_InfoController : MonoBehaviour {
 
 	public void ShowSuccessOverlay()// Success Panel
     {
-		//infoText.text = success.text;
 
 		Button overlay_button =	InfoOverlay.GetComponentInChildren< Button> ();
 		overlay_button.onClick.RemoveAllListeners ();
@@ -43,7 +41,6 @@ public class GUI_InfoController : MonoBehaviour {
 
         string score = PlayerPrefs.GetString("score");
         score_unit current_score = (score_unit) JsonUtility.FromJson<score_unit>(score) as score_unit;
-        Debug.Log( string.Format("{0}, {1}, {2}", current_score._score, current_score._time, current_score._stars ));
 
         successText.SetActive(true);
         successTime.text = string.Format("Time: {0} seconds", current_score._time);
@@ -62,7 +59,6 @@ public class GUI_InfoController : MonoBehaviour {
 
     public void ShowFailureOverlay()// Failure Panel
     {
-		//infoText.text = failure.text;
 
 		Button overlay_button =	InfoOverlay.GetComponentInChildren< Button> ();
 		overlay_button.onClick.RemoveAllListeners ();
@@ -74,7 +70,6 @@ public class GUI_InfoController : MonoBehaviour {
 		
 	public void HideInfoOverlay() // Resets panel contents and tucks it away
 	{
-		//infoText.text = "";
 
 		Button overlay_button =	InfoOverlay.GetComponentInChildren< Button> ();
 		overlay_button.onClick.RemoveAllListeners ();

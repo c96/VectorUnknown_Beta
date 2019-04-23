@@ -1,6 +1,7 @@
 # .gitignore
 
 # Unity
+.vs/
 [Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
