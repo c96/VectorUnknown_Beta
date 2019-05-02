@@ -15,6 +15,7 @@ public class gui_select : MonoBehaviour {
 	public int display_upcoming_path = 0;
 	public int display_past_paths = 0;
 	public int load_game_mode = 0;
+    public bool tutorial = false;
     [Range(1, 5)]
     public int level_number;
 
@@ -61,6 +62,15 @@ public class gui_select : MonoBehaviour {
         SceneManager.LoadScene ("VectorGame");
 	}
 
+    public void level_tutorial()
+    {
+        Psychometrics.logEvent("LT");
+        puzzle_settings(-1, 1, 1, 0);
+        set_tutorial();
+        PlayerPrefs.SetInt("CurrentLevel", 0);
+        SceneManager.LoadScene("VectorGame");
+    }
+
 	/***************************************/
 	/* Helper Method, sets values of Puzzle*/
 	/***************************************/
@@ -70,5 +80,10 @@ public class gui_select : MonoBehaviour {
 		display_past_paths = previous_paths;
 		load_game_mode = game_mode;
 	}
+
+    private void set_tutorial()
+    {
+        this.tutorial = true;
+    }
 
 }

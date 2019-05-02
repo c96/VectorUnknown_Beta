@@ -11,15 +11,16 @@ public class scoredisplay : MonoBehaviour
     void Start()
     {
         int children = level_select_panel.childCount;
-        for( int i = 0; i < children; i++)
-            set_bests( level_select_panel.GetChild(i), (i+1));
+        for (int i = 0; i < children; i++)
+            if (level_select_panel.GetChild(i).name != "Tutorial_Button" &&
+                level_select_panel.GetChild(i).name != "Level-Time-Stars")
+                    set_bests(level_select_panel.GetChild(i), (i + 1));
 
     }
 
     private void set_bests( Transform lvlbtn, int i)
     {//each button has three Text component children, one for level, one for best time and one for best stars
         string besttime = string.Format("besttime{0}", i.ToString()), beststars = string.Format("beststars{0}", i.ToString());
-        Debug.Log(lvlbtn.name);
         if(PlayerPrefs.HasKey( besttime))
         {//check if a best time is logged for this level
             int time = PlayerPrefs.GetInt(besttime);
