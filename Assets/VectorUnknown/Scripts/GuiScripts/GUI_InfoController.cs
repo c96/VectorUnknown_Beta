@@ -80,6 +80,6 @@ public class GUI_InfoController : MonoBehaviour {
 	}
 
 	public void GameOver(){
-		SceneManager.LoadScene ("level_load_scene");
+		SceneManager.LoadScene ("menu_scene");
 	}
 }
