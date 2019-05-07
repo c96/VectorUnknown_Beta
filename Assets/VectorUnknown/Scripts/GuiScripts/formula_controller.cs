@@ -105,6 +105,7 @@ public class formula_controller : MonoBehaviour
         {
             vector_1 = Vector2.zero;
             v1_prev_child = null;
+            c1.GetComponent<constant_counter>().set_zero();
         }
         if (v2_cc > 0)
         {
@@ -124,10 +125,8 @@ public class formula_controller : MonoBehaviour
         {
             vector_2 = Vector2.zero;
             v2_prev_child = null;
+            c2.GetComponent<constant_counter>().set_zero();
         }
-
-
-
 
         if (vector_1 == Vector2.zero &&
             vector_2 == Vector2.zero)
@@ -155,16 +154,16 @@ public class formula_controller : MonoBehaviour
             {
                 output = outp;
                 destination.GetChild(0).GetComponent<Text>().text = output.x.ToString("F0") + "\n" + output.y.ToString("F0");
+
+                //construct "Future Sight" 
+                Vector3[] points = new Vector3[3];
+                Vector3 start = player.transform.position;
+                points[0] = start - new Vector3(0, 2.5f, 0);
+                points[1] = constant_1 * new Vector3(vector_1.x, 0.0f, vector_1.y) + points[0];
+                points[2] = constant_2 * new Vector3(vector_2.x, 0.0f, vector_2.y) + points[1];
+                line_1.positionCount = 3;
+                line_1.SetPositions(points);
             }
-
-            //construct "Future Sight" 
-            Vector3[] points = new Vector3[3];
-            Vector3 start = player.transform.position;
-            points[0] = start - new Vector3(0, 2.5f, 0);
-            points[1] = constant_1 * new Vector3(vector_1.x, 0.0f, vector_1.y) + points[0];
-            points[2] = constant_2 * new Vector3(vector_2.x, 0.0f, vector_2.y) + points[1];
-
-            line_1.SetPositions(points);
 
         }
         change = false;
@@ -224,12 +223,6 @@ public class formula_controller : MonoBehaviour
         Vector3[] points = new Vector3[line_1.positionCount];
         line_1.GetPositions(points);
 
-        //Clear the future sight line renderer
-        Vector3[] clear = new Vector3[line_1.positionCount];
-        for (int i = 0; i < line_1.positionCount; i++)
-            clear[i] = new Vector3(0, 0, 0);
-        line_1.SetPositions(clear);
-
         //send points to past sight
         points[1].y = 0.0f;
         points[2].y = 0.0f;
@@ -251,11 +244,7 @@ public class formula_controller : MonoBehaviour
         /************************************************/
         /* STEP 3: Clear UI Elements holding formula    */
         /************************************************/
-        c1.GetComponent<constant_counter>().reset();
-        c2.GetComponent<constant_counter>().reset();
-        /*if( v1)
-			v1.GetComponent< choice_holder> ().update_choice (new Vector3 (0, 0, 0));
-		if( v2)
-			v2.GetComponent< choice_holder> ().update_choice (new Vector3 (0, 0, 0));*/
+        line_1.positionCount = 1;
+        line_1.SetPosition(0, new Vector3(0, 0, 0));
     }
 }

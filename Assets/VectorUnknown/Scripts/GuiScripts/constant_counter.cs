@@ -124,4 +124,10 @@ public class constant_counter : MonoBehaviour
         constant = 1;
         change = true;
     }
+
+    public void set_zero()
+    {
+        constant = 0;
+        change = true;
+    }
 }

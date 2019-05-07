@@ -13,8 +13,9 @@ public class scoredisplay : MonoBehaviour
         int children = level_select_panel.childCount;
         for (int i = 0; i < children; i++)
             if (level_select_panel.GetChild(i).name != "Tutorial_Button" &&
-                level_select_panel.GetChild(i).name != "Level-Time-Stars")
-                    set_bests(level_select_panel.GetChild(i), (i + 1));
+                level_select_panel.GetChild(i).name != "Level-Time-Stars" &&
+                level_select_panel.GetChild(i).name != "tooltip")
+                    set_bests(level_select_panel.GetChild(i), (i - 1));
 
     }
 
@@ -47,11 +48,11 @@ public class scoredisplay : MonoBehaviour
     {//represents stars as ★☆☆, ★★☆, or ★★★
 
         if ( stars == 1)
-            return "★☆☆";
+            return "*--";
         if (stars == 2)
-            return "★★☆";
+            return "**-";
         if (stars == 3)
-            return "★★★";
+            return "***";
 
         return "";
     }

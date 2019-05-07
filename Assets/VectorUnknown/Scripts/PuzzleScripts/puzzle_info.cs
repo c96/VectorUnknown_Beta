@@ -17,6 +17,8 @@ public class puzzle_info : MonoBehaviour {
 	public int game_mode;
     public LineRenderer future, past;
 
+    public bool tutorial;
+
     public void Start(){
 		Reset (); // initializes all data structures for base game
 		//Debug.Log( "GameMode: " + ( game_mode == 0 ? "Standard" : "Tour"));

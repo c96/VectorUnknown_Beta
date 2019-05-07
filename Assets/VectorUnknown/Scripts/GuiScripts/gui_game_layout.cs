@@ -7,22 +7,30 @@ using UnityEngine.UI;
 
 public class gui_game_layout : MonoBehaviour {
 
-	[SerializeField]  RectTransform panel_transform;
+    public GameObject info;
+    public bool infoShowing = false;
 
+    public void play()
+    {
+        SceneManager.LoadScene("level_load_scene");
+    }
 
-	void Awake () { 
-		panel_transform = transform.GetChild (0).GetComponent< RectTransform> ();
-		//Debug.Log ("Printing accessed recttransform");
-		//Debug.Log (panel_transform.ToString ());
+    public void instruction()
+    {
+        if (infoShowing)
+        {
+            info.SetActive(false);
+            infoShowing = false;
+        }
+        else
+        {
+            info.SetActive(true);
+            infoShowing = true;
+        }
+    }
 
-		//Vector2 delta = new Vector2 (20, 20);
-		Rect screen = AspectUtility.screenRect;
-		panel_transform.rect.Set( screen.x, screen.y, screen.width, screen.height);
-
-
-	}
-
-	void Update () {
-		
-	}
+    public void exit()
+    {
+        Application.Quit();
+    }
 }

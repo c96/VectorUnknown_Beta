@@ -1,10 +1,10 @@
 data path: C:/Users/Nate/Documents/VectorUnknown_Beta/Assets
 Fullscreen: True
-width: 1051 pixels
-height: 591 pixels
+width: 492 pixels
+height: 277 pixels
 x offset: 0 pixels
 y offset: 0 pixels
-Screen Rectangle: (x:0.00, y:0.00, width:1051.00, height:591.00)
+Screen Rectangle: (x:0.00, y:0.00, width:492.00, height:277.00)
 resolutions available: 
 	640 x 480 @ 59Hz
 	720 x 480 @ 59Hz

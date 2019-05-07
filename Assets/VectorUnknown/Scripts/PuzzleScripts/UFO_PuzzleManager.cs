@@ -27,6 +27,7 @@ public class UFO_PuzzleManager : MonoBehaviour
     public Vector2 Solution;
     public int number_of_attempts;
     public int number_of_keys;
+    public bool tutorial;
     //public int goal_state;
 
     public System.Random rnd = new System.Random(Guid.NewGuid().GetHashCode());
@@ -392,7 +393,7 @@ public class UFO_PuzzleManager : MonoBehaviour
             GameObject level_data = GameObject.Find("LevelData");
             Destroy(level_data);
             Psychometrics.report("M");
-            Psychometrics.sendData();
+            //Psychometrics.sendData();
         }
         else
         {
