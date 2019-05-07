@@ -27,7 +27,7 @@ public class formula_controller : MonoBehaviour
     public LineRenderer line_1, line_2;
     public Transform c1, c2, v1, v2, destination;
     public bool change = false;
-
+    public List< Transform> choice_droppers = new List< Transform>();
     //////////////////////
     //Log output
     public Text log;
@@ -40,7 +40,6 @@ public class formula_controller : MonoBehaviour
     int v2_cc;
     Transform v1_prev_child = null, v2_prev_child = null;
     private bool doneReset = false;
-
     //////////////////////
 
     void Awake()
@@ -170,6 +169,8 @@ public class formula_controller : MonoBehaviour
 
     }
 
+    public void clear_log() { log.text = ""; }
+
     public void log_formula() { log.text += print_formula() + "\n"; }
 
     public string print_formula()
@@ -246,5 +247,43 @@ public class formula_controller : MonoBehaviour
         /************************************************/
         line_1.positionCount = 1;
         line_1.SetPosition(0, new Vector3(0, 0, 0));
+        reset_constants();
+    }
+
+    private void reset_constants()
+    {
+        c1.GetComponent<constant_counter>().reset();
+        c2.GetComponent<constant_counter>().reset();
+    }
+
+    public void reset_GUI()
+    {
+        reset_choices();
+        reset_line_renderers();
+        clear_log();
+    }
+
+    private void reset_choices()
+    {//returns vector choices to choice holders
+        foreach (Transform elem in choice_droppers)
+        {
+            if (elem.childCount == 0)
+            {
+                if (v1.childCount > 0)//if V1 has a child, put it back
+                    v1.GetChild(0).parent = elem;
+                else if (v2.childCount > 0)//if V2 has a child, put it back
+                    v2.GetChild(0).parent = elem;
+            }
+        }
+    }
+
+    private void reset_line_renderers()
+    {// resets both future sight and past path line renderers
+        line_1.positionCount = 1;
+        line_1.SetPosition(0, new Vector3(0, 0, 0));
+
+        line_2.positionCount = 1;
+        line_2.SetPosition(0, new Vector3(0, 0, 0));
+
     }
 }

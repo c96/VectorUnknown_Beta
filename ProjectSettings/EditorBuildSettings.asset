@@ -14,10 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/VectorUnknown/Scenes/VectorGame.unity
     guid: 5639a811906a1b44f92126b643dfcb1d
-  - enabled: 1
+  - enabled: 0
     path: Assets/VectorUnknown/Scenes/settings_scene.unity
     guid: 4ab30a18dc613f342a283b6f3e9d3591
-  - enabled: 1
-    path: Assets/VectorUnknown/Scenes/level_load_scene.unity
-    guid: 9e2803d594a0a0b459b3954b72a8b77e
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

@@ -105,9 +105,11 @@ public class UFO_PuzzleManager : MonoBehaviour
         number_of_attempts = 0;
         Solution = new Vector2(0, 0);
         Goal.transform.position = new Vector3(0, GameConstants.Height, 0);//GoalPosition
+        Goal.transform.GetChild(1).gameObject.SetActive( false);          //Reset the goal to bowl of kibble
 
         if (puzzle_info.game_mode == 1)
-        {
+        {//Limited tour level needs to activate the lock and reset the keys
+            Goal.transform.GetChild(1).gameObject.SetActive(true);
             for (int i = 0; i < key_sack.transform.childCount; i++)
             {
                 GameObject.Destroy(key_sack.transform.GetChild(i).gameObject);

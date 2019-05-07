@@ -7,9 +7,6 @@ public class puzzle_info : MonoBehaviour {
 
 	public Vector3 player_position; 		    //player's starting position
 
-	//public List< Vector3> goal_positions; 	//target position. May have multiple endpoints
-	//public List< Vector2> choices; 			//Choices to be displayed on the UI
-
 	//public Puzzle puzzle; 					//Puzzle ScriptableObject
 	public int attempt_count;
 	public int display_upcoming_path;
