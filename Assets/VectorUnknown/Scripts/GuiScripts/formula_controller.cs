@@ -248,6 +248,7 @@ public class formula_controller : MonoBehaviour
         line_1.positionCount = 1;
         line_1.SetPosition(0, new Vector3(0, 0, 0));
         reset_constants();
+        reset_choices();
     }
 
     private void reset_constants()
