@@ -11,11 +11,7 @@ public class UFO_PuzzleManager : MonoBehaviour
     /* Create a Singleton instance */
     /******************/
     static public UFO_PuzzleManager instance;
-
-    void Awake()
-    {
-        instance = this;
-    }
+    void Awake(){ instance = this; }
 
     /******************/
     /* Game Constants */
@@ -23,12 +19,11 @@ public class UFO_PuzzleManager : MonoBehaviour
     public GameObject Player;
     public GameObject Goal;
     public Vector3 GoalPosition;
-    public Vector2[] Choices = new Vector2[4];          //Container for Vectors in the form used for UI Text
+    public Vector2[] Choices = new Vector2[4];//Container for Vectors in the form used for UI Text
     public Vector2 Solution;
     public int number_of_attempts;
     public int number_of_keys;
     public bool tutorial;
-    //public int goal_state;
 
     public System.Random rnd = new System.Random(Guid.NewGuid().GetHashCode());
     public GameObject InfoController;
@@ -99,13 +94,33 @@ public class UFO_PuzzleManager : MonoBehaviour
         Psychometrics.logEvent("Cs" + Choices[0] + Choices[1] + Choices[2] + Choices[3]);
     }
 
+    public void SetTutorial()
+    {
+        this.tutorial = true;
+        this.number_of_attempts = -1;
+        this.number_of_keys = 0;
+        this.Solution = new Vector2(7, 5);
+        this.GoalPosition = new Vector3(
+            Solution.x, 
+            GameConstants.Height / GameConstants.GridSpacing, 
+            Solution.y
+            ) * GameConstants.GridSpacing;
+        this.Choices = new Vector2[4]{
+            new Vector2(1, 0),
+            new Vector2(-1, 0),
+            new Vector2(0, 1),
+            new Vector2(0, -1)
+        };
+    }
+
     public void ResetGame()
     {
         Player.transform.position = new Vector3(0, GameConstants.Height, 0); //Initialize Player Position
         number_of_attempts = 0;
         Solution = new Vector2(0, 0);
         Goal.transform.position = new Vector3(0, GameConstants.Height, 0);//GoalPosition
-        Goal.transform.GetChild(1).gameObject.SetActive( false);          //Reset the goal to bowl of kibble
+        if( Goal.transform.childCount > 1)
+            Goal.transform.GetChild(1).gameObject.SetActive( false);//Reset the goal to bowl of kibble
 
         if (puzzle_info.game_mode == 1)
         {//Limited tour level needs to activate the lock and reset the keys

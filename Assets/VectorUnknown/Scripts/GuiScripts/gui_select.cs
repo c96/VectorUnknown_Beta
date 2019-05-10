@@ -68,7 +68,7 @@ public class gui_select : MonoBehaviour {
         puzzle_settings(-1, 1, 1, 0);
         set_tutorial();
         PlayerPrefs.SetInt("CurrentLevel", 0);
-        SceneManager.LoadScene("VectorGame");
+        SceneManager.LoadScene("tutorial");
     }
 
 	/***************************************/

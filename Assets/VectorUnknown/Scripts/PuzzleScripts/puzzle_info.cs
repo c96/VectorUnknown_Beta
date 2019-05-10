@@ -7,7 +7,6 @@ public class puzzle_info : MonoBehaviour {
 
 	public Vector3 player_position; 		    //player's starting position
 
-	//public Puzzle puzzle; 					//Puzzle ScriptableObject
 	public int attempt_count;
 	public int display_upcoming_path;
 	public int display_past_paths;
@@ -50,6 +49,7 @@ public class puzzle_info : MonoBehaviour {
 		display_upcoming_path = data.display_upcoming_path;
 		display_past_paths = data.display_past_paths;
 		game_mode = data.load_game_mode;
+        tutorial = data.tutorial;
 
 	}
 

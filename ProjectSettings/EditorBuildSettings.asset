@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/VectorUnknown/Scenes/tutorial.unity
+    guid: 4c29cbbe6cad1f042b71df326eaadeab
   m_configObjects: {}
