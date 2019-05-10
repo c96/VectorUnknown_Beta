@@ -10,7 +10,6 @@ public class menu_button_functions : MonoBehaviour
 
     public void exit()
     {
-        Debug.Log("Quiting...");
         Application.Quit();
     }
 

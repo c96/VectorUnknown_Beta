@@ -37,9 +37,12 @@ public class PlayerMovement : MonoBehaviour {
 				Direction = Vector3.zero;
 				if (Route.Count == 0) {
 					State = 0;
-					//Debug.Log ("Reached Endpoint");
-					GameManager.GetComponent<UFO_PuzzleManager> ().TestSuccess (EndPosition);
-					Formula.GetComponent< formula_controller> ().reset ();
+                    UFO_PuzzleManager manager = GameManager.GetComponent<UFO_PuzzleManager>();
+                    formula_controller controller = Formula.GetComponent<formula_controller>();
+                    manager.TestSuccess (EndPosition);
+					controller.reset ();
+                    if (manager.puzzle_info.GetDisplayUpcomingPath() == 1)
+                        controller.line_1.gameObject.SetActive(true);
 				}
 			}
 		}

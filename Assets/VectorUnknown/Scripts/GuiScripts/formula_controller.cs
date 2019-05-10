@@ -75,6 +75,7 @@ public class formula_controller : MonoBehaviour
         v2_cc = v2.childCount;
 
         //Check for Drag & Drop Changes
+        /*** Constant value changes ***/
         if (constant_1 != con_1)
         {
             constant_1 = con_1;
@@ -85,7 +86,9 @@ public class formula_controller : MonoBehaviour
             constant_2 = con_2;
             change = true;
         }
+        /****************************/
 
+        /***  Choice Vector changes ***/
         if (v1_cc > 0)
         {
             Vector2 vect_1 = v1.GetChild(0).GetComponent<choice_holder>().choice;
@@ -102,10 +105,11 @@ public class formula_controller : MonoBehaviour
         }
         else
         {
-            vector_1 = Vector2.zero;
             v1_prev_child = null;
+            vector_1 = Vector2.zero;
             c1.GetComponent<constant_counter>().set_zero();
         }
+
         if (v2_cc > 0)
         {
             Vector2 vect_2 = v2.GetChild(0).GetComponent<choice_holder>().choice;
@@ -122,11 +126,13 @@ public class formula_controller : MonoBehaviour
         }
         else
         {
-            vector_2 = Vector2.zero;
             v2_prev_child = null;
+            vector_2 = Vector2.zero;
             c2.GetComponent<constant_counter>().set_zero();
         }
+        /*********************************/
 
+        /*** Set future sight to inactive if the destination is < 0, 0> ***/
         if (vector_1 == Vector2.zero &&
             vector_2 == Vector2.zero)
         {
@@ -136,9 +142,11 @@ public class formula_controller : MonoBehaviour
         {
             line_1.gameObject.SetActive(true);
         }
+        /********************************/
+
 
         if (change)
-        {
+        {// if the destination has changed, recalc the gui
             if (!doneReset)
             {
                 Psychometrics.logEvent(print_formula());
@@ -188,13 +196,14 @@ public class formula_controller : MonoBehaviour
         /************************************************/
         /* STEP 1: Send movement Coordinates to Player  */
         /************************************************/
-        log_formula();
         Psychometrics.attempt(print_formula());
         if (!player.GetComponent<PlayerMovement>().is_moving() &&
             ((constant_1 != 0 && vector_1 != Vector2.zero) ||
                 (constant_2 != 0 && vector_2 != Vector2.zero))
         )
         {
+            log_formula();
+
             Vector3[] move = new Vector3[2];
             move[0] = constant_1 * new Vector3(vector_1.x, 0f, vector_1.y);
             move[1] = constant_2 * new Vector3(vector_2.x, 0f, vector_2.y);
@@ -206,11 +215,11 @@ public class formula_controller : MonoBehaviour
             doneReset = true;
             reset();
         }
-        else if(!((constant_1 != 0 && vector_1 != Vector2.zero) ||
+        /*else if(!((constant_1 != 0 && vector_1 != Vector2.zero) ||
                 (constant_2 != 0 && vector_2 != Vector2.zero)))
         {
             puzzleManager.GetComponent<UFO_PuzzleManager>().TestSuccess(player.transform.position);
-        }
+        }*/
 
         
     }
