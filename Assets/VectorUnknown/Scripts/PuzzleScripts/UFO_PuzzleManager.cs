@@ -40,7 +40,9 @@ public class UFO_PuzzleManager : MonoBehaviour
         key_sack = GameObject.FindGameObjectWithTag("Keys");
         choice_panel = GameObject.FindGameObjectWithTag("Choices");
         puzzle_info = GetComponent<puzzle_info>();
-        scorekeep = GameObject.FindGameObjectWithTag("Score").GetComponent<scorekeeper>();
+
+        if( puzzle_info.tutorial == false)
+            scorekeep = GameObject.FindGameObjectWithTag("Score").GetComponent<scorekeeper>();
     }
 
     public void NextPuzzle()
@@ -94,23 +96,29 @@ public class UFO_PuzzleManager : MonoBehaviour
         Psychometrics.logEvent("Cs" + Choices[0] + Choices[1] + Choices[2] + Choices[3]);
     }
 
-    public void SetTutorial()
-    {
+    public void set_tutorial()
+    {//sets the pre-defined tutorial level
+        Debug.Log("Setting Tutorial...");
         this.tutorial = true;
         this.number_of_attempts = -1;
         this.number_of_keys = 0;
         this.Solution = new Vector2(7, 5);
+        Player.transform.position = new Vector3(0, GameConstants.Height, 0);
         this.GoalPosition = new Vector3(
             Solution.x, 
             GameConstants.Height / GameConstants.GridSpacing, 
             Solution.y
             ) * GameConstants.GridSpacing;
+        Goal.transform.position = this.GoalPosition;
         this.Choices = new Vector2[4]{
             new Vector2(1, 0),
             new Vector2(-1, 0),
             new Vector2(0, 1),
             new Vector2(0, -1)
         };
+        choice_panel = GameObject.FindGameObjectWithTag("Choices");
+        update_choices();
+        set_models(0);
     }
 
     public void ResetGame()
@@ -306,7 +314,8 @@ public class UFO_PuzzleManager : MonoBehaviour
         {
             //Debug.Log ("STATE 0");
             Goal.transform.GetChild(0).gameObject.SetActive(true);
-            Goal.transform.GetChild(1).gameObject.SetActive(false);
+            if( Goal.transform.childCount > 1)
+                Goal.transform.GetChild(1).gameObject.SetActive(false);
         }
     }
     /* End of Second Puzzle Algorithms */
@@ -323,7 +332,7 @@ public class UFO_PuzzleManager : MonoBehaviour
     {
         for (int i = 0; i < 4; i++)
         {// Choice Panel -> Droppers -> ith child of Droppers, Dropper -> data
-            choice_panel.transform.GetChild(0).transform.GetChild(i + 1).transform.GetChild(0).GetComponent<choice_holder>().update_choice(Choices[i]);
+            choice_panel.transform.GetChild(0).transform.GetChild(i).transform.GetChild(0).GetComponent<choice_holder>().update_choice(Choices[i]);
         }
     }
 
@@ -373,9 +382,7 @@ public class UFO_PuzzleManager : MonoBehaviour
     public void TestSuccess(Vector3 endPosition)
     {
         Vector2 endPositionVector2 = new Vector2(endPosition.x, endPosition.z);
-        //Debug.Log ("Testing success");
-        //Debug.Log( Solution.ToString());
-        //Debug.Log( endPositionVector2.ToString());
+
         if (Solution == Vector2.zero)
         {
             //the game is in a continue state
@@ -391,8 +398,16 @@ public class UFO_PuzzleManager : MonoBehaviour
 // Psychometrics.sendData();
             if (puzzle_info.game_mode == 0)
             {
-                scorekeep.generate_score();
-                InfoController.GetComponent<GUI_InfoController>().ShowSuccessOverlay();
+                if (puzzle_info.tutorial == false)
+                {
+                    scorekeep.generate_score();
+                    InfoController.GetComponent<GUI_InfoController>().ShowSuccessOverlay();
+                }
+                if (puzzle_info.tutorial == true)
+                {
+                    Debug.Log("tutorial success");
+                    InfoController.GetComponent<GUI_InfoController>().ShowTutorialSuccess();
+                }
             }
 
             if (puzzle_info.game_mode == 1 && number_of_keys <= 0)

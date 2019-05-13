@@ -17,16 +17,15 @@ public class puzzle_info : MonoBehaviour {
 
     public void Start(){
 		Reset (); // initializes all data structures for base game
-		//Debug.Log( "GameMode: " + ( game_mode == 0 ? "Standard" : "Tour"));
 
 		UFO_PuzzleManager manager = GameObject.FindGameObjectWithTag ("Manager").GetComponent< UFO_PuzzleManager>();
-		manager.debug_new_puzzle ();
 		manager.set_models ( game_mode);
 
-	}
+        if( this.tutorial == false)
+            manager.debug_new_puzzle();
+        if( this.tutorial == true)
+            manager.set_tutorial();
 
-    public void Update()
-    {
         if (GetDisplayUpcomingPath() == 1)
             future.enabled = true;
         else

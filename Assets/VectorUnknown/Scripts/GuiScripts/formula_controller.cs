@@ -19,7 +19,6 @@ public class formula_controller : MonoBehaviour
     public Vector2 vector_1;
     public Vector2 vector_2;
     public Vector2 output;
-
     //////////////////////
     //References to UI elements
     public GameObject player;
@@ -31,7 +30,6 @@ public class formula_controller : MonoBehaviour
     //////////////////////
     //Log output
     public Text log;
-
     //////////////////////
     //for determining changes in the UI
     int con_1; //values of constant ui buttons

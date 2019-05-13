@@ -32,7 +32,16 @@ public class GUI_InfoController : MonoBehaviour {
         InfoOverlay.SetActive(true);
     }
 
-	public void ShowSuccessOverlay()// Success Panel
+    public void ShowTutorialSuccess()
+    {
+        Button overlay_button = InfoOverlay.GetComponentInChildren<Button>();
+        overlay_button.onClick.RemoveAllListeners();
+        overlay_button.onClick.AddListener(GameOver);
+        PlayerPrefs.SetInt("Tutorial", 1);
+        InfoOverlay.SetActive(true);
+    }
+
+    public void ShowSuccessOverlay()// Success Panel
     {
 
 		Button overlay_button =	InfoOverlay.GetComponentInChildren< Button> ();
@@ -80,6 +89,8 @@ public class GUI_InfoController : MonoBehaviour {
 	}
 
 	public void GameOver(){
-		SceneManager.LoadScene ("menu_scene");
+        GameObject level_data = GameObject.Find("LevelData");
+        Destroy(level_data);
+        SceneManager.LoadScene ("menu_scene");
 	}
 }
