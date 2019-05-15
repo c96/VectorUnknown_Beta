@@ -91,6 +91,7 @@ public class GUI_InfoController : MonoBehaviour {
 	public void GameOver(){
         GameObject level_data = GameObject.Find("LevelData");
         Destroy(level_data);
+        GameConstants.menu_level_select = true;
         SceneManager.LoadScene ("menu_scene");
 	}
 }

@@ -16,7 +16,7 @@ public class DebugScript : MonoBehaviour {
 		manager = puzzle_manager.GetComponent< UFO_PuzzleManager> ();
 
 		title = transform.GetChild (0).GetComponent< Text>();
-		title.text = "Debug Panel\n" + GameConstants.version;
+		title.text = "Debug Panel\n";
 
 		elapsed_time = transform.GetChild (1).GetComponent< Text>();
 
