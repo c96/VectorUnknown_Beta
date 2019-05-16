@@ -9632,7 +9632,7 @@ RectTransform:
   m_GameObject: {fileID: 1263529871}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 1.4336917, y: 1.4336917, z: 1.4336917}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1098380240}
   m_RootOrder: 4
@@ -13953,8 +13953,36 @@ PlayableDirector:
     value: {fileID: 1263529875}
   - key: {fileID: 114192258372950800, guid: f50a1275cc71dfb49aad34966d0ca8e0, type: 2}
     value: {fileID: 1263529875}
-  - key: {fileID: 114112898165514564, guid: c0405f1cbe7da8b4b8715174c5cf45de, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 1263529875}
+  - key: {fileID: 114356046225623738, guid: ae5189cdcc6973f4d81c1e55976decf9, type: 2}
+    value: {fileID: 1263529871}
+  - key: {fileID: 114844615186957202, guid: 4ab617dc240271f4cbd1402997da6e91, type: 2}
+    value: {fileID: 1263529871}
+  - key: {fileID: 114519206927388304, guid: b95647aba80707c40823e5a13aeefd55, type: 2}
+    value: {fileID: 1263529871}
+  - key: {fileID: 114041436923065600, guid: a7d8ed060820c3442865888a9d23a486, type: 2}
+    value: {fileID: 1263529871}
+  - key: {fileID: 114599207377594584, guid: b07168c7b1f77224ba72c571c60b6cfd, type: 2}
+    value: {fileID: 1263529871}
+  - key: {fileID: 114737808034045858, guid: b36b023672f53ce4db8a8e4eaf9816c1, type: 2}
+    value: {fileID: 1263529871}
+  - key: {fileID: 114531680233449742, guid: 5e2b38cb8db896c4eb9bc3e8095853ee, type: 2}
+    value: {fileID: 1263529871}
+  - key: {fileID: 114493654361369994, guid: 5cfd490104c7c624580000edad0ed264, type: 2}
+    value: {fileID: 1263529871}
+  - key: {fileID: 114306891307593610, guid: f50a1275cc71dfb49aad34966d0ca8e0, type: 2}
+    value: {fileID: 1263529871}
+  - key: {fileID: 114673933806331180, guid: c60c3c40d47560544bf4954e1d42df25, type: 2}
+    value: {fileID: 1263529871}
+  - key: {fileID: 114816579809169092, guid: 10120c5ab912f8d46b8d99c1545294b4, type: 2}
+    value: {fileID: 1263529871}
+  - key: {fileID: 114898660658436308, guid: c0405f1cbe7da8b4b8715174c5cf45de, type: 2}
+    value: {fileID: 1263529871}
+  - key: {fileID: 114936052941603006, guid: 4d7e287cee1962e46a2d3e586d17ed93, type: 2}
+    value: {fileID: 1263529871}
+  - key: {fileID: 114901606983277996, guid: c1cb13cfbf120b94abb1680981b7915c, type: 2}
+    value: {fileID: 1263529871}
   m_ExposedReferences:
     m_References: []
 --- !u!95 &1706101366
@@ -15307,7 +15335,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1621339037}
   m_Direction: 3
   m_Value: 1
-  m_Size: 0.6822765
+  m_Size: 0.68187046
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -15589,10 +15617,10 @@ RectTransform:
   m_Father: {fileID: 1098380240}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -35, y: 31}
-  m_SizeDelta: {x: 49.994995, y: 43.975998}
+  m_AnchorMin: {x: 0.9250001, y: 0.020000001}
+  m_AnchorMax: {x: 0.9875, y: 0.11811799}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -0.005004883, y: -0.024002075}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1863244512
 MonoBehaviour:
