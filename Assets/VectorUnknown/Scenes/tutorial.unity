@@ -2094,6 +2094,7 @@ GameObject:
   - component: {fileID: 251211306}
   - component: {fileID: 251211305}
   - component: {fileID: 251211304}
+  - component: {fileID: 251211307}
   m_Layer: 5
   m_Name: forward
   m_TagString: Untagged
@@ -2210,6 +2211,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 251211302}
   m_CullTransparentMesh: 0
+--- !u!95 &251211307
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251211302}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &258219322
 GameObject:
   m_ObjectHideFlags: 0
@@ -2485,10 +2505,10 @@ RectTransform:
   m_Father: {fileID: 1098380240}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.30375004, y: 0.05488312}
-  m_AnchorMax: {x: 0.90250003, y: 0.6983293}
-  m_AnchoredPosition: {x: 0, y: 0.000061035156}
-  m_SizeDelta: {x: 0, y: -0.000091553}
+  m_AnchorMin: {x: 0.30375004, y: 0.24955195}
+  m_AnchorMax: {x: 0.9250001, y: 0.6983293}
+  m_AnchoredPosition: {x: 0, y: 0.000015258789}
+  m_SizeDelta: {x: -18, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &336358651
 MonoBehaviour:
@@ -3367,6 +3387,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1161795244}
     m_Modifications:
+    - target: {fileID: 400000, guid: 8408b4ec42b6fef44b6a0625796caca8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 8408b4ec42b6fef44b6a0625796caca8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 8408b4ec42b6fef44b6a0625796caca8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 8408b4ec42b6fef44b6a0625796caca8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3414,18 +3446,6 @@ PrefabInstance:
     - target: {fileID: 400002, guid: 8408b4ec42b6fef44b6a0625796caca8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 8408b4ec42b6fef44b6a0625796caca8, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 8408b4ec42b6fef44b6a0625796caca8, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 8408b4ec42b6fef44b6a0625796caca8, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 8408b4ec42b6fef44b6a0625796caca8, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4806,6 +4826,7 @@ GameObject:
   - component: {fileID: 705728406}
   - component: {fileID: 705728405}
   - component: {fileID: 705728404}
+  - component: {fileID: 705728407}
   m_Layer: 5
   m_Name: backward
   m_TagString: Untagged
@@ -4829,7 +4850,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7766667, y: 0}
   m_AnchorMax: {x: 0.89000005, y: 0.18235295}
-  m_AnchoredPosition: {x: -1.4000015, y: -32.300003}
+  m_AnchoredPosition: {x: -1.3999939, y: -32.300007}
   m_SizeDelta: {x: 1.2999954, y: 0.8999977}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &705728404
@@ -4922,6 +4943,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705728402}
   m_CullTransparentMesh: 0
+--- !u!95 &705728407
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705728402}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &708643258
 GameObject:
   m_ObjectHideFlags: 0
@@ -6580,7 +6620,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.040000003}
   m_AnchorMin: {x: 0.96700007, y: 0.22750409}
   m_AnchorMax: {x: 1, y: 0.7725041}
-  m_AnchoredPosition: {x: 1.4000015, y: 0}
+  m_AnchoredPosition: {x: 1.3999939, y: 0}
   m_SizeDelta: {x: 2.8, y: 0.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &926159585
@@ -9220,8 +9260,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 'You''re ready to play the game
-
+  m_text: 'You''re ready to play the game!
 
     Click the checkmark to go back to level select'
   m_isRightToLeft: 0
@@ -9290,18 +9329,18 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: 13.051937}
   m_textInfo:
     textComponent: {fileID: 1169172019}
     characterCount: 77
     spriteCount: 0
-    spaceCount: 15
+    spaceCount: 14
     wordCount: 15
     linkCount: 0
-    lineCount: 4
+    lineCount: 3
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -10125,6 +10164,7 @@ GameObject:
   - component: {fileID: 1367371252}
   - component: {fileID: 1367371254}
   - component: {fileID: 1367371253}
+  - component: {fileID: 1367371255}
   m_Layer: 5
   m_Name: Tutorial_Banner
   m_TagString: Untagged
@@ -10193,6 +10233,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1367371251}
   m_CullTransparentMesh: 0
+--- !u!95 &1367371255
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367371251}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1367946179
 GameObject:
   m_ObjectHideFlags: 0
@@ -12317,7 +12376,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.040000003}
   m_AnchorMin: {x: 0.22666667, y: 0.87652946}
   m_AnchorMax: {x: 0.7766667, y: 1}
-  m_AnchoredPosition: {x: 0.0000076293945, y: -0.45999908}
+  m_AnchoredPosition: {x: 0, y: -0.45999908}
   m_SizeDelta: {x: 0.000015259, y: 1.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1552514798
@@ -13877,6 +13936,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a7d8ed060820c3442865888a9d23a486, type: 2}
   - {fileID: 11400000, guid: 5e2b38cb8db896c4eb9bc3e8095853ee, type: 2}
   - {fileID: 11400000, guid: b95647aba80707c40823e5a13aeefd55, type: 2}
+  - {fileID: 11400000, guid: 41d8afb897279a441b6fc314ee8ae818, type: 2}
   reverse_timelines:
   - {fileID: 11400000, guid: f50a1275cc71dfb49aad34966d0ca8e0, type: 2}
   - {fileID: 11400000, guid: 4d7e287cee1962e46a2d3e586d17ed93, type: 2}
@@ -13909,7 +13969,7 @@ PlayableDirector:
   m_GameObject: {fileID: 1706101362}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: c0405f1cbe7da8b4b8715174c5cf45de, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 41d8afb897279a441b6fc314ee8ae818, type: 2}
   m_InitialState: 0
   m_WrapMode: 0
   m_DirectorUpdateMode: 1
@@ -13983,6 +14043,18 @@ PlayableDirector:
     value: {fileID: 1263529871}
   - key: {fileID: 114901606983277996, guid: c1cb13cfbf120b94abb1680981b7915c, type: 2}
     value: {fileID: 1263529871}
+  - key: {fileID: 114485120767674286, guid: 41d8afb897279a441b6fc314ee8ae818, type: 2}
+    value: {fileID: 1367371255}
+  - key: {fileID: 114433877973709740, guid: 41d8afb897279a441b6fc314ee8ae818, type: 2}
+    value: {fileID: 251211302}
+  - key: {fileID: 114169107444655424, guid: 41d8afb897279a441b6fc314ee8ae818, type: 2}
+    value: {fileID: 705728402}
+  - key: {fileID: 114591012861878516, guid: 41d8afb897279a441b6fc314ee8ae818, type: 2}
+    value: {fileID: 1863244516}
+  - key: {fileID: 114069346032838296, guid: 41d8afb897279a441b6fc314ee8ae818, type: 2}
+    value: {fileID: 1263529871}
+  - key: {fileID: 114211072457476102, guid: 41d8afb897279a441b6fc314ee8ae818, type: 2}
+    value: {fileID: 1872687874}
   m_ExposedReferences:
     m_References: []
 --- !u!95 &1706101366
@@ -15335,7 +15407,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1621339037}
   m_Direction: 3
   m_Value: 1
-  m_Size: 0.68187046
+  m_Size: 0.68174386
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -15595,6 +15667,7 @@ GameObject:
   - component: {fileID: 1863244514}
   - component: {fileID: 1863244513}
   - component: {fileID: 1863244512}
+  - component: {fileID: 1863244516}
   m_Layer: 5
   m_Name: More Button
   m_TagString: Untagged
@@ -15617,10 +15690,10 @@ RectTransform:
   m_Father: {fileID: 1098380240}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.9250001, y: 0.020000001}
-  m_AnchorMax: {x: 0.9875, y: 0.11811799}
+  m_AnchorMin: {x: 0.9250001, y: 0.02}
+  m_AnchorMax: {x: 0.9875, y: 0.118118}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -0.005004883, y: -0.024002075}
+  m_SizeDelta: {x: -0.005004883, y: -0.02400208}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1863244512
 MonoBehaviour:
@@ -15726,6 +15799,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1863244510}
   m_CullTransparentMesh: 0
+--- !u!95 &1863244516
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863244510}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1867902771
 GameObject:
   m_ObjectHideFlags: 0
@@ -16065,8 +16157,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "\tWelcome to Vector Unknown. Please press the right arrow button below
-    to begin."
+  m_text: "\tFirst things first, you are trying to get the bunny in the background
+    to move on the grid to the goal. The vector formula you give the bunny will move
+    it along the grid. \\n\\tUse the arrow keys to move the camera for a different
+    perspective of the grid. Press the 'r' key to reset the camera. \n\\nPress the
+    right arrow button to begin the tutorial."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fe0ff89a3305a1c459f0c9e25bdee7fc, type: 2}
   m_sharedMaterial: {fileID: 21522958613736386, guid: fe0ff89a3305a1c459f0c9e25bdee7fc,
@@ -16133,15 +16228,15 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 10, y: 15, z: 10, w: 5}
+  m_margin: {x: 10, y: 15.941961, z: 10, w: 5}
   m_textInfo:
     textComponent: {fileID: 1872687876}
-    characterCount: 79
+    characterCount: 344
     spriteCount: 0
-    spaceCount: 13
-    wordCount: 14
+    spaceCount: 70
+    wordCount: 67
     linkCount: 0
-    lineCount: 2
+    lineCount: 9
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -16227,7 +16322,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Tutorial
+  m_text: Welcome!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fe0ff89a3305a1c459f0c9e25bdee7fc, type: 2}
   m_sharedMaterial: {fileID: 21522958613736386, guid: fe0ff89a3305a1c459f0c9e25bdee7fc,
