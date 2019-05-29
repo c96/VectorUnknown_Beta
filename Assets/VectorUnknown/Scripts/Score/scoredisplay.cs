@@ -8,12 +8,9 @@ public class scoredisplay : MonoBehaviour
 {
 
     public Transform level_select_panel;
-    public TMP_Text tutorial;
 
     void Start()
     {
-        if (PlayerPrefs.GetInt("Tutorial") == 1)
-            tutorial.fontStyle = FontStyles.Strikethrough;
         int children = level_select_panel.childCount;
         for (int i = 0; i < children; i++)
             if (level_select_panel.GetChild(i).name != "Tutorial_Button" &&

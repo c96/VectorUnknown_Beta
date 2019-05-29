@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,7 @@ public class GameConstants : MonoBehaviour {
 	static GameConstants Instance;
 
     public static bool locked = true;                   // For determining whether the player is locked to the grid or not
+    static public int difficulty = 0; //o -> easy, 1 -> medium, 2 -> hard
     static public bool menu_level_select = false;
     static public int GridSpacing = 1;					//Grid Spacing on the Game Board
 	static public float Height = 2.5f;					//Y Value of Player and Goal
@@ -28,13 +30,19 @@ public class GameConstants : MonoBehaviour {
         new Vector3 (5, 2),
         new Vector3 (3, 5),
         new Vector3 (5, 3)
-        //add some new vectors, <1,5>, <1,7>, <1,9>
 	};
 
     // Use this for initialization
     void Awake () {
 		Instance = this;
 	}
+
+    public void cry_havoc()
+    {
+        Debug.Log("function execute");
+        TMP_Dropdown dropdown = GameObject.Find("difficulty_dropdown").GetComponent<TMP_Dropdown>();
+        GameConstants.difficulty = dropdown.value;
+    }
 
 	public void load_menu()
     {

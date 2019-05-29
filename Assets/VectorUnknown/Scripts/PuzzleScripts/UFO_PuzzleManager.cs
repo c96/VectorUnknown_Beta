@@ -48,9 +48,21 @@ public class UFO_PuzzleManager : MonoBehaviour
     public void NextPuzzle()
     {
         int[] Num = new int[2];                 //Container for the random index numbers of the GameConstants.BaseVectors array
-
+        Debug.Log(GameConstants.difficulty);
         // Randomly chooses two vectors from the GameConstants.BaseVectors array and stores them in the Choices array.
         int l = GameConstants.BaseVectors.Length;            // Num[i]= Random index number of GameConstants.BaseVectors array
+        if ( GameConstants.difficulty == 0)
+        {//easy mode
+            l %= 7; //choose vectors from <1,0> to <3,1> in BaseVecctors
+        }
+        if (GameConstants.difficulty == 1)
+        {//medium
+            l %= 9; //choose vectors from <1,0> to <5,1> in BaseVecctors
+        }
+        if (GameConstants.difficulty == 2)
+        {//hard
+
+        }
         Num[0] = rnd.Next(0, l);             // Num[i] is used to select random vector
         if (Num[0] <= 1)
         {                      // If Num[0] --> <0,1> or <1,0>, then Num[1] should not be a duplicate of Num[0]
@@ -61,7 +73,11 @@ public class UFO_PuzzleManager : MonoBehaviour
         else
             Num[1] = rnd.Next(0, l);         // If Num[0] !-> <0,1> or <1,0>, then Num[1] can be equal to Num[2]
 
-        Choices[0] = GameConstants.BaseVectors[Num[0]]; // Choices[0]= First Random Vector (Will 	Eventually Become First Solution Vector)
+        if (GameConstants.difficulty == 0)//easy mode vector choices will always contain <1,0>
+            Choices[0] = Mathf.Round( rnd.Next(0, 1)) == 1 ? new Vector2( 0,1) : new Vector2( 1, 0); // Choices[0]= First Random Vector (Will 	Eventually Become First Solution Vector)
+        else
+            Choices[0] = GameConstants.BaseVectors[Num[0]];
+
         Choices[1] = GameConstants.BaseVectors[Num[1]]; // Choiecs[1]= Second Random Vector (Will Eventually Become Second Solution Vector)
 
         // Randomly changes the directions of the vectors in the Choices array, so that they point to different quadrants.

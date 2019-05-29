@@ -7,7 +7,7 @@ using SimpleJSON;
 
 public class GUI_InfoController : MonoBehaviour {
 
-    public GameObject InfoOverlay, infoText, failText, successText, scrollText, star1, star2, star3;
+    public GameObject InfoOverlay, infoText, failText, successText, star1, star2, star3;
     public Text successTime, successScore, successStarAnnounce;
 	public TextAsset controls, success, failure;
     //public Text infoText;
@@ -28,7 +28,6 @@ public class GUI_InfoController : MonoBehaviour {
 		overlay_button.onClick.AddListener( HideInfoOverlay);
 
         infoText.SetActive(true);
-        scrollText.SetActive(true);
         InfoOverlay.SetActive(true);
     }
 
@@ -83,7 +82,6 @@ public class GUI_InfoController : MonoBehaviour {
 		Button overlay_button =	InfoOverlay.GetComponentInChildren< Button> ();
 		overlay_button.onClick.RemoveAllListeners ();
 
-        scrollText.SetActive(false);
         infoText.SetActive(false);
 		InfoOverlay.SetActive(false);
 	}
