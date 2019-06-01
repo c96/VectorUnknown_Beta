@@ -33,7 +33,8 @@ public class GameConstants : MonoBehaviour {
 	};
 
     // Use this for initialization
-    void Awake () {
+    void Awake ()
+    {
 		Instance = this;
 	}
 

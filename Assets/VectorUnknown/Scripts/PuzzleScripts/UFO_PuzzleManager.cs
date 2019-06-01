@@ -50,28 +50,35 @@ public class UFO_PuzzleManager : MonoBehaviour
         int[] Num = new int[2];                 //Container for the random index numbers of the GameConstants.BaseVectors array
         Debug.Log(GameConstants.difficulty);
         // Randomly chooses two vectors from the GameConstants.BaseVectors array and stores them in the Choices array.
-        int l = GameConstants.BaseVectors.Length;            // Num[i]= Random index number of GameConstants.BaseVectors array
+        int upperLimit = GameConstants.BaseVectors.Length;            // Num[i]= Random index number of GameConstants.BaseVectors array
+        int lowerLimit = 0;
         if ( GameConstants.difficulty == 0)
         {//easy mode
-            l %= 7; //choose vectors from <1,0> to <3,1> in BaseVecctors
+            lowerLimit = 0;
+            upperLimit = 7; //choose vectors from <1,0> to <3,1> in BaseVecctors
         }
         if (GameConstants.difficulty == 1)
-        {//medium
-            l %= 9; //choose vectors from <1,0> to <5,1> in BaseVecctors
+        {   //medium
+            //choose vectors from <1,0> to <5,1> in BaseVecctors
+            lowerLimit = 2; 
+            upperLimit = 11;
+            
         }
         if (GameConstants.difficulty == 2)
         {//hard
-
+            lowerLimit = 7;
+            upperLimit = 16;
         }
-        Num[0] = rnd.Next(0, l);             // Num[i] is used to select random vector
+
+        Num[0] = rnd.Next(lowerLimit, upperLimit);             // Num[i] is used to select random vector
         if (Num[0] <= 1)
         {                      // If Num[0] --> <0,1> or <1,0>, then Num[1] should not be a duplicate of Num[0]
-            Num[1] = rnd.Next(0, l - 1);     // So Num[1] should be selected from among l-1 index numbers
+            Num[1] = rnd.Next(lowerLimit, upperLimit);     // So Num[1] should be selected from among l-1 index numbers
             if (Num[1] >= Num[0])
                 Num[1]++; // Adjust Num[1] depending on the value of Num[0], so that Num[0]!=Num[1] and 0<=Num[1]<=l
         }
         else
-            Num[1] = rnd.Next(0, l);         // If Num[0] !-> <0,1> or <1,0>, then Num[1] can be equal to Num[2]
+            Num[1] = rnd.Next(lowerLimit, upperLimit +1);         // If Num[0] !-> <0,1> or <1,0>, then Num[1] can be equal to Num[2]
 
         if (GameConstants.difficulty == 0)//easy mode vector choices will always contain <1,0>
             Choices[0] = Mathf.Round( rnd.Next(0, 1)) == 1 ? new Vector2( 0,1) : new Vector2( 1, 0); // Choices[0]= First Random Vector (Will 	Eventually Become First Solution Vector)
@@ -214,7 +221,16 @@ public class UFO_PuzzleManager : MonoBehaviour
         }
 
         Psychometrics.logEvent("A:" + Mul[0] + "*" + Choices[0] + "+" + Mul[1] + "*" + Choices[1]);
-        return Mul[0] * Choices[0] + Mul[1] * Choices[1];
+        Vector2 test_vec = Mul[0] * Choices[0] + Mul[1] * Choices[1];
+
+        //check that solution is within -20, 20
+        test_vec.x = (test_vec.x > 20) ? 20 : test_vec.x;
+        test_vec.x = (test_vec.x < -20) ? -20 : test_vec.x;
+
+        test_vec.y = (test_vec.y > 20) ? 20 : test_vec.y;
+        test_vec.y = (test_vec.y < -20) ? -20 : test_vec.y;
+
+        return test_vec;
     }
 
     public void enforce_quadrants(int quad_1, int quad_2)
