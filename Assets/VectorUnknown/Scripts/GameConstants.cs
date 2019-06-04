@@ -40,9 +40,9 @@ public class GameConstants : MonoBehaviour {
 
     public void cry_havoc()
     {
-        Debug.Log("function execute");
         TMP_Dropdown dropdown = GameObject.Find("difficulty_dropdown").GetComponent<TMP_Dropdown>();
         GameConstants.difficulty = dropdown.value;
+        PlayerPrefs.SetInt("CurrentDifficulty", dropdown.value);
     }
 
 	public void load_menu()

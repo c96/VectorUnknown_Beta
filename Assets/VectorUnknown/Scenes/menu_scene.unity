@@ -578,7 +578,7 @@ PrefabInstance:
     - target: {fileID: 224880866221405980, guid: dc24a5d3e4d67f24cb1457c831ae9d05,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 224880866221405980, guid: dc24a5d3e4d67f24cb1457c831ae9d05,
         type: 3}
@@ -1043,7 +1043,7 @@ PrefabInstance:
     - target: {fileID: 224880866221405980, guid: dc24a5d3e4d67f24cb1457c831ae9d05,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224880866221405980, guid: dc24a5d3e4d67f24cb1457c831ae9d05,
         type: 3}
@@ -1543,6 +1543,7 @@ GameObject:
   - component: {fileID: 636131814}
   - component: {fileID: 636131813}
   - component: {fileID: 636131812}
+  - component: {fileID: 636131815}
   m_Layer: 5
   m_Name: difficulty_dropdown
   m_TagString: Untagged
@@ -1676,6 +1677,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 636131810}
   m_CullTransparentMesh: 0
+--- !u!114 &636131815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 636131810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64e4c776a277fc74e82a6420082d0c7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropdown: {fileID: 636131812}
 --- !u!1 &646844877
 GameObject:
   m_ObjectHideFlags: 0
@@ -2248,11 +2262,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0.00001606}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1739573877}
   - {fileID: 2133478811}
   - {fileID: 1594665231}
   - {fileID: 234079981}
   - {fileID: 442986737}
-  - {fileID: 1739573877}
   - {fileID: 699796352}
   - {fileID: 1406909384}
   m_Father: {fileID: 1924050615}
@@ -2306,7 +2320,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee80223c2d538740b7e0b0a0ecfd233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level_select_panel: {fileID: 743644924}
+  level_buttons:
+  - {fileID: 1594665231}
+  - {fileID: 234079981}
+  - {fileID: 442986737}
+  - {fileID: 699796352}
+  - {fileID: 1406909384}
 --- !u!1 &852025437
 GameObject:
   m_ObjectHideFlags: 0
@@ -3973,7 +3992,7 @@ PrefabInstance:
     - target: {fileID: 224880866221405980, guid: dc24a5d3e4d67f24cb1457c831ae9d05,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 224880866221405980, guid: dc24a5d3e4d67f24cb1457c831ae9d05,
         type: 3}
@@ -4667,11 +4686,11 @@ RectTransform:
   - {fileID: 1329049171}
   - {fileID: 1721877538}
   m_Father: {fileID: 743644924}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -53.80002, y: -42.89099}
+  m_AnchoredPosition: {x: -53.800034, y: -42.89099}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1739573878
@@ -5796,7 +5815,7 @@ RectTransform:
   - {fileID: 61745252}
   - {fileID: 688180075}
   m_Father: {fileID: 743644924}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}

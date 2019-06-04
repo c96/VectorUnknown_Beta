@@ -7,16 +7,12 @@ using TMPro;
 public class scoredisplay : MonoBehaviour
 {
 
-    public Transform level_select_panel;
+    public List<Transform> level_buttons = new List<Transform>();
 
     void Start()
     {
-        int children = level_select_panel.childCount;
-        for (int i = 0; i < children; i++)
-            if (level_select_panel.GetChild(i).name != "Tutorial_Button" &&
-                level_select_panel.GetChild(i).name != "Level-Time-Stars" &&
-                level_select_panel.GetChild(i).name != "tooltip")
-                    set_bests(level_select_panel.GetChild(i), (i - 1));
+        for( int i = 0; i < level_buttons.Count; i++)
+            set_bests(level_buttons[i], (i + 1));
 
     }
 

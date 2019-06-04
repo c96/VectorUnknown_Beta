@@ -70,18 +70,18 @@ public class UFO_PuzzleManager : MonoBehaviour
             upperLimit = 16;
         }
 
-        Num[0] = rnd.Next(lowerLimit, upperLimit);             // Num[i] is used to select random vector
+        Num[0] = rnd.Next(lowerLimit, upperLimit-1);             // Num[i] is used to select random vector
         if (Num[0] <= 1)
         {                      // If Num[0] --> <0,1> or <1,0>, then Num[1] should not be a duplicate of Num[0]
-            Num[1] = rnd.Next(lowerLimit, upperLimit);     // So Num[1] should be selected from among l-1 index numbers
+            Num[1] = rnd.Next(lowerLimit, upperLimit-1);     // So Num[1] should be selected from among l-1 index numbers
             if (Num[1] >= Num[0])
                 Num[1]++; // Adjust Num[1] depending on the value of Num[0], so that Num[0]!=Num[1] and 0<=Num[1]<=l
         }
         else
-            Num[1] = rnd.Next(lowerLimit, upperLimit +1);         // If Num[0] !-> <0,1> or <1,0>, then Num[1] can be equal to Num[2]
+            Num[1] = rnd.Next(lowerLimit, upperLimit -1);         // If Num[0] !-> <0,1> or <1,0>, then Num[1] can be equal to Num[2]
 
         if (GameConstants.difficulty == 0)//easy mode vector choices will always contain <1,0>
-            Choices[0] = Mathf.Round( rnd.Next(0, 1)) == 1 ? new Vector2( 0,1) : new Vector2( 1, 0); // Choices[0]= First Random Vector (Will 	Eventually Become First Solution Vector)
+            Choices[0] = rnd.Next(0, 2) == 1 ? new Vector2( 0,1) : new Vector2( 1, 0); // Choices[0]= First Random Vector (Will 	Eventually Become First Solution Vector)
         else
             Choices[0] = GameConstants.BaseVectors[Num[0]];
 
@@ -457,7 +457,6 @@ public class UFO_PuzzleManager : MonoBehaviour
             GameObject level_data = GameObject.Find("LevelData");
             Destroy(level_data);
             Psychometrics.report("M");
-            //Psychometrics.sendData();
         }
         else
         {
