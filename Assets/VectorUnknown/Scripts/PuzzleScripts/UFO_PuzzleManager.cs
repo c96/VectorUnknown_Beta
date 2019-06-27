@@ -47,15 +47,16 @@ public class UFO_PuzzleManager : MonoBehaviour
 
     public void NextPuzzle()
     {
-        int[] Num = new int[2];                 //Container for the random index numbers of the GameConstants.BaseVectors array
+        int[] Num = new int[2]; //Container for the random index numbers of the GameConstants.BaseVectors array
         Debug.Log(GameConstants.difficulty);
         // Randomly chooses two vectors from the GameConstants.BaseVectors array and stores them in the Choices array.
         int upperLimit = GameConstants.BaseVectors.Length;            // Num[i]= Random index number of GameConstants.BaseVectors array
         int lowerLimit = 0;
         if ( GameConstants.difficulty == 0)
-        {//easy mode
+        {   //easy mode
+            //choose vectors from <1,0> to <3,1> in BaseVecctors
             lowerLimit = 0;
-            upperLimit = 7; //choose vectors from <1,0> to <3,1> in BaseVecctors
+            upperLimit = 7; 
         }
         if (GameConstants.difficulty == 1)
         {   //medium
@@ -65,17 +66,19 @@ public class UFO_PuzzleManager : MonoBehaviour
             
         }
         if (GameConstants.difficulty == 2)
-        {//hard
+        {   //hard
             lowerLimit = 7;
             upperLimit = 16;
         }
 
-        Num[0] = rnd.Next(lowerLimit, upperLimit-1);             // Num[i] is used to select random vector
+        Num[0] = rnd.Next(lowerLimit, upperLimit-1);    // Num[i] is used to select random vector
         if (Num[0] <= 1)
         {                      // If Num[0] --> <0,1> or <1,0>, then Num[1] should not be a duplicate of Num[0]
             Num[1] = rnd.Next(lowerLimit, upperLimit-1);     // So Num[1] should be selected from among l-1 index numbers
             if (Num[1] >= Num[0])
+            {
                 Num[1]++; // Adjust Num[1] depending on the value of Num[0], so that Num[0]!=Num[1] and 0<=Num[1]<=l
+            }
         }
         else
             Num[1] = rnd.Next(lowerLimit, upperLimit -1);         // If Num[0] !-> <0,1> or <1,0>, then Num[1] can be equal to Num[2]
