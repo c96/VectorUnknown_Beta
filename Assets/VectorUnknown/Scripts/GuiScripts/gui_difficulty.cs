@@ -10,7 +10,7 @@ public class gui_difficulty : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dropdown.value = GameConstants.difficulty;
+        dropdown.value = GameConstants.difficulty - 1;
     }
 
 }

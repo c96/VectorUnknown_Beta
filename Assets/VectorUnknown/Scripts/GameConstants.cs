@@ -9,7 +9,7 @@ public class GameConstants : MonoBehaviour {
 	static GameConstants Instance;
 
     public static bool locked = true;                   // For determining whether the player is locked to the grid or not
-    static public int difficulty = 0; //o -> easy, 1 -> medium, 2 -> hard
+    static public int difficulty = 1; //1 -> easy, 2 -> medium, 3 -> hard
     static public bool menu_level_select = false;
     static public int GridSpacing = 1;					//Grid Spacing on the Game Board
 	static public float Height = 2.5f;					//Y Value of Player and Goal
@@ -41,7 +41,7 @@ public class GameConstants : MonoBehaviour {
     public void cry_havoc()
     {
         TMP_Dropdown dropdown = GameObject.Find("difficulty_dropdown").GetComponent<TMP_Dropdown>();
-        GameConstants.difficulty = dropdown.value;
+        GameConstants.difficulty = dropdown.value +1;
         PlayerPrefs.SetInt("CurrentDifficulty", dropdown.value);
     }
 

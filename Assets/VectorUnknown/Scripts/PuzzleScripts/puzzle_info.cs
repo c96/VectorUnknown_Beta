@@ -37,11 +37,49 @@ public class puzzle_info : MonoBehaviour {
             past.enabled = false;
     }
 
+    GameObject[] FindGameObjectsWithName(string nameIt)
+    {
+        int it = 0;
+        GameObject[] objArr;
+        bool b = false;
+        while (!b)
+        {
+            if (GameObject.Find(nameIt))
+            {
+                GameObject.Find(nameIt).name = nameIt + it;
+                it++;
+            }
+            else
+            {
+                b = true;
+            }
+        }
+
+        objArr = new GameObject[it];
+        while (it > 0)
+        {
+            it--;
+            objArr[it] = GameObject.Find(nameIt + it);
+            objArr[it].name = nameIt;
+        }
+
+        return objArr;
+    }//END FindGameObjectsWithName 
+
     public void Reset(){
 		
 		player_position = new Vector3 (0, 0, 0); //inital starting point of <0, 0, 0>
-
-		GameObject level_data = GameObject.Find ("LevelData");
+        GameObject [] level_data_array = FindGameObjectsWithName("LevelData");
+        GameObject level_data = null;
+        
+        foreach (GameObject go in level_data_array)
+        {
+            level_data = go;          
+        }
+        
+        
+        
+        //GameObject level_data = GameObject.Find ("LevelData");
 		gui_select data = level_data.GetComponent< gui_select> ();
 
 		attempt_count = data.attempt_count;

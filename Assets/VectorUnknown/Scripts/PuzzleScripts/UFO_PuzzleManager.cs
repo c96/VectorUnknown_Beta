@@ -52,20 +52,20 @@ public class UFO_PuzzleManager : MonoBehaviour
         // Randomly chooses two vectors from the GameConstants.BaseVectors array and stores them in the Choices array.
         int upperLimit = GameConstants.BaseVectors.Length;            // Num[i]= Random index number of GameConstants.BaseVectors array
         int lowerLimit = 0;
-        if ( GameConstants.difficulty == 0)
+        if ( GameConstants.difficulty == 1)
         {   //easy mode
             //choose vectors from <1,0> to <3,1> in BaseVecctors
-            lowerLimit = 0;
+            lowerLimit = 2;
             upperLimit = 7; 
         }
-        if (GameConstants.difficulty == 1)
+        if (GameConstants.difficulty == 2)
         {   //medium
             //choose vectors from <1,0> to <5,1> in BaseVecctors
             lowerLimit = 2; 
             upperLimit = 11;
             
         }
-        if (GameConstants.difficulty == 2)
+        if (GameConstants.difficulty == 3)
         {   //hard
             lowerLimit = 7;
             upperLimit = 16;
@@ -83,7 +83,7 @@ public class UFO_PuzzleManager : MonoBehaviour
         else
             Num[1] = rnd.Next(lowerLimit, upperLimit -1);         // If Num[0] !-> <0,1> or <1,0>, then Num[1] can be equal to Num[2]
 
-        if (GameConstants.difficulty == 0)//easy mode vector choices will always contain <1,0>
+        if (GameConstants.difficulty == 1)//easy mode vector choices will always contain <1,0>
             Choices[0] = rnd.Next(0, 2) == 1 ? new Vector2( 0,1) : new Vector2( 1, 0); // Choices[0]= First Random Vector (Will 	Eventually Become First Solution Vector)
         else
             Choices[0] = GameConstants.BaseVectors[Num[0]];
@@ -113,7 +113,7 @@ public class UFO_PuzzleManager : MonoBehaviour
         //generate a number of keys to be collected
         if (puzzle_info.game_mode == 1)
         {
-            number_of_keys = rnd.Next(1, 4);
+            number_of_keys = GameConstants.difficulty;
             //Debug.Log ("Keys: " + number_of_keys.ToString());
             generate_keys();
         }
@@ -268,12 +268,12 @@ public class UFO_PuzzleManager : MonoBehaviour
 
             /* Step 2: Boundary test vectors */
             int first_min = Mathf.Min(                   //Determines the max constant a vector can be multiplied 
-                Mathf.FloorToInt(10f / first_part.x),  //while remianing within the grid ( 40x40 grid, origin (0,0))
-                Mathf.FloorToInt(10f / first_part.y)
+                Mathf.FloorToInt(5f * (4 - GameConstants.difficulty) / first_part.x),  //while remianing within the grid ( 40x40 grid, origin (0,0))
+                Mathf.FloorToInt(5f * (4 - GameConstants.difficulty) / first_part.y)
             );
             int second_min = Mathf.Min(
-                Mathf.FloorToInt(10f / second_part.x),
-                Mathf.FloorToInt(10f / second_part.y)
+                Mathf.FloorToInt(5f * (4 - GameConstants.difficulty) / second_part.x),
+                Mathf.FloorToInt(5f * (4 - GameConstants.difficulty) / second_part.y)
             );
 
             if (first_min == -2147483648) { first_min = 1; } //Prevent overflow error
@@ -284,14 +284,15 @@ public class UFO_PuzzleManager : MonoBehaviour
             /*********************************/
 
             /* Step 3: Construct location */
-            Vector2 construct_location = (rnd.Next(0, first_min) * first_part) + (rnd.Next(0, second_min) * second_part);
+            Vector2 construct_location = (rnd.Next(-first_min, first_min) * first_part) + (rnd.Next(-second_min, second_min) * second_part);
+            //construct_location *= 0.5f;
             construct_location = remain_within_bounds(construct_location);
             key_locations[i] = new Vector3(construct_location.x, 1f, construct_location.y);
             //Debug.Log ("Key locations: " +key_locations [i].ToString ());
             /*******************************/
 
             /* Step 4: Load Key at location */
-            if (!checkNear(key_locations[i].x, key_locations[i].z, 0, 0)) // Verify key can't spawn near origin
+            if (!checkNear(key_locations[i].x, key_locations[i].z)) // Verify key can't spawn near origin
             {
                 GameObject load_key = Instantiate(key, key_locations[i], Quaternion.identity, key_sack.transform);
                 Psychometrics.logEvent("K" + (i + 1) + "(" + key_locations[i].x + "," + key_locations[i].y + ")");
@@ -305,9 +306,9 @@ public class UFO_PuzzleManager : MonoBehaviour
         }
     }
 
-    private Boolean checkNear(float a, float b, float c, float d)
+    private Boolean checkNear(float a, float b)
     {
-        if (Math.Abs(a - c) < 8 || Math.Abs(b - d) < 8 || Math.Abs(a - c) > 18 || Math.Abs(b - d) > 18)
+        if ((Math.Abs(a) < 4 && Math.Abs(b) < 4) || Math.Abs(a) >18 || Math.Abs(b) > 18)
             return true;
         return false;
     }
@@ -445,9 +446,9 @@ public class UFO_PuzzleManager : MonoBehaviour
                 }
             }
 
-            if (puzzle_info.game_mode == 1 && number_of_keys <= 0)
+            if (puzzle_info.game_mode == 1  && number_of_keys <= 0)
             {
-                scorekeep.generate_score();
+                scorekeep.generate_score(); 
                 InfoController.GetComponent<GUI_InfoController>().ShowSuccessOverlay();
             }
         }

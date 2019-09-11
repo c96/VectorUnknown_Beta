@@ -3797,8 +3797,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1506564176}
-        m_MethodName: GameOver
+      - m_Target: {fileID: 1051838537}
+        m_MethodName: load_menu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15410,7 +15410,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1621339037}
   m_Direction: 3
   m_Value: 1
-  m_Size: 0.6820168
+  m_Size: 0.6822766
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

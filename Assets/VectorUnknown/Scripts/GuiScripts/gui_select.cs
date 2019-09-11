@@ -57,7 +57,7 @@ public class gui_select : MonoBehaviour {
 
 	public void level_five(){
         Psychometrics.logEvent("L5");
-        puzzle_settings ( -1, 1, 1, 0);
+        puzzle_settings ( -1, 1, 1, 1);
         PlayerPrefs.SetInt("CurrentLevel", 5);
         SceneManager.LoadScene ("VectorGame");
 
