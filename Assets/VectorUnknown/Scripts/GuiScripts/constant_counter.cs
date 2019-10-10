@@ -121,7 +121,7 @@ public class constant_counter : MonoBehaviour
 
     public void reset()
     {
-        constant = 1;
+        constant = 0;
         change = true;
     }
 

@@ -48,25 +48,25 @@ public class rotate_camera : MonoBehaviour
             follow_reflect.transform.RotateAround(target, Vector3.up, 45.0f);
             keypress = true;
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow) && !keypress)
+        else if (Input.GetKeyDown(KeyCode.RightArrow) && !keypress)
         {
             follow.transform.RotateAround(target, Vector3.down, 45.0f);
             follow_reflect.transform.RotateAround(target, Vector3.down, 45.0f);
             keypress = true;
         }
         //vetrical rotations
-        if (Input.GetKeyDown(KeyCode.UpArrow) && v_lock < 36.0f && !keypress)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && v_lock < 30.0f && !keypress)
         {
             spin_vertical(12.0f, 1);
             keypress = true;
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow) && v_lock > -36.0f && !keypress)
+        else if (Input.GetKeyDown(KeyCode.DownArrow) && v_lock > -30.0f && !keypress)
         {
             spin_vertical(12.0f, -1);
             keypress = true;
         }
         //Reset
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) || v_lock > 36.0f || v_lock < -36.0f)
             reset_camera();
 
         //SmoothDamp to move the camera to the follow position, then retarget the center of the board
@@ -98,5 +98,6 @@ public class rotate_camera : MonoBehaviour
     {
         follow.transform.position = new Vector3(0f, 36.06245f, -34.64823f);
         follow_reflect.transform.position = new Vector3(0f, -36.06245f, 34.64823f);
+        v_lock = 0f;
     }
 }

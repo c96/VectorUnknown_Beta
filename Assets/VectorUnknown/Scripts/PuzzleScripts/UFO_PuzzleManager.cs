@@ -227,11 +227,17 @@ public class UFO_PuzzleManager : MonoBehaviour
         Vector2 test_vec = Mul[0] * Choices[0] + Mul[1] * Choices[1];
 
         //check that solution is within -20, 20
-        test_vec.x = (test_vec.x > 20) ? 20 : test_vec.x;
-        test_vec.x = (test_vec.x < -20) ? -20 : test_vec.x;
+        //test_vec.x = (test_vec.x > 20) ? 20 : test_vec.x;
+        //test_vec.x = (test_vec.x < -20) ? -20 : test_vec.x;
 
-        test_vec.y = (test_vec.y > 20) ? 20 : test_vec.y;
-        test_vec.y = (test_vec.y < -20) ? -20 : test_vec.y;
+        //test_vec.y = (test_vec.y > 20) ? 20 : test_vec.y;
+        //test_vec.y = (test_vec.y < -20) ? -20 : test_vec.y;
+
+        if(test_vec.x > 20 || test_vec.x < -20 || test_vec.y > 20 || test_vec.y < -20 || test_vec == Vector2.zero) //make sure goal is within boundaries and is not at origin, otherwise, regenerate
+        {
+            return generate_solution(Num);
+
+        }
 
         return test_vec;
     }
@@ -284,9 +290,9 @@ public class UFO_PuzzleManager : MonoBehaviour
             /*********************************/
 
             /* Step 3: Construct location */
-            Vector2 construct_location = (rnd.Next(-first_min, first_min) * first_part) + (rnd.Next(-second_min, second_min) * second_part);
+            Vector2 construct_location = constructLocation(first_min, first_part, second_min, second_part, key_locations);
             //construct_location *= 0.5f;
-            construct_location = remain_within_bounds(construct_location);
+            //construct_location = remain_within_bounds(construct_location);
             key_locations[i] = new Vector3(construct_location.x, 1f, construct_location.y);
             //Debug.Log ("Key locations: " +key_locations [i].ToString ());
             /*******************************/
@@ -304,6 +310,24 @@ public class UFO_PuzzleManager : MonoBehaviour
             /********************************/
 
         }
+    }
+
+    private Vector2 constructLocation(int first_min, Vector2 first_part, int second_min, Vector2 second_part, Vector3[] key_locations)//check to make sure valid key location within bounds, seperate from goal, and unique from other key locations was generated. Otherwise, regenerate. 
+    {
+        Vector2 returnVal = (rnd.Next(-first_min, first_min) * first_part) + (rnd.Next(-second_min, second_min) * second_part);
+        if(returnVal.x > 20 || returnVal.x < -20 || returnVal.y > 20 || returnVal.y < -20 || (returnVal.x == Solution.x && returnVal.y == Solution.y))
+        {
+            returnVal = constructLocation(first_min, first_part, second_min, second_part, key_locations);
+        }
+        foreach(Vector3 keyLocation in key_locations)
+        {
+            if (returnVal.x == keyLocation.x && returnVal.y == keyLocation.z)
+            {
+                returnVal = constructLocation(first_min, first_part, second_min, second_part, key_locations);
+            }
+        }
+        
+        return returnVal;
     }
 
     private Boolean checkNear(float a, float b)
